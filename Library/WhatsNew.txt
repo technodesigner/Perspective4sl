@@ -1,0 +1,68 @@
+What's new in Perspective library ?
+
+This file describes the main new functionalities since the last offical release (1.0).
+
+Now Perspective 2.0 is under construction :
+- Silverlight 4.0 support (but Perspective 2.0 is not fully compatible with previous Silverlight versions),
+- new functionalities coming soon.
+
+What's new since version 1.0 :
+
+Perspective.Core
+----------------
+EventArgs<T> : A generic class to manage an event argument with one parameter.
+CancelEventArgs<T> : A generic class to manage a CancelEventArgs argument with one parameter.
+
+Perspective.Core.Wpf
+--------------------
+GeometryHelper : new methods GetRotationMatrix, GetTranslationMatrix, GetScaleMatrix, GetSkewMatrix and RotatePoint
+New Helper3D class to handle 3D matrices
+
+Perspective.Wpf.Controls.Primitives
+-----------------------------------
+BREAKING CHANGE - SelectorFrameBase class deleted
+
+Perspective.Wpf.Controls
+------------------------
+
+BREAKING CHANGE - Removed classes :
+- MenuInfo
+- PageMenuInfo
+- NavigationPageMenuInfo
+- XComboBox / XComboBoxItem
+- XListBox / XListBoxItem
+- ComboFrame
+- ListFrame
+
+Perspective.Wpf.themes
+----------------------
+- generic.xaml : Removed classes templates removed !
+
+Others
+------
+BREAKING CHANGES :
+- Perspective.Core.Wpf.Data.Compatibility namespace removed
+- Perspective.Wpf.Controls.Compatibility namespace removed
+- Perspective.Core.Deployment project removed
+- Perspective.Core.LibraryInfo moved to Perspective.Core project
+
+Perspective application project
+-------------------------------
+UNDER CONSTRUCTION !
+A new Silverlight 4 application which can dynamically load pages from extension XAP using MEF. 
+This application is used here as demo of Perspective library.
+
+Perspective.Hosting
+-------------------
+A new Silverlight 4 project to manage MEF parts of the Perspective application project. 
+The classes are used by the entension assemblies.
+Extension : Represents an extension for the Perspective application.
+PageInfo : Represents the metadata associated with a Silverlight page of an extension XAP.
+
+Perspective.Config
+------------------
+An extension assembly to manage the configuration for the Perspective application.
+
+PerspectiveDemo.Wpf
+-------------------
+An extension assembly which is a demo of Perspective library features.

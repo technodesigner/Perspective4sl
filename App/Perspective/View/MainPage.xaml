@@ -1,0 +1,429 @@
+﻿<UserControl 
+    x:Class="Perspective.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:localVM="clr-namespace:Perspective.ViewModel"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:swct="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" 
+    xmlns:ph="clr-namespace:Perspective.Hosting;assembly=Perspective.Hosting"
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <localVM:ExtensionViewModel x:Key="ExtensionViewModel"/>
+        <CollectionViewSource 
+            x:Key="ExtensionsView"
+            Source="{Binding Source={StaticResource ExtensionViewModel}, Path=Extensions}" />
+        <CollectionViewSource 
+            x:Key="PageInfosView"
+            Source="{Binding Source={StaticResource ExtensionsView}, Path=PageInfos}" />
+
+        <ph:ExtensionContentLoader x:Key="ExtensionContentLoader" />
+        
+        <ControlTemplate 
+            x:Key="ListBoxTemplate"
+            TargetType="ItemsControl">
+            <ScrollViewer 
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <!--Focusable="False"-->
+                <ItemsPresenter />
+            </ScrollViewer>
+        </ControlTemplate>
+
+        <ItemsPanelTemplate x:Key="ExtensionsPanelTemplate">
+            <StackPanel 
+                Orientation="Vertical"/>
+        </ItemsPanelTemplate>
+
+        <ItemsPanelTemplate x:Key="PageInfosPanelTemplate">
+            <swct:WrapPanel />
+        </ItemsPanelTemplate>
+
+        <Style x:Key="RectangleStyle" TargetType="Rectangle">
+            <Setter Property="RadiusX" Value="8" />
+            <Setter Property="RadiusY" Value="8" />
+        </Style>
+
+        <Style x:Key="DesktopButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal"/>
+                                    <VisualState Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames 
+                                                    Storyboard.TargetName="backgroundRectangle" 
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    Duration="0">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.55"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup Name="FocusStates">
+                                    <VisualState Name="Focused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames 
+                                                    Storyboard.TargetName="focusRectangle" 
+                                                    Storyboard.TargetProperty="Visibility" 
+                                                    Duration="0">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames 
+                                                    Storyboard.TargetName="backgroundRectangle" 
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    Duration="0">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.55"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState Name="Unfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Rectangle 
+                                Name="backgroundRectangle"
+                                Opacity="0.4"
+                                Style="{StaticResource RectangleStyle}"
+                                Fill="{TemplateBinding Background}"
+                                />
+                            <ContentPresenter
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                />
+                            <Rectangle 
+                                Name="focusRectangle"
+                                Opacity="0.7"
+                                Style="{StaticResource RectangleStyle}"
+                                Visibility="Collapsed"
+                                Stroke="White"
+                                StrokeThickness="3"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style 
+            TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Margin" Value="0,2,0,0" />
+        </Style>
+
+        <DataTemplate x:Key="ExtensionTemplate">
+            <Grid 
+                Margin="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image 
+                    Grid.Row="0"
+                    Source="{Binding Icon}" />
+                <Border 
+                    Grid.Row="1"
+                    CornerRadius="4"
+                    Margin="0, 2, 0, 0"
+                    Padding="5, 0, 5, 1">
+                    <Border.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8" />
+                    </Border.Background>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        TextTrimming="WordEllipsis"
+                        Text="{Binding Path=Title}"/>
+                    <!--TextTrimming="CharacterEllipsis"-->
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PageInfoTemplate">
+            <Button 
+                Style="{StaticResource DesktopButtonStyle}"
+                Command="{Binding 
+                    Source={StaticResource ExtensionViewModel}, 
+                    Path=SetCurrentPageInfoCommand}"
+                CommandParameter="{Binding}">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image 
+                        Grid.Row="0"
+                        Source="{Binding Icon}"/>
+                    <Border 
+                        Grid.Row="1"
+                        CornerRadius="4"
+                        Margin="0, 2, 0, 0"
+                        Padding="5, 0, 5, 1">
+                        <Border.Background>
+                            <SolidColorBrush Color="White" Opacity="0.8" />
+                        </Border.Background>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            TextTrimming="WordEllipsis"
+                            Text="{Binding Path=Title}"/>
+                    </Border>
+                </Grid>
+            </Button>
+        </DataTemplate>
+
+        <Style 
+            x:Key="ExtensionItemContainerStyle"
+            TargetType="ListBoxItem">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid >
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames 
+                                                    Storyboard.TargetName="backgroundRectangle" 
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    Duration="0">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.6"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames 
+                                                            Storyboard.TargetName="focusRectangle" 
+                                                            Storyboard.TargetProperty="Visibility" 
+                                                            Duration="0">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames 
+                                                            Storyboard.TargetName="backgroundRectangle" 
+                                                            Storyboard.TargetProperty="Opacity" 
+                                                            Duration="0">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.6"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unselected"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle 
+                                Name="backgroundRectangle"
+                                Opacity="0.4"
+                                Style="{StaticResource RectangleStyle}"
+                                Fill="{TemplateBinding Background}"
+                                Margin="5"
+                                />
+                            <ContentPresenter
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                />
+                            <Rectangle 
+                                Name="focusRectangle"
+                                Opacity="0.7"
+                                Style="{StaticResource RectangleStyle}"
+                                Visibility="Collapsed"
+                                Stroke="White"
+                                StrokeThickness="3"
+                                Margin="5"
+                                />
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style 
+            x:Key="PageInfoItemContainerStyle"
+            TargetType="ListBoxItem">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="120"/>
+            <!--<Setter Property="Focusable" Value="False"/>-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter 
+                            Margin="5"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--<DataTemplate x:Key="DetailTemplate">
+            <ListBox 
+                Margin="10"
+                ItemsSource="{Binding Path=PageInfos}"
+                Template="{StaticResource ListBoxTemplate}"
+                ItemsPanel="{StaticResource PageInfosPanelTemplate}"
+                ItemTemplate="{StaticResource PageInfoTemplate}"
+                ItemContainerStyle="{StaticResource PageInfoItemContainerStyle}" />
+        </DataTemplate>-->
+        
+        <!--<PathFigureCollection x:Key="ArrowFigures">
+            <PathFigure StartPoint="0, 0" IsClosed="True">
+                <PathFigure.Segments>
+                    <LineSegment Point="0, 9"/>
+                    <LineSegment Point="9, 9"/>
+                </PathFigure.Segments>
+            </PathFigure>
+        </PathFigureCollection>
+        <PathGeometry x:Key="RightArrowGeometry" Figures="{StaticResource ArrowFigures}">
+            <PathGeometry.Transform>
+                <TransformGroup>
+                    <RotateTransform CenterX="4.5" CenterY="4.5" Angle="225" />
+                    <TranslateTransform X="-4.5" Y="-4.5" />
+                    <ScaleTransform ScaleX="1.5" />
+                </TransformGroup>
+            </PathGeometry.Transform>
+        </PathGeometry>
+        <PathGeometry x:Key="LeftArrowGeometry" Figures="{StaticResource ArrowFigures}">
+            <PathGeometry.Transform>
+                <TransformGroup>
+                    <RotateTransform CenterX="4.5" CenterY="4.5" Angle="45" />
+                    <TranslateTransform Y="-4.5" />
+                    <ScaleTransform ScaleX="1.5" />
+                </TransformGroup>
+            </PathGeometry.Transform>
+        </PathGeometry>-->
+        <!--<DrawingImage x:Key="LeftArrowImage">
+            <DrawingImage.Drawing>
+                <GeometryDrawing 
+                    Geometry="{StaticResource LeftArrowGeometry}"
+                    Brush="Yellow">
+                    <GeometryDrawing.Pen>
+                        <Pen Thickness="1" Brush="Black"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="RightArrowImage">
+            <DrawingImage.Drawing>
+                <GeometryDrawing 
+                    Geometry="{StaticResource RightArrowGeometry}"
+                    Brush="Yellow">
+                    <GeometryDrawing.Pen>
+                        <Pen Thickness="1" Brush="Black"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="NotificationImage">
+            <DrawingImage.Drawing>
+                <GeometryDrawing 
+                    Brush="Yellow">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="6" RadiusY="6" />
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Thickness="1" Brush="Black"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>-->
+    </UserControl.Resources>
+    <Grid 
+        Background="MediumSlateBlue">
+        <!--DataContext="{Binding Source={StaticResource ExtensionsView}}">-->
+        <!--<Image 
+            Source="{Binding RandomImage}"
+            Stretch="UniformToFill"/>-->
+        <swct:DockPanel>
+            <ListBox 
+                Name="extensionListBox"
+                Margin="10"
+                swct:DockPanel.Dock="Left"          
+                ItemsSource="{Binding Source={StaticResource ExtensionsView}}"
+                Template="{StaticResource ListBoxTemplate}"
+                ItemsPanel="{StaticResource ExtensionsPanelTemplate}"
+                ItemTemplate="{StaticResource ExtensionTemplate}"
+                ItemContainerStyle="{StaticResource ExtensionItemContainerStyle}"
+                GotFocus="extensionListBox_GotFocus"
+                />
+            <!--<ListBox 
+                Name="extensionListBox"
+                Margin="10"
+                swct:DockPanel.Dock="Left"          
+                ItemsSource="{Binding Path=Extensions}"
+                Template="{StaticResource ListBoxTemplate}"
+                ItemsPanel="{StaticResource ExtensionsPanelTemplate}"
+                ItemTemplate="{StaticResource ExtensionTemplate}"
+                ItemContainerStyle="{StaticResource ExtensionItemContainerStyle}"
+                />-->
+            <!--IsSynchronizedWithCurrentItem="True"-->
+            <!--GotKeyboardFocus="extensionListBox_GotKeyboardFocus"-->
+            <Grid 
+                Name="detailGrid">
+                <!--SizeChanged="detailGrid_SizeChanged"-->
+                <!--<ContentControl 
+                    Name="detailContainer"
+                    ContentTemplate="{StaticResource DetailTemplate}"
+                    Content="{Binding Path=Extensions}"
+                    />-->
+                <!--<ContentControl 
+                    Name="detailContainer"
+                    ContentTemplate="{StaticResource DetailTemplate}"
+                    Content="{Binding Path=PageInfosView}"
+                    />-->
+
+                <!--http://bea.stollnitz.com/blog/?p=392-->
+                <!--<ListBox ItemsSource="{Binding Source={StaticResource PageInfosView}}" DisplayMemberPath="Title" />-->
+
+                <ListBox 
+                    Name="detailListBox"
+                    Margin="10"
+                    swct:DockPanel.Dock="Left"          
+                    ItemsSource="{Binding Source={StaticResource PageInfosView}}"
+                    Template="{StaticResource ListBoxTemplate}"
+                    ItemsPanel="{StaticResource PageInfosPanelTemplate}"
+                    ItemTemplate="{StaticResource PageInfoTemplate}"
+                    ItemContainerStyle="{StaticResource PageInfoItemContainerStyle}" />
+
+                <!--Focusable="False"-->
+                <navigation:Frame 
+                    Name="frame" 
+                    Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentPageInfo.Uri}"
+                    ContentLoader="{StaticResource ExtensionContentLoader}"
+                    Navigated="frame_Navigated"
+                    Visibility="Collapsed"/>
+            </Grid>
+            <!--<TextBlock 
+                swct:DockPanel.Dock="Bottom"
+                Text="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentPageInfo.Uri}"/>-->
+        </swct:DockPanel>
+    </Grid>
+</UserControl>

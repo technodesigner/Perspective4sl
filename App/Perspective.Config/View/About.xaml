@@ -1,0 +1,46 @@
+﻿<navigation:Page 
+    x:Class="Perspective.Config.View.About" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Title="About Page">
+    <navigation:Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="HyperlinkButton">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="LinkTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </navigation:Page.Resources>
+    <StackPanel
+        Margin="10"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <TextBlock 
+            Text="This is the configuration module of Perspective for Silverlight application." />
+        <HyperlinkButton 
+            NavigateUri="http://www.codeplex.com/perspective4sl">
+            <TextBlock 
+                Style="{StaticResource LinkTextBlockStyle}"
+                Text="www.codeplex.com/perspective4sl"/>
+        </HyperlinkButton>
+        <HyperlinkButton 
+            NavigateUri="http://www.odewit.net">
+            <TextBlock 
+                Style="{StaticResource LinkTextBlockStyle}"
+                Text="www.odewit.net"/>
+        </HyperlinkButton>
+    </StackPanel>
+</navigation:Page>

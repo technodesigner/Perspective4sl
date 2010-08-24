@@ -1,0 +1,120 @@
+﻿<ResourceDictionary  
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"
+    xmlns:sw="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:swct="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit">
+
+    <!--Knob-->
+
+    <Color x:Key="MouseOverKnobColor">#FFE8BD80</Color>
+    <Color x:Key="DraggingKnobColor">#FFD4A25A</Color>
+
+    <SolidColorBrush 
+        x:Key="NormalKnobBrush" 
+        Color="LightBlue" />
+
+    <SolidColorBrush 
+        x:Key="KnobStrokeBrush" 
+        Color="SteelBlue" />
+
+    <Style TargetType="pc:Knob">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="pc:Knob">
+                    <Border 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Height="30.0" Width="30.0">
+                        <sw:VisualStateManager.VisualStateGroups>
+                            <sw:VisualStateGroup x:Name="CommonStates">
+                                <!--<sw:VisualStateGroup.Transitions>
+                                    <sw:VisualTransition
+                                        GeneratedDuration="0:0:1"
+                                        To="Normal">
+                                        <Storyboard>
+                                            <ColorAnimation 
+                                                Storyboard.TargetName="ellipse" 
+                                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                                Duration="0:0:1"
+                                                To="{StaticResource NormalKnobBrush}"/>
+                                        </Storyboard>
+                                    </sw:VisualTransition>
+                                </sw:VisualStateGroup.Transitions>-->
+                                <sw:VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="ellipse" 
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                            Duration="0:0:0.5" 
+                                            To="{StaticResource MouseOverKnobColor}"/>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState x:Name="Dragging">
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="ellipse" 
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                            Duration="0" To="{StaticResource DraggingKnobColor}"/>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState x:Name="Normal"/>
+                            </sw:VisualStateGroup>
+                            <sw:VisualStateGroup Name="SelectionStates">
+                                <sw:VisualState Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames  
+                                            Storyboard.TargetName="selectionMarker" 
+                                            Storyboard.TargetProperty="Visibility" 
+                                            Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState Name="Unselected"/>
+                            </sw:VisualStateGroup>
+                            <sw:VisualStateGroup Name="FocusStates">
+                                <sw:VisualState Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                            Storyboard.TargetName="ellipse" 
+                                            Storyboard.TargetProperty="StrokeThickness" 
+                                            Duration="0" To="2"/>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState Name="Unfocused"/>
+                            </sw:VisualStateGroup>
+                        </sw:VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Rectangle 
+                                x:Name="selectionMarker" 
+                                Stroke="{StaticResource KnobStrokeBrush}"
+                                Visibility="Collapsed"/>
+                            <Ellipse 
+                                x:Name="ellipse"
+                                Stroke="{StaticResource KnobStrokeBrush}" 
+                                StrokeThickness="1.5" 
+                                Fill="{StaticResource NormalKnobBrush}"/>
+                            <Line X1="15.0" Y1="30.0" X2="15.0" Y2="20.0" 
+                                Stroke="{StaticResource KnobStrokeBrush}" 
+                                StrokeThickness="2.0">
+                                <Line.RenderTransform>
+                                    <RotateTransform 
+                                        x:Name="PART_RotateTransform"
+                                        CenterX="15.0" 
+                                        CenterY="15.0" />
+                                </Line.RenderTransform>
+                            </Line>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

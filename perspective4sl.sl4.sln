@@ -1,0 +1,110 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Core.sl4", "Library\Perspective.Core\Perspective.Core.sl4.csproj", "{99C406DF-BA11-40C2-B721-187934237072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Wpf.sl4", "Library\Perspective.Wpf\Perspective.Wpf.sl4.csproj", "{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{0F17A138-54AE-42BD-A837-A4BC30EC1113}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEF14C28-BB2B-4C8F-B9DA-BE1175DCD16C}"
+	ProjectSection(SolutionItems) = preProject
+		Library\WhatsNew.txt = Library\WhatsNew.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.sl4", "App\Perspective\Perspective.sl4.csproj", "{AA12826A-6E6D-4373-9EF2-52E538B3D95F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Web", "App\Perspective.Web\Perspective.Web.csproj", "{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{B244575F-AFFE-412D-9663-A87E7BD61B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Config.sl4", "App\Perspective.Config\Perspective.Config.sl4.csproj", "{41897D9E-C2AC-4FD7-95A6-090971ED0742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Hosting.sl4", "Library\Perspective.Hosting\Perspective.Hosting.sl4.csproj", "{7152775A-86A0-4235-B38E-30D135E0EE50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{32393295-EB87-4BE9-9975-DB5ED6EBB115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Demo.sl4", "Demo\Perspective.Demo\Perspective.Demo.sl4.csproj", "{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs09
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = App\\Perspective.Config\\Perspective.Config.sl4.csproj
+		SccProjectTopLevelParentUniqueName1 = perspective4sl.sl4.sln
+		SccProjectName1 = App/Perspective.Config
+		SccLocalPath1 = App\\Perspective.Config
+		SccProjectUniqueName2 = App\\Perspective.Web\\Perspective.Web.csproj
+		SccProjectTopLevelParentUniqueName2 = perspective4sl.sl4.sln
+		SccProjectName2 = App/Perspective.Web
+		SccLocalPath2 = App\\Perspective.Web
+		SccProjectUniqueName3 = App\\Perspective\\Perspective.sl4.csproj
+		SccProjectTopLevelParentUniqueName3 = perspective4sl.sl4.sln
+		SccProjectName3 = App/Perspective
+		SccLocalPath3 = App\\Perspective
+		SccProjectUniqueName4 = Demo\\Perspective.Demo\\Perspective.Demo.sl4.csproj
+		SccProjectTopLevelParentUniqueName4 = perspective4sl.sl4.sln
+		SccProjectName4 = Demo/Perspective.Demo
+		SccLocalPath4 = Demo\\Perspective.Demo
+		SccProjectUniqueName5 = Library\\Perspective.Core\\Perspective.Core.sl4.csproj
+		SccProjectTopLevelParentUniqueName5 = perspective4sl.sl4.sln
+		SccProjectName5 = Library/Perspective.Core
+		SccLocalPath5 = Library\\Perspective.Core
+		SccProjectUniqueName6 = Library\\Perspective.Hosting\\Perspective.Hosting.sl4.csproj
+		SccProjectTopLevelParentUniqueName6 = perspective4sl.sl4.sln
+		SccProjectName6 = Library/Perspective.Hosting
+		SccLocalPath6 = Library\\Perspective.Hosting
+		SccProjectUniqueName7 = Library\\Perspective.Wpf\\Perspective.Wpf.sl4.csproj
+		SccProjectTopLevelParentUniqueName7 = perspective4sl.sl4.sln
+		SccProjectName7 = Library/Perspective.Wpf
+		SccLocalPath7 = Library\\Perspective.Wpf
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99C406DF-BA11-40C2-B721-187934237072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C406DF-BA11-40C2-B721-187934237072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C406DF-BA11-40C2-B721-187934237072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C406DF-BA11-40C2-B721-187934237072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA12826A-6E6D-4373-9EF2-52E538B3D95F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA12826A-6E6D-4373-9EF2-52E538B3D95F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA12826A-6E6D-4373-9EF2-52E538B3D95F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA12826A-6E6D-4373-9EF2-52E538B3D95F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41897D9E-C2AC-4FD7-95A6-090971ED0742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41897D9E-C2AC-4FD7-95A6-090971ED0742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41897D9E-C2AC-4FD7-95A6-090971ED0742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41897D9E-C2AC-4FD7-95A6-090971ED0742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7152775A-86A0-4235-B38E-30D135E0EE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7152775A-86A0-4235-B38E-30D135E0EE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7152775A-86A0-4235-B38E-30D135E0EE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7152775A-86A0-4235-B38E-30D135E0EE50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E} = {0F17A138-54AE-42BD-A837-A4BC30EC1113}
+		{99C406DF-BA11-40C2-B721-187934237072} = {0F17A138-54AE-42BD-A837-A4BC30EC1113}
+		{7152775A-86A0-4235-B38E-30D135E0EE50} = {0F17A138-54AE-42BD-A837-A4BC30EC1113}
+		{EEA2595A-EE7A-4EA4-969A-B77B0D7A9BFC} = {B244575F-AFFE-412D-9663-A87E7BD61B1C}
+		{AA12826A-6E6D-4373-9EF2-52E538B3D95F} = {B244575F-AFFE-412D-9663-A87E7BD61B1C}
+		{41897D9E-C2AC-4FD7-95A6-090971ED0742} = {B244575F-AFFE-412D-9663-A87E7BD61B1C}
+		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990} = {32393295-EB87-4BE9-9975-DB5ED6EBB115}
+	EndGlobalSection
+EndGlobal

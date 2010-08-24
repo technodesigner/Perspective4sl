@@ -1,0 +1,143 @@
+﻿<navigation:Page 
+    x:Class="Perspective.Demo.View.BeePanelDemo" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:swc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"            
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Title="BeePanelDemo Page">
+    <navigation:Page.Resources>
+        <Color x:Key="Color2">LightBlue</Color>
+        <Color x:Key="Color1">White</Color>
+        <RadialGradientBrush x:Key="RadialBrush" >
+            <GradientStop Color="{StaticResource Color1}" Offset="0"/>
+            <GradientStop Color="{StaticResource Color2}" Offset="1"/>
+        </RadialGradientBrush>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style TargetType="pc:PolygonElement">
+            <Setter Property="Fill" Value="{StaticResource RadialBrush}" />
+            <Setter Property="Panel.Opacity" Value="0.8" />
+            <Setter Property="Panel.Width" Value="116" />
+            <Setter Property="Panel.Height" Value="116" />
+        </Style>
+    </navigation:Page.Resources>
+    <swc:TabControl>
+        <swc:TabItem Header="BeePanel">
+            <Grid>
+                <Image 
+                    Source="http://www.odewit.net/Images/Livres/Silverlight/191.jpg" 
+                    Stretch="UniformToFill"/>
+                <pc:BeePanel 
+                    ColumnCount="3" RowCount="3" 
+                    SideLength="60"
+                    Margin="10"
+                    HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="0"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="1"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="2"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="3"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="4"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="5"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="6"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="7"/>
+                    </Grid>
+                    <Grid>
+                        <pc:PolygonElement />
+                        <Button Content="8"/>
+                    </Grid>
+                </pc:BeePanel>
+            </Grid>
+        </swc:TabItem>
+        <swc:TabItem Header="BeeGrid">
+            <Grid>
+                <Image 
+                    Source="http://www.odewit.net/Images/Livres/Silverlight/217.jpg" 
+                    Stretch="UniformToFill"/>
+                <pc:BeeGrid 
+                    Name="beeGrid"
+                    ColumnCount="3" RowCount="3" 
+                    Margin="10"
+                    SideLength="60"
+                    HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="0"
+                        pc:BeeGrid.Column="0"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="0"
+                        pc:BeeGrid.Column="1"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="0"
+                        pc:BeeGrid.Column="2"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="1"
+                        pc:BeeGrid.Column="0"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="1"
+                        pc:BeeGrid.Column="1"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="1"
+                        pc:BeeGrid.Column="2"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="2"
+                        pc:BeeGrid.Column="0"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="2"
+                        pc:BeeGrid.Column="1"/>
+                    <pc:PolygonElement 
+                        pc:BeeGrid.Row="2"
+                        pc:BeeGrid.Column="2"/>
+                    <Button 
+                        pc:BeeGrid.Row="0"
+                        pc:BeeGrid.Column="0"
+                        Content="0-0"/>
+                    <Button 
+                        pc:BeeGrid.Row="0"
+                        pc:BeeGrid.Column="1"
+                        Content="0-1"/>
+                    <Button 
+                        pc:BeeGrid.Row="1"
+                        pc:BeeGrid.Column="1"
+                        Content="1-1"/>
+                    <Button 
+                        pc:BeeGrid.Row="1"
+                        pc:BeeGrid.Column="2"
+                        Content="1-2"/>
+                    <Button 
+                        pc:BeeGrid.Row="2"
+                        pc:BeeGrid.Column="2"
+                        Content="2-2"/>
+                </pc:BeeGrid>
+            </Grid>
+        </swc:TabItem>
+    </swc:TabControl>
+</navigation:Page>
