@@ -29,17 +29,17 @@ namespace Perspective.Demo.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ApplyPerspectiveProjection(tb10);
+            ApplyPerspectiveProjection(tb10, rotationY:45.0);
         }
 
         private void image10_ImageOpened(object sender, RoutedEventArgs e)
         {
-            ApplyPerspectiveProjection(image10);
+            ApplyPerspectiveProjection(image10, centerXOfRotation:1.0, rotationY:30.0);
         }
 
         private void Grid_LayoutUpdated(object sender, EventArgs e)
         {
-            // ApplyPerspectiveProjection(r10);
+            ApplyPerspectiveProjection(r10, rotationZ: 30.0);
         }
 
         private void ApplyPerspectiveProjection(
@@ -120,6 +120,8 @@ namespace Perspective.Demo.View
                 width / height,   // image format
                 1.0,              // near plane
                 1000.0);          // far plane
+            //0.0,              // near plane
+            //999.0);          // far plane
             
             // Viewport definition
             //--------------------

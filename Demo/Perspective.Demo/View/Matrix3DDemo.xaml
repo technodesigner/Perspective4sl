@@ -14,7 +14,7 @@
         <Style TargetType="Image">
             <Setter Property="Stretch" Value="None" />
             <!--<Setter Property="Opacity" Value="0.8" />-->
-            <Setter Property="Source" Value="http://www.odewit.net/Images/Livres/Silverlight/s400/191.jpg" />
+            <!--<Setter Property="Source" Value="http://www.odewit.net/Images/Livres/Silverlight/s400/191.jpg" />-->
         </Style>
         <Style TargetType="Grid" >
             <Setter Property="Width" Value="800" />
@@ -31,57 +31,87 @@
             <Setter Property="Width" Value="160"/>
             <Setter Property="Height" Value="100"/>
         </Style>
+        <Style 
+            x:Key="DotLineStyle"
+            TargetType="Line" >
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="5" />
+            <Setter Property="StrokeDashCap" Value="Triangle" />
+            <Setter Property="X2" Value="440" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
     </navigation:Page.Resources>
     <swc:TabControl>
-        <swc:TabItem Header="1">
-            <Canvas
-                Canvas.Left="100"
-                Canvas.Top="100">
-                <!--<Rectangle Name="r10"/>-->
-                <!--<Image 
-                    Name="image10" 
-                    ImageOpened="image10_ImageOpened"/>-->
-                <!--<Line Name="l10" StrokeThickness="5" X1="0" Y1="0" X2="160" Y2="100"/>-->
-                <!--<Border 
-                    Name="textBorder"
-                    BorderBrush="Black" 
-                    BorderThickness="1" 
-                    Margin="20">-->
-                    <TextBlock
-                        Name="tb10"
-                        Width="200" 
-                        Height="180" 
-                        Padding="10"
-                        FontFamily="Georgia" 
-                        FontSize="18"
-                        FontStyle="Italic"
-                        Foreground="DarkBlue"
-                        TextAlignment="Center"
-                        TextWrapping="Wrap"
-                        LineHeight="30">
-                        Le nom de la police utilisée est défini
-                        par la propriété FontFamily, indépendamment 
-                        de son poids, de son style et de sa densité, 
-                        afin de pouvoir gérer un nombre élevé de 
-                        combinaisons. Des polices de substitution 
-                        peuvent être définies en constituant une 
-                        liste de noms séparés par une virgule.
-                    </TextBlock>
-                <!--</Border>-->
-            </Canvas>
-        </swc:TabItem>
-        <swc:TabItem Header="2">
-            <Grid LayoutUpdated="Grid_LayoutUpdated">
-                <!--<Rectangle Name="r10"/>-->
-                <!--<Rectangle Name="r10">
-                    <Rectangle.Projection>
-                        <PlaneProjection RotationY="30" />
-                    </Rectangle.Projection>
-                </Rectangle>-->
-                <Image 
-                    Name="image10" 
-                    ImageOpened="image10_ImageOpened"/>
+        <swc:TabItem Header="PlaneProjection RY30">
+            <Grid>
+                <Image
+                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/191.jpg">
+                    <Image.Projection>
+                        <PlaneProjection
+                            CenterOfRotationX="1"
+                            RotationY="30"/>
+                    </Image.Projection>
+                </Image>
+                <Line
+                    Style="{StaticResource DotLineStyle}"
+                    StrokeDashArray="4 3"
+                    X2="0"                    
+                    Y2="300">
+                    <Line.RenderTransform>
+                        <TranslateTransform X="200"/>
+                    </Line.RenderTransform>
+                </Line>
             </Grid>
         </swc:TabItem>
+        <swc:TabItem Header="Matrix3DProjection RY30">
+            <Grid>
+                <Image 
+                    Name="image10" 
+                    Opacity="0.85"
+                    Source="http://www.odewit.net/Images/Demo/Colorado02-s400.jpg"
+                    ImageOpened="image10_ImageOpened"/>
+                <Line
+                    Style="{StaticResource DotLineStyle}"
+                    StrokeDashArray="4 3"
+                    X2="0"                    
+                    Y2="300">
+                    <Line.RenderTransform>
+                        <TranslateTransform X="200"/>
+                    </Line.RenderTransform>
+                </Line>
+            </Grid>
+        </swc:TabItem>
+        <swc:TabItem Header="TextBlock RY45">
+            <Canvas>
+                <TextBlock
+                    Name="tb10"
+                    Canvas.Left="100"
+                    Canvas.Top="100"
+                    Width="200" 
+                    Height="180" 
+                    Padding="10"
+                    FontFamily="Georgia" 
+                    FontSize="18"
+                    FontStyle="Italic"
+                    Foreground="DarkBlue"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap"
+                    LineHeight="30">
+                    Le nom de la police utilisée est défini
+                    par la propriété FontFamily, indépendamment 
+                    de son poids, de son style et de sa densité, 
+                    afin de pouvoir gérer un nombre élevé de 
+                    combinaisons. Des polices de substitution 
+                    peuvent être définies en constituant une 
+                    liste de noms séparés par une virgule.
+                </TextBlock>
+            </Canvas>
+        </swc:TabItem>
+        <swc:TabItem Header="Rectangle RZ30">
+            <Grid LayoutUpdated="Grid_LayoutUpdated">
+                <Rectangle Name="r10"/>
+            </Grid>
+        </swc:TabItem>        
     </swc:TabControl>
 </navigation:Page>
