@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,9 +37,19 @@ namespace Perspective.ViewModel
         /// </summary>
         public SignalCommand SetCurrentPageInfoCommand { get; private set; }
 
+        /// <summary>
+        /// Updates the CurrentExtension property.
+        /// </summary>
+        public SignalCommand SetCurrentExtensionCommand { get; private set; }
+
         public ExtensionViewModel()
         {
-            _extensionModel = new ExtensionModel();
+            _extensionModel = (App.Current as App).ExtensionModel;
+            _extensionModel.ExtensionLoaded +=
+                (sender, e) =>
+                {
+                    CurrentExtension = e.Extension;
+                };
             SetCurrentPageInfoCommand = new SignalCommand();
             SetCurrentPageInfoCommand.Executed += (sender, e) =>
             {
@@ -37,17 +58,64 @@ namespace Perspective.ViewModel
                     CurrentPageInfo = e.Parameter as PageInfo;
                 }
             };
+
+            SetCurrentExtensionCommand = new SignalCommand();
+            SetCurrentExtensionCommand.Executed += (sender, e) =>
+            {
+                if ((e.Parameter != null) && (e.Parameter is ExtensionLink))
+                {
+                    var link = e.Parameter as ExtensionLink;
+                    CheckExtension(link);
+                    if (link.Extension != null)     // may be null because of async loading (in this case, see _extensionModel.ExtensionLoaded event)
+                    {
+                        CurrentExtension = link.Extension;
+                    }
+                }
+            };
         }
 
-        public ObservableCollection<Extension> Extensions 
+        public ExtensionLinkCollection ExtensionLinks
         {
             get
             {
-                return _extensionModel.Extensions;
+                return _extensionModel.ExtensionLinks;
+            }
+        }
+
+        private void CheckExtension(ExtensionLink link)
+        {
+            _extensionModel.CheckExtension(link);
+        }
+
+        private Extension _currentExtension;
+
+        /// <summary>
+        /// Gets the name of the CurrentExtension property.
+        /// </summary>
+        public const string CurrentExtensionKey = "CurrentExtension";
+
+        /// <summary>
+        /// Gets the current Extension object.
+        /// </summary>
+        public Extension CurrentExtension
+        {
+            get
+            {
+                return _currentExtension;
+            }
+            private set
+            {
+                _currentExtension = value;
+                NotifyPropertyChanged(CurrentExtensionKey);
             }
         }
 
         private PageInfo _currentPageInfo;
+
+        /// <summary>
+        /// Gets the name of the CurrentPageInfo property.
+        /// </summary>
+        public const string CurrentPageInfoKey = "CurrentPageInfo";
 
         /// <summary>
         /// Gets the current PageInfo object.
@@ -61,7 +129,7 @@ namespace Perspective.ViewModel
             private set
             {
                 _currentPageInfo = value;
-                NotifyPropertyChanged("CurrentPageInfo");
+                NotifyPropertyChanged(CurrentPageInfoKey);
             }
         }
 

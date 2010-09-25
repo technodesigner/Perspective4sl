@@ -63,7 +63,9 @@
     <Compile Include="CancelEventArgs.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IsolatedStorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UriHelper.cs" />
     <Compile Include="Wpf\Animation\MayaEase.cs" />
     <Compile Include="Wpf\Converters\ConverterEventArgs.cs" />
     <Compile Include="Wpf\Converters\SignalConverter.cs" />

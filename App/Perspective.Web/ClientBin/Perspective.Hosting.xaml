@@ -1,0 +1,7 @@
+﻿<ph:ExtensionLinkCollection
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ph="clr-namespace:Perspective.Hosting;assembly=Perspective.Hosting">
+    <ph:ExtensionLink Title="Config" Package="Perspective.Config" IconFile="Perspective.Config.Icon.png"/>
+    <ph:ExtensionLink Title="Demo" Package="Perspective.Demo" IconFile="Perspective.Demo.Icon.png"/>
+</ph:ExtensionLinkCollection>

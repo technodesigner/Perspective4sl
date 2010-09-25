@@ -12,6 +12,8 @@
 using System;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using Perspective.Core;
 
 namespace Perspective.Hosting
 {
@@ -29,6 +31,22 @@ namespace Perspective.Hosting
             _extension = extension;
         }
 
+        private string _title;
+
+        /// <summary>
+        /// Gets or sets the page info title.
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+            }
+        }
         private Extension _extension;
 
         /// <summary>
@@ -42,7 +60,7 @@ namespace Perspective.Hosting
         private Uri _uri = null;
 
         /// <summary>
-        /// Gets the relative URI of the page.
+        /// Gets the mapped relative URI of the page.
         /// </summary>
         public Uri Uri
         {
@@ -50,28 +68,33 @@ namespace Perspective.Hosting
             {
                 if (_uri == null)
                 {
+                    //_uri = new System.Uri(
+                    //    String.Format(@"/{0};component/{1}", _extension.AssemblyName, _partialUriString),
+                    //    System.UriKind.Relative);
+
+                    // Returns a mapped URI
                     _uri = new System.Uri(
-                        String.Format(@"/{0};component/{1}", _extension.AssemblyName, _partialClassName),
+                        String.Format(@"/{0}/{1}", _extension.AssemblyName, _pageName),
                         System.UriKind.Relative);
                 }
                 return _uri;
             }
         }
 
-        private string _partialClassName;
+        private string _pageName;
 
         /// <summary>
-        /// Gets or sets the class name of the page to load, including the complementary namespace (but not the full namespace).
+        /// Gets or sets the class name of the page to load, without the .xaml extension and the complementary namespace.
         /// </summary>
-        public string PartialClassName
+        public string PageName
         {
             get
             {
-                return _partialClassName;
+                return _pageName;
             }
             set
             {
-                _partialClassName = value;
+                _pageName = value;
                 _uri = null;
             }
         }
@@ -84,6 +107,22 @@ namespace Perspective.Hosting
             get
             {
                 return _extension.AssemblyName;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the page's icon file.
+        /// </summary>
+        public string IconFile { get; set; }
+
+        public ImageSource Icon
+        {
+            get
+            {
+                //Uri uri = new Uri(String.Format(@"/{0};component/Icons/{1}", AssemblyName, IconFile), UriKind.RelativeOrAbsolute);
+                //return new BitmapImage(uri);
+
+                return ExtensionManager.Current.LoadImageFile(IconFile);
             }
         }
     }

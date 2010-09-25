@@ -11,11 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 
-namespace Perspective.Demo.View
+namespace Perspective.Config.View
 {
-    public partial class LocalizationDemo : Page
+    public partial class LocalizationConfig : Page
     {
-        public LocalizationDemo()
+        public LocalizationConfig()
         {
             InitializeComponent();
         }

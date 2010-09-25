@@ -30,7 +30,7 @@
         VerticalAlignment="Center">
         <TextBlock 
             Text="This is a demo application of Perspective for Silverlight." />
-        <HyperlinkButton 
+        <!--<HyperlinkButton 
             NavigateUri="http://www.codeplex.com/perspective4sl">
             <TextBlock 
                 Style="{StaticResource LinkTextBlockStyle}"
@@ -41,6 +41,12 @@
             <TextBlock 
                 Style="{StaticResource LinkTextBlockStyle}"
                 Text="www.odewit.net"/>
-        </HyperlinkButton>
+        </HyperlinkButton>-->
+        <TextBlock 
+            Style="{StaticResource LinkTextBlockStyle}"
+            Text="www.codeplex.com/perspective4sl"/>
+        <TextBlock 
+            Style="{StaticResource LinkTextBlockStyle}"
+            Text="www.odewit.net"/>
     </StackPanel>
 </navigation:Page>

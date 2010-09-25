@@ -23,7 +23,12 @@ namespace Perspective.Demo.View
         // S'exécute lorsque l'utilisateur navigue vers cette page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            const string sideCountKey = "SideCount";
+            if (this.NavigationContext.QueryString.ContainsKey(sideCountKey))
+            {
+                int sideCount = Convert.ToInt32(this.NavigationContext.QueryString[sideCountKey]);
+                polygonElement.SideCount = sideCount;
+            }
         }
-
     }
 }

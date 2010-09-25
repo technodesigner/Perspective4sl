@@ -21,21 +21,62 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows.Markup;
+using System.IO;
+using Perspective.Core;
+using System.IO.IsolatedStorage;
+using System.Windows.Media.Imaging;
 
 namespace Perspective.Hosting
 {
     /// <summary>
-    /// A class for extension assembly management.
-    /// Indeed, Silverlight 4 and MEF don't manage the loaded extension assemblies.
+    /// A class for extension management.
     /// </summary>
-    public class ExtensionManager
+    public sealed class ExtensionManager
     {
-        private static Dictionary<string, Assembly> _assemblies = new Dictionary<string, Assembly>();
+        private static ExtensionManager _current = null;
+
+        private static readonly Object _locker = new Object();
+
+        private ExtensionManager()
+        {
+        }
+
+        public static ExtensionManager Current
+        {
+            get
+            {
+                lock (_locker)
+                {
+                    if (_current == null)
+                    {
+                        _current = new ExtensionManager();
+                    }
+                    return _current;
+                }
+            }
+        }
+
+        //private ExtensionUriMapper _uriMapper = new ExtensionUriMapper();
+
+        ///// <summary>
+        ///// Gets an URI mapper for extension's page loading.
+        ///// </summary>
+        //public ExtensionUriMapper UriMapper
+        //{
+        //    get
+        //    {
+        //        return _uriMapper;
+        //    }
+        //}
+
+        private Dictionary<string, Assembly> _assemblies = new Dictionary<string, Assembly>();
 
         /// <summary>
-        /// Gets a static dictionary of the loaded extension assemblies.
+        /// Gets a dictionary of the loaded extension assemblies.
+        /// Indeed, Silverlight 4 and MEF don't manage the loaded extension assemblies.
         /// </summary>
-        public static Dictionary<string, Assembly> Assemblies
+        public Dictionary<string, Assembly> Assemblies
         {
             get
             {
@@ -46,11 +87,232 @@ namespace Perspective.Hosting
         /// <summary>
         /// Registers an extension assembly.
         /// This method must be called directly by each extension.
+        /// Indeed, Silverlight 4 and MEF don't manage the loaded extension assemblies.
         /// </summary>
         /// <param name="assemblyName"></param>
-        public static void RegisterAssembly(string assemblyName)
+        public void RegisterAssembly(string assemblyName)
         {
             Assemblies.Add(assemblyName, Assembly.GetCallingAssembly());
         }
+
+        /// <summary>
+        /// Gets the collection of the Extensionlink objects.
+        /// </summary>
+        public ExtensionLinkCollection ExtensionLinks { get; private set; }
+
+        private const string _hostingConfigFileName = "Perspective.Hosting.xaml";
+        private Uri _hostingConfigUri = new Uri(_hostingConfigFileName, UriKind.Relative);
+
+        /// <summary>
+        /// Loads the extension links from the Perspective.Hosting.xaml file.
+        /// </summary>
+        public void LoadExtensionLinks()
+        {
+            if (Application.Current.IsRunningOutOfBrowser)
+            {
+                // loads file from the isolated storage
+                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    using (IsolatedStorageFileStream stream =
+                        new IsolatedStorageFileStream(
+                            _hostingConfigFileName, FileMode.Open, store))
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            LoadXaml(reader.ReadToEnd());
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // loads file from the server
+                // Uri hostingConfigUri = new Uri("Perspective.Hosting.xaml", UriKind.Relative);
+                WebClient hostingConfigWebClient = new WebClient();
+                hostingConfigWebClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(hostingConfigWebClient_DownloadStringCompleted);
+                hostingConfigWebClient.DownloadStringAsync(_hostingConfigUri);
+            }
+        }
+
+        private void hostingConfigWebClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            LoadXaml(e.Result);
+        }
+
+        private void LoadXaml(string xamlString)
+        {
+            ExtensionLinks = (ExtensionLinkCollection)XamlReader.Load(xamlString);
+            if (_extensionLinksLoaded != null)
+            {
+                _extensionLinksLoaded(this, new EventArgs());
+            }
+        }
+
+        /// <summary>
+        /// Loads an extension if not already loaded.
+        /// </summary>
+        /// <param name="link">The ExtensionLink object.</param>
+        // public void CheckExtension(ExtensionLink link)
+        public void CheckExtension(ExtensionLink link, Action actionWhenExtensionLoaded = null)
+        {
+            if (link.Extension == null)
+            {
+                string xapFileName = String.Format("{0}.xap", link.Package);
+                if (Application.Current.IsRunningOutOfBrowser)
+                {
+                    // loads package from the isolated storage
+                    using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        // TODO : check for update on the server
+                        using (IsolatedStorageFileStream xapStream =
+                            new IsolatedStorageFileStream(
+                                xapFileName, FileMode.Open, store))
+                        {
+                            LoadPackage(xapStream, link);
+                        }
+                    }
+                }
+                else
+                {
+                    // loads package from the server
+                    Uri xapUri = new Uri(xapFileName, UriKind.RelativeOrAbsolute);
+                    WebClient webClient = new WebClient();
+                    // webClient.OpenReadCompleted += new OpenReadCompletedEventHandler(webClient_OpenReadCompleted);
+                    webClient.OpenReadCompleted +=
+                        (sender, e) =>
+                        {
+                            // ExtensionLink link = e.UserState as ExtensionLink;
+                            Stream xapStream = e.Result;
+                            try
+                            {
+                                LoadPackage(xapStream, link, actionWhenExtensionLoaded);
+                            }
+                            finally
+                            {
+                                xapStream.Close();
+                            }
+                        };
+                    // webClient.OpenReadAsync(xapUri, link);
+                    webClient.OpenReadAsync(xapUri);
+                }
+            }
+        }
+
+        private void LoadPackage(Stream xapStream, ExtensionLink link, Action actionWhenExtensionLoaded = null)
+        {
+            string xapFileName = String.Format("{0}.xap", link.Package);
+            string assemblyKey = System.IO.Path.ChangeExtension(xapFileName, null);
+            List<Assembly> assemblies = XapHelper.LoadPackageAssemblies(xapStream);
+            foreach (var assembly in assemblies)
+            {
+                var assemblyName = assembly.FullName.Substring(0, assembly.FullName.IndexOf(','));
+                if (assemblyName.Equals(assemblyKey))
+                {
+                    var obj = assembly.CreateInstance(String.Format("{0}.Extension", assemblyKey));
+                    link.Extension = obj as Extension;
+                    if (_extensionLoaded != null)
+                    {
+                        _extensionLoaded(this, new ExtensionEventArgs(obj as Extension));
+                    }
+                    if (actionWhenExtensionLoaded != null)
+                    {
+                        actionWhenExtensionLoaded();
+                    }
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads an icon file from the web site if online,
+        /// or from isolated storage if out of browser.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public BitmapImage LoadImageFile(string fileName)
+        {
+            return Application.Current.IsRunningOutOfBrowser ?
+                IsolatedStorageHelper.LoadImageFromUserStoreForApplication(fileName) :
+                new BitmapImage(UriHelper.GetHostFileUri(fileName));
+        }
+
+        /// <summary>
+        /// Deploys all the extension files in the isolated storage.
+        /// </summary>
+        public void Install()
+        {
+            IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(_hostingConfigUri, _hostingConfigFileName);
+            foreach (var link in ExtensionLinks)
+            {
+                var xapFileName = String.Format("{0}.xap", link.Package);
+                var xapUri = new Uri(xapFileName, UriKind.RelativeOrAbsolute);
+                IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(xapUri, xapFileName);
+                IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(
+                    UriHelper.GetHostFileUri(link.IconFile),
+                    link.IconFile);
+            }
+        }
+
+        /// <summary>
+        /// Unistall extension files from the isolated storage.
+        /// </summary>
+        public void Uninstall()
+        {
+            using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (store.FileExists(_hostingConfigFileName))
+                {
+                    store.DeleteFile(_hostingConfigFileName);
+                }
+                foreach (var link in ExtensionLinks)
+                {
+                    var xapFileName = String.Format("{0}.xap", link.Package);
+                    if (store.FileExists(xapFileName))
+                    {
+                        store.DeleteFile(xapFileName);
+                    }
+                    if (store.FileExists(link.IconFile))
+                    {
+                        store.DeleteFile(link.IconFile);
+                    }
+                }
+            }
+        }
+
+
+        private event EventHandler _extensionLinksLoaded;
+
+        /// <summary>
+        /// Event fired when the extension links are loaded.
+        /// </summary>
+        public event EventHandler ExtensionLinksLoaded
+        {
+            add
+            {
+                _extensionLinksLoaded += value;
+            }
+            remove
+            {
+                _extensionLinksLoaded -= value;
+            }
+        }
+
+        private event EventHandler<ExtensionEventArgs> _extensionLoaded;
+
+        /// <summary>
+        /// Event fired when an extension is loaded.
+        /// </summary>
+        public event EventHandler<ExtensionEventArgs> ExtensionLoaded
+        {
+            add
+            {
+                _extensionLoaded += value;
+            }
+            remove
+            {
+                _extensionLoaded -= value;
+            }
+        }
+
     }
 }

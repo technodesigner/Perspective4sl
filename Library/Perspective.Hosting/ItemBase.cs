@@ -25,49 +25,6 @@ namespace Perspective.Hosting
     /// </summary>
     public abstract class ItemBase
     {
-        private string _title;
-
-        /// <summary>
-        /// Gets or sets the page info title.
-        /// </summary>
-        public string Title
-        {
-            get
-            {
-                return _title;
-            }
-            set
-            {
-                _title = value;
-            }
-        }
-
-        private string _iconKey;
-
-        /// <summary>
-        /// Gets or sets the page info icon resource key.
-        /// </summary>
-        public string IconKey
-        {
-            get
-            {
-                return _iconKey;
-            }
-            set
-            {
-                _iconKey = value;
-            }
-        }
-
-        public ImageSource Icon
-        {
-            get
-            {
-                Uri uri = new Uri(String.Format(@"/{0};component/Icons/{1}", AssemblyName, IconKey), UriKind.RelativeOrAbsolute);
-                return new BitmapImage(uri);
-            }
-        }
-
         /// <summary>
         /// Property to override to specify the assembly name of the inherited class (i.e. "Perspective.Config")
         /// </summary>

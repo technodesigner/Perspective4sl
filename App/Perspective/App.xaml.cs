@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +20,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Perspective.Model;
 
 namespace Perspective
 {
@@ -26,8 +38,46 @@ namespace Perspective
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new View.MainPage();
+            // if (!Application.Current.IsRunningOutOfBrowser)
+            //{
+            //    // The ExtensionModel is loaded before RootVisual assignation
+            //    // because otherwise fragment navigation from the browser address bar
+            //    // may occur before modules are loaded
+            ExtensionModel = new ExtensionModel();
+            ExtensionModel.ExtensionLinksLoaded +=
+                (sender1, e1) =>
+                {
+                    this.RootVisual = new View.MainPage();
+                };
+            ExtensionModel.LoadExtensionLinks();
+            this.InstallStateChanged +=
+                (sender1, e1) =>
+                {
+                    switch (this.InstallState)
+                    {
+                        case System.Windows.InstallState.Installing:
+                            ExtensionModel.InstallExtensionFiles();
+                            break;
+
+                        case System.Windows.InstallState.NotInstalled:
+                            ExtensionModel.UninstallExtensionFiles();
+                            break;
+                    }
+                };
+
+
+            //}
+            //else
+            //{
+            //    // Out Of Browser mode needs more delay to load IsolatedStorageSettings.ApplicationSettings 
+            //    // used by ExtensionModel, and doesn't use fragment navigation from the browser address bar
+            //    this.RootVisual = new View.MainPage();
+            //}
+            // this.RootVisual = new View.MainPage();
         }
+
+        public ExtensionModel ExtensionModel { get; private set; }
+
 
         private void Application_Exit(object sender, EventArgs e)
         {

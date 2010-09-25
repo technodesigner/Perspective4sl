@@ -12,18 +12,15 @@
 using System;
 using System.Collections.Generic;
 using Perspective.Hosting;
-using System.ComponentModel.Composition;
 
 namespace Perspective.Config
 {
     /// <summary>
     /// Represents the Config extension for the Perspective application.
     /// </summary>
-    // [Export(typeof(Perspective.Hosting.Extension))]
     public class Extension : Perspective.Hosting.Extension
     {
-        private const string _title = "Config";
-        private const string _iconKey = "Perspective.Config.Icon.png";
+        private const string _iconFile = "Perspective.Config.Icon.png";
 
         private static string _assemblyName = "Perspective.Config";
 
@@ -46,39 +43,28 @@ namespace Perspective.Config
             }
         }
 
-        private List<PageInfo> _pageInfos;
-
-        /// <summary>
-        /// Gets the children PageInfos collection.
-        /// </summary>
-        public override List<PageInfo> PageInfos
-        {
-            get
-            {
-                return _pageInfos;
-            }
-        }
-
         /// <summary>
         /// Initializes a new instance of Extension.
         /// </summary>
         public Extension()
             : base()
         {
-            Title = _title;
-            IconKey = _iconKey;
-            // SortOrder = 90;
-
-            _pageInfos = new List<PageInfo>
+            PageInfos = new List<PageInfo>
             {
                 new PageInfo(this)
                 {
                     Title = "About",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/About.xaml"
+                    IconFile = _iconFile,
+                    PageName = "About"
+                },
+                new PageInfo(this)
+                {
+                    Title = "Localization",
+                    IconFile = _iconFile,
+                    PageName = "LocalizationConfig"
                 },
             };
-            ExtensionManager.RegisterAssembly(_assemblyName);
+            ExtensionManager.Current.RegisterAssembly(_assemblyName);
         }
     }
 }

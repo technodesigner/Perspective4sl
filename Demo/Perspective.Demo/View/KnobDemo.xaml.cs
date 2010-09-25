@@ -25,5 +25,9 @@ namespace Perspective.Demo.View
         {
         }
 
+        private void Knob_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            tbKnob.Text = String.Format("{0:0.00}", e.NewValue);
+        }
     }
 }

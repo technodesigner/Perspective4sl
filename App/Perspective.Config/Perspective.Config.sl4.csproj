@@ -65,12 +65,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
-    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
@@ -80,6 +81,9 @@
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LocalizationConfig.xaml.cs">
+      <DependentUpon>LocalizationConfig.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -88,20 +92,23 @@
     <ProjectReference Include="..\..\Library\Perspective.Core\Perspective.Core.sl4.csproj">
       <Project>{99C406DF-BA11-40C2-B721-187934237072}</Project>
       <Name>Perspective.Core.sl4</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Library\Perspective.Hosting\Perspective.Hosting.sl4.csproj">
       <Project>{7152775A-86A0-4235-B38E-30D135E0EE50}</Project>
       <Name>Perspective.Hosting.sl4</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Icons\Perspective.Config.Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="View\About.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LocalizationConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

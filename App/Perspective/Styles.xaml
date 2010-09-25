@@ -1,0 +1,155 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:sw="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--<Style TargetType="navigation:Page">
+        <Setter 
+            Property="Background" 
+            Value="White"/>
+        <Setter 
+            Property="Foreground" 
+            Value="Black"/>
+    </Style>-->
+
+    <Style x:Key="BasicShapeStyle" TargetType="Shape">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Stroke" Value="{StaticResource BasicShapeStroke}" />
+        <Setter Property="StrokeThickness" Value="2.0" />
+        <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
+    </Style>
+
+    <Style x:Key="PolygonElementStyle" TargetType="pc:PolygonElement">
+        <Setter Property="Panel.HorizontalAlignment" Value="Center" />
+        <Setter Property="Panel.VerticalAlignment" Value="Center" />
+        <Setter Property="Stroke" Value="{StaticResource BasicShapeStroke}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
+    </Style>
+
+    <Style x:Key="PanelStyle" TargetType="FrameworkElement">
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Height" Value="300" />
+    </Style>
+
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <LinearGradientBrush x:Key="RefractionBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="{StaticResource Color1}" Offset="0.6"/>
+        <GradientStop Color="{StaticResource Color2}" Offset="0.9"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ReflectionBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="{StaticResource Color2}" Offset="0"/>
+        <GradientStop Color="{StaticResource Color2}" Offset="0.2"/>
+        <GradientStop Color="{StaticResource Color3}" Offset="1"/>
+    </LinearGradientBrush>
+    <Style x:Key="RectangleStyle" TargetType="Rectangle">
+        <Setter Property="RadiusX" Value="8" />
+        <Setter Property="RadiusY" Value="8" />
+    </Style>
+    <Style x:Key="GlassButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="{StaticResource BlueBrush1}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <sw:VisualStateManager.VisualStateGroups>
+                            <sw:VisualStateGroup Name="CommonStates">
+                                <sw:VisualStateGroup.Transitions>
+                                    <sw:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                    <sw:VisualTransition GeneratedDuration="0:0:0.2" To="Pressed"/>
+                                </sw:VisualStateGroup.Transitions>
+                                <sw:VisualState Name="Normal"/>
+                                <sw:VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                                    Storyboard.TargetName="backgroundRectangle" 
+                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                                    Duration="0"
+                                                    To="{StaticResource BlueColor2}"/>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                                    Storyboard.TargetName="backgroundRectangle" 
+                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                                    Duration="0"
+                                                    To="{StaticResource BlueColor3}"/>
+                                    </Storyboard>
+                                </sw:VisualState>
+                            </sw:VisualStateGroup>
+                            <sw:VisualStateGroup Name="FocusStates">
+                                <sw:VisualState Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames 
+                                                    Storyboard.TargetName="focusRectangle" 
+                                                    Storyboard.TargetProperty="Visibility" 
+                                                    Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </sw:VisualState>
+                                <sw:VisualState Name="Unfocused"/>
+                            </sw:VisualStateGroup>
+                        </sw:VisualStateManager.VisualStateGroups>
+
+                        <Rectangle 
+                                    Name="backgroundRectangle"
+                                    Style="{StaticResource RectangleStyle}"
+                                    Fill="{TemplateBinding Background}"/>
+                        <Rectangle 
+                                    Style="{StaticResource RectangleStyle}"
+                                    Stroke="{TemplateBinding BorderBrush}"
+                                    StrokeThickness="{TemplateBinding BorderThickness}"
+                                    Fill="White"
+                                    OpacityMask="{StaticResource RefractionBrush}"/>
+                        <Rectangle 
+                                    Fill="White"
+                                    OpacityMask="{StaticResource ReflectionBrush}"
+                                    Height="8"
+                                    RadiusX="5"
+                                    RadiusY="5"
+                                    Margin="2"
+                                    VerticalAlignment="Top"/>
+                        <ContentPresenter
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"/>
+                        <Rectangle 
+                                    Name="focusRectangle"
+                                    Style="{StaticResource RectangleStyle}"
+                                    Visibility="Collapsed"
+                                    Stroke="{StaticResource BlueBrush4}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource GlassButtonStyle}">
+        <Setter Property="Width" Value="150" />
+        <Setter Property="Content" Value="Bouton" />
+    </Style>
+
+</ResourceDictionary>

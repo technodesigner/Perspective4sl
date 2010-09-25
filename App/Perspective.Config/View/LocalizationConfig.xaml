@@ -1,4 +1,4 @@
-﻿<navigation:Page x:Class="Perspective.Demo.View.LocalizationDemo" 
+﻿<navigation:Page x:Class="Perspective.Config.View.LocalizationConfig" 
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,9 @@
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
            d:DesignWidth="640" d:DesignHeight="480"
-           Title="LocalizationDemo Page">
+           Title="LocalizationConfig Page">
     <Grid x:Name="LayoutRoot">
-
+        <TextBlock 
+            Text="Localization configuration." />
     </Grid>
 </navigation:Page>

@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:swc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
-    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"            
+    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"        
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"

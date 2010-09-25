@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -30,6 +41,23 @@ namespace Perspective.View
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             // (_easeOut as ExponentialEase).EasingMode = EasingMode.EaseOut;
+
+            ExtensionViewModel evm = this.Resources["ExtensionViewModel"] as ExtensionViewModel;
+            evm.PropertyChanged +=
+                (sender1, e1) =>
+                {
+                    if (e1.PropertyName == ExtensionViewModel.CurrentPageInfoKey)
+                    {
+                        if (frame.Source == evm.CurrentPageInfo.Uri)
+                        {
+                            frame.Refresh(); // To force the Navigated event
+                        }
+                        else
+                        {
+                            frame.Source = evm.CurrentPageInfo.Uri;
+                        }
+                    }
+                };
         }
 
         private void frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -62,6 +90,5 @@ namespace Perspective.View
                 _frameVisible = false;
             }
         }
-
     }
 }

@@ -19,39 +19,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Threading;
 
 namespace Perspective.Hosting
 {
     /// <summary>
-    /// Thanks to Corrado Cavalli : http://silverlightfeeds.com/post/1531/Silverlight_4.0_INavigationContentLoader.aspx
+    /// Provides event data for Extension related events. 
     /// </summary>
-    public class ExtensionAsyncResult : IAsyncResult
+    public class ExtensionEventArgs : EventArgs
     {
-        public ExtensionAsyncResult(object asyncState)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="extension">The Extension object.</param>
+        public ExtensionEventArgs(Extension extension)
         {
-            AsyncState = asyncState;
-            AsyncWaitHandle = new ManualResetEvent(true);
+            Extension = extension;
         }
 
-        public object Result { get; set; }
-
-        #region IAsyncResult Members
-
-        public object AsyncState { get; private set; }
-
-        public System.Threading.WaitHandle AsyncWaitHandle { get; private set; }
-
-        public bool CompletedSynchronously
-        {
-            get { return true; }
-        }
-
-        public bool IsCompleted
-        {
-            get { return true; }
-        }
-
-        #endregion
+        /// <summary>
+        /// Gets the Extension object.
+        /// </summary>
+        public Extension Extension { get; private set; }
     }
 }

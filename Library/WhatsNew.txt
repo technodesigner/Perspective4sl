@@ -12,6 +12,8 @@ Perspective.Core
 ----------------
 EventArgs<T> : A generic class to manage an event argument with one parameter.
 CancelEventArgs<T> : A generic class to manage a CancelEventArgs argument with one parameter.
+IsolatedStorageHelper : An helper class for isolated storage operations.
+UriHelper : An helper class to manage URIs.
 
 Perspective.Core.Wpf
 --------------------
@@ -49,7 +51,7 @@ BREAKING CHANGES :
 Perspective application project
 -------------------------------
 UNDER CONSTRUCTION !
-A new Silverlight 4 application which can dynamically load pages from extension XAP using MEF. 
+A new Silverlight 4 application which can dynamically load pages from extension XAP. 
 This application is used here as demo of Perspective library.
 
 Perspective.Hosting

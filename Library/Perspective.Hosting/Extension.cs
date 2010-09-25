@@ -14,23 +14,56 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Perspective.Hosting
 {
     /// <summary>
     /// Represents an extension for the Perspective application.
     /// </summary>
-    [InheritedExport(typeof(Extension))]
-    public abstract class Extension : ItemBase
+    public abstract class Extension : ItemBase, INotifyPropertyChanged
     {
-        // public int SortOrder { get; set; }
+        private List<PageInfo> _pageInfos;
+
+        /// <summary>
+        /// Gets the name of the PageInfos property.
+        /// </summary>
+        public const string PageInfosKey = "PageInfos";
 
         /// <summary>
         /// Property to override to get the children PageInfos collection.
         /// </summary>
-        public abstract List<PageInfo> PageInfos
+        public List<PageInfo> PageInfos
         {
-            get;
+            get
+            {
+                return _pageInfos;
+            }
+            set
+            {
+                _pageInfos = value;
+                NotifyPropertyChanged(PageInfosKey);
+            }
         }
+        #region INotifyPropertyChanged Members
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Method called when a property value changes.
+        /// </summary>
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
+
     }
 }

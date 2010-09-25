@@ -11,14 +11,17 @@
 //------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using Perspective.Hosting;
-using System.ComponentModel.Composition.Hosting;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.IO.IsolatedStorage;
+using System.Net;
+using System.Reflection;
+using Perspective.Core;
+using System.Windows.Markup;
 
 namespace Perspective.Model
 {
@@ -27,71 +30,108 @@ namespace Perspective.Model
     /// </summary>
     public class ExtensionModel
     {
-        [ImportMany(AllowRecomposition = true)]
-        public Lazy<Extension>[] MefExtensions { get; set; }
-        
-        public ObservableCollection<Extension> Extensions { get; private set; }
-        
+        /// <summary>
+        /// Gets the collection of the Extensionlink objects.
+        /// </summary>
+        public ExtensionLinkCollection ExtensionLinks
+        {
+            get
+            {
+                return ExtensionManager.Current.ExtensionLinks;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of MainModel.
         /// </summary>
         public ExtensionModel()
         {
-            Extensions = new ObservableCollection<Extension>();
-            Compose();
-        }
-
-        private void Compose()
-        {
-            var catalogs = new AggregateCatalog();
-
-            int xapCounter = 0;
-            string extensionList = Application.Current.Host.InitParams["Extensions"];
-            foreach (string xap in extensionList.Split('|'))
-            {
-                xapCounter++;
-                var catalog = new DeploymentCatalog(xap);
-                catalog.DownloadCompleted += (s, e) =>
+            ExtensionManager.Current.ExtensionLinksLoaded +=
+                (sender, e) =>
                 {
-                    if (e.Error != null)
+                    if (_extensionLinksLoaded != null)
                     {
-                        throw e.Error;
-                    }
-                    xapCounter--;
-                    if (xapCounter == 0)    // on the last XAP loaded
-                    {
-                        try
-                        {
-                            // MEF import
-                            CompositionInitializer.SatisfyImports(this);
-
-                            foreach (var extension in MefExtensions)
-                            {
-                                Extensions.Add(extension.Value);
-                            }
-                            // Extensions.Sort(CompareExtensions);
-                        }
-                        catch (ChangeRejectedException ex)
-                        {
-                            StringBuilder sb = new StringBuilder();
-                            foreach (var error in ex.Errors)
-                            {
-                                sb.Append(error.Description + "\n");
-                            }
-                            System.Windows.MessageBox.Show(sb.ToString());
-                        }
+                        _extensionLinksLoaded(this, new EventArgs());
                     }
                 };
-                catalog.DownloadAsync();
-                catalogs.Catalogs.Add(catalog);
-            }
 
-            CompositionHost.Initialize(catalogs);
+            ExtensionManager.Current.ExtensionLoaded +=
+                (sender, e) =>
+                {
+                    if (_extensionLoaded != null)
+                    {
+                        _extensionLoaded(this, new ExtensionEventArgs(e.Extension));
+                    }
+                };
+            //#if DEBUG
+            //            if (Application.Current.IsRunningOutOfBrowser)
+            //            {
+            //                while (!System.Diagnostics.Debugger.IsAttached)
+            //                {
+            //                    System.Threading.Thread.Sleep(100);
+            //                }
+            //            }
+            //#endif
         }
 
-        //private static int CompareExtensions(Extension e1, Extension e2)
-        //{
-        //    return e1.SortOrder.CompareTo(e2.SortOrder);
-        //}
+        public void LoadExtensionLinks()
+        {
+            ExtensionManager.Current.LoadExtensionLinks();
+        }
+
+        public void CheckExtension(ExtensionLink link)
+        {
+            ExtensionManager.Current.CheckExtension(link);
+        }
+
+        /// <summary>
+        /// Deploys all the extensions in the isolated storage.
+        /// </summary>
+        public void InstallExtensionFiles()
+        {
+            ExtensionManager.Current.Install();
+        }
+
+        /// <summary>
+        /// Unistall extension files from the isolated storage.
+        /// </summary>
+        public void UninstallExtensionFiles()
+        {
+            ExtensionManager.Current.Uninstall();
+        }
+
+        private event EventHandler _extensionLinksLoaded;
+
+        /// <summary>
+        /// Event fired when the extension links are loaded.
+        /// </summary>
+        public event EventHandler ExtensionLinksLoaded
+        {
+            add
+            {
+                _extensionLinksLoaded += value;
+            }
+            remove
+            {
+                _extensionLinksLoaded -= value;
+            }
+        }
+
+        private event EventHandler<ExtensionEventArgs> _extensionLoaded;
+
+        /// <summary>
+        /// Event fired when an extension is loaded.
+        /// </summary>
+        public event EventHandler<ExtensionEventArgs> ExtensionLoaded
+        {
+            add
+            {
+                _extensionLoaded += value;
+            }
+            remove
+            {
+                _extensionLoaded -= value;
+            }
+        }
     }
 }

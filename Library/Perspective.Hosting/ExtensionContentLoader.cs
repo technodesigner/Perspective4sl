@@ -21,14 +21,18 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using System.Text;
+using System.Threading;
 
 namespace Perspective.Hosting
 {
     /// <summary>
     ///  Provides extension page loading for the Silverlight navigation system
     ///  (the default PageResourceContentLoader working only for the main application XAP).
-    ///  Thanks to Corrado Cavalli for his article : http://silverlightfeeds.com/post/1531/Silverlight_4.0_INavigationContentLoader.aspx
-    ///  Thanks to Pencho Popadiyn for his article : http://www.silverlightshow.net/items/Navigating-between-Pages-in-Different-Xaps-by-using-MEF.aspx
+    ///  Thanks to these authors for their article about INavigationContentLoader :
+    ///  Corrado Cavalli : http://silverlightfeeds.com/post/1531/Silverlight_4.0_INavigationContentLoader.aspx
+    ///  Pencho Popadiyn : http://www.silverlightshow.net/items/Navigating-between-Pages-in-Different-Xaps-by-using-MEF.aspx
+    ///  Mike Taultys : http://mtaulty.com/CommunityServer/blogs/mike_taultys_blog/archive/2009/11/18/silverlight-4-rough-notes-taking-control-of-navigation.aspx
+    ///  David Hill : http://blogs.msdn.com/b/dphill/archive/2009/12/24/custom-content-loaders-in-silverlight-4-0.aspx
     /// </summary>
     public class ExtensionContentLoader : INavigationContentLoader
     {
@@ -40,21 +44,48 @@ namespace Perspective.Hosting
         public IAsyncResult BeginLoad(Uri targetUri, Uri currentUri, AsyncCallback userCallback, object asyncState)
         {
             _defaultLoaderMode = false;
-            var ear = new ExtensionAsyncResult(asyncState);
+            // ExtensionAsyncResult ear;
+            ExtensionAsyncResult ear = new ExtensionAsyncResult(asyncState);
 
-            int i = targetUri.OriginalString.IndexOf(";component/");
-            if (i == -1)
+            int indexOfComponent = targetUri.OriginalString.IndexOf(";component/");
+            if (indexOfComponent == -1)
             {
                 _defaultLoaderMode = true;
                 return _defaultContentLoader.BeginLoad(targetUri, currentUri, userCallback, asyncState);
             }
 
-            int i1 = i - 1;
-            int i2 = i + 11;
-            int i3 = targetUri.OriginalString.IndexOf(".xaml");
+            var assemblyName = targetUri.OriginalString.Substring(1, indexOfComponent - 1);
+            if (!ExtensionManager.Current.Assemblies.ContainsKey(assemblyName))
+            {
+                // ear = new ExtensionAsyncResult(asyncState, false);
+                foreach (var link in ExtensionManager.Current.ExtensionLinks)
+                {
+                    if (link.Package.Equals(assemblyName))
+                    {
+                        Action actionWhenExtensionLoaded =
+                            () =>
+                            {
+                                CreatePageInstance(targetUri, indexOfComponent, assemblyName, userCallback, ear);
+                            };
+                        ExtensionManager.Current.CheckExtension(link, actionWhenExtensionLoaded);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // ear = new ExtensionAsyncResult(asyncState, true);
+                CreatePageInstance(targetUri, indexOfComponent, assemblyName, userCallback, ear);
+            }
+            return ear;
+        }
 
-            StringBuilder sb = new StringBuilder(targetUri.OriginalString.Substring(1, i1));
-            var assembly = ExtensionManager.Assemblies[sb.ToString()];
+        private void CreatePageInstance(Uri targetUri, int indexOfComponent, string assemblyName, AsyncCallback userCallback, ExtensionAsyncResult ear)
+        {
+            int i2 = indexOfComponent + 11;
+            int i3 = targetUri.OriginalString.IndexOf(".xaml");
+            StringBuilder sb = new StringBuilder(assemblyName);
+            var assembly = ExtensionManager.Current.Assemblies[sb.ToString()];
             sb.Append('.');
             sb.Append(targetUri.OriginalString.Substring(i2, i3 - i2));
             sb.Replace('/', '.');
@@ -62,9 +93,8 @@ namespace Perspective.Hosting
             sb.Append(assembly.FullName);
             Type type = Type.GetType(sb.ToString(), true);
             ear.Result = Activator.CreateInstance(type);
-
             userCallback(ear);
-            return ear;
+            // ear.IsCompleted = true;
         }
 
         public bool CanLoad(Uri targetUri, Uri currentUri)
@@ -90,5 +120,49 @@ namespace Perspective.Hosting
         }
 
         #endregion
+
+        private class ExtensionAsyncResult : IAsyncResult
+        {
+            // public ExtensionAsyncResult(object asyncState, bool runSynchronously)
+            public ExtensionAsyncResult(object asyncState)
+            {
+                AsyncState = asyncState;
+                // CompletedSynchronously = runSynchronously;
+            }
+
+            public object Result { get; set; }
+
+            #region IAsyncResult Members
+
+            public object AsyncState { get; private set; }
+
+            public WaitHandle AsyncWaitHandle
+            {
+                get
+                {
+                    return null;
+                }
+            }
+
+            // public bool CompletedSynchronously { get; private set; }
+            public bool CompletedSynchronously
+            {
+                get
+                {
+                    return true;
+                }
+            }
+
+            // public bool IsCompleted { get; internal set; }
+            public bool IsCompleted
+            {
+                get
+                {
+                    return true;
+                }
+            }
+
+            #endregion
+        }
     }
 }

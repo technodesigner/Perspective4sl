@@ -12,18 +12,15 @@
 using System;
 using System.Collections.Generic;
 using Perspective.Hosting;
-using System.ComponentModel.Composition;
 
 namespace Perspective.Demo
 {
     /// <summary>
     /// Represents the Config extension for the Perspective application.
     /// </summary>
-    // [Export(typeof(Perspective.Hosting.Extension))]
     public class Extension : Perspective.Hosting.Extension
     {
-        private const string _title = "Demo";
-        private const string _iconKey = "Perspective.Demo.Icon.png";
+        private const string _iconFile = "Perspective.Demo.Icon.png";
 
         private static string _assemblyName = "Perspective.Demo";
 
@@ -46,74 +43,58 @@ namespace Perspective.Demo
             }
         }
 
-        private List<PageInfo> _pageInfos;
-
-        /// <summary>
-        /// Gets the children PageInfos collection.
-        /// </summary>
-        public override List<PageInfo> PageInfos
-        {
-            get
-            {
-                return _pageInfos;
-            }
-        }
-
         /// <summary>
         /// Initializes a new instance of Extension.
         /// </summary>
         public Extension()
             : base()
         {
-            Title = _title;
-            IconKey = _iconKey;
-            // SortOrder = 100;
-            _pageInfos = new List<PageInfo>
+            PageInfos = new List<PageInfo>
             {
                 new PageInfo(this)
                 {
                     Title = "About",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/About.xaml"
-                },
-                new PageInfo(this)
-                {
-                    Title = "Localization",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/LocalizationDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "About"
                 },
                 new PageInfo(this)
                 {
                     Title = "PolygonElement",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/PolygonElementDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "PolygonElementDemo"
+                },
+                new PageInfo(this)
+                {
+                    Title = "Deep Linking",
+                    IconFile = _iconFile,
+                    PageName = "PolygonElementDemo/SideCount/4"
                 },
                 new PageInfo(this)
                 {
                     Title = "BeePanel - BeeGrid",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/BeePanelDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "BeePanelDemo"
                 },
                 new PageInfo(this)
                 {
                     Title = "Knob",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/KnobDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "KnobDemo"
                 },
                 new PageInfo(this)
                 {
                     Title = "MayaEaseDemo",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/MayaEaseDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "MayaEaseDemo"
                 },
                 new PageInfo(this)
                 {
                     Title = "Matrix3DDemo",
-                    IconKey = _iconKey,
-                    PartialClassName = "View/Matrix3DDemo.xaml"
+                    IconFile = _iconFile,
+                    PageName = "Matrix3DDemo"
                 },
             };
-            ExtensionManager.RegisterAssembly(_assemblyName);
+            ExtensionManager.Current.RegisterAssembly(_assemblyName);
         }
     }
 }

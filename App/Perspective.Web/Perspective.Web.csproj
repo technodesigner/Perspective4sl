@@ -55,7 +55,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <CodeAnalysisDictionary Include="ClientBin\Perspective.Config.Icon.png" />
     <Content Include="ClientBin\Perspective.Config.xap" />
+    <CodeAnalysisDictionary Include="ClientBin\Perspective.Demo.Icon.png" />
     <Content Include="ClientBin\Perspective.Demo.xap" />
     <Content Include="ClientBin\Perspective.xap" />
     <Content Include="Copy of PerspectiveTestPage.html" />
@@ -73,7 +75,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClientBin\Perspective.Hosting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
