@@ -21,28 +21,34 @@ namespace Perspective.Hosting
     /// <summary>
     /// Represents an extension for the Perspective application.
     /// </summary>
-    public abstract class Extension : ItemBase, INotifyPropertyChanged
+    public abstract class Extension : INotifyPropertyChanged
     {
-        private List<PageInfo> _pageInfos;
+        /// <summary>
+        /// Property to override to specify the assembly name of the inherited class (i.e. "Perspective.Config")
+        /// </summary>
+        /// <returns></returns>
+        public abstract string AssemblyName { get; }
+
+        private List<PageLink> _pageLinks;
 
         /// <summary>
-        /// Gets the name of the PageInfos property.
+        /// Gets the name of the PageLinks property.
         /// </summary>
-        public const string PageInfosKey = "PageInfos";
+        public const string PageLinksKey = "PageLinks";
 
         /// <summary>
-        /// Property to override to get the children PageInfos collection.
+        /// Gets the PageLink collection.
         /// </summary>
-        public List<PageInfo> PageInfos
+        public List<PageLink> PageLinks
         {
             get
             {
-                return _pageInfos;
+                return _pageLinks;
             }
             set
             {
-                _pageInfos = value;
-                NotifyPropertyChanged(PageInfosKey);
+                _pageLinks = value;
+                NotifyPropertyChanged(PageLinksKey);
             }
         }
         #region INotifyPropertyChanged Members

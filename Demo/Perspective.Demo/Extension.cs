@@ -49,45 +49,45 @@ namespace Perspective.Demo
         public Extension()
             : base()
         {
-            PageInfos = new List<PageInfo>
+            PageLinks = new List<PageLink>
             {
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "About",
                     IconFile = _iconFile,
                     PageName = "About"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "PolygonElement",
                     IconFile = _iconFile,
                     PageName = "PolygonElementDemo"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "Deep Linking",
                     IconFile = _iconFile,
                     PageName = "PolygonElementDemo/SideCount/4"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "BeePanel - BeeGrid",
                     IconFile = _iconFile,
                     PageName = "BeePanelDemo"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "Knob",
                     IconFile = _iconFile,
                     PageName = "KnobDemo"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "MayaEaseDemo",
                     IconFile = _iconFile,
                     PageName = "MayaEaseDemo"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "Matrix3DDemo",
                     IconFile = _iconFile,

@@ -59,7 +59,7 @@ Perspective.Hosting
 A new Silverlight 4 project to manage MEF parts of the Perspective application project. 
 The classes are used by the entension assemblies.
 Extension : Represents an extension for the Perspective application.
-PageInfo : Represents the metadata associated with a Silverlight page of an extension XAP.
+PageLink : Represents the metadata associated with a Silverlight page of an extension.
 
 Perspective.Config
 ------------------

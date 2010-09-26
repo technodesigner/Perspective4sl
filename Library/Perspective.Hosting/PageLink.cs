@@ -20,13 +20,13 @@ namespace Perspective.Hosting
     /// <summary>
     /// Represents the metadata associated with a page of an extension assembly.
     /// </summary>
-    public class PageInfo : ItemBase
+    public class PageLink
     {
         /// <summary>
-        /// Initializes a new PageInfo instance.
+        /// Initializes a new PageLink instance.
         /// </summary>
         /// <param name="extension">The Extension container.</param>
-        public PageInfo(Extension extension)
+        public PageLink(Extension extension)
         {
             _extension = extension;
         }
@@ -102,7 +102,7 @@ namespace Perspective.Hosting
         /// <summary>
         /// Gets the assembly name.
         /// </summary>
-        public override string AssemblyName
+        public string AssemblyName
         {
             get
             {

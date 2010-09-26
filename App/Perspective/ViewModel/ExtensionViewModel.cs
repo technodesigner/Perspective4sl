@@ -33,9 +33,9 @@ namespace Perspective.ViewModel
         private ExtensionModel _extensionModel;
 
         /// <summary>
-        /// Updates the CurrentPageInfo property.
+        /// Updates the CurrentPageLink property.
         /// </summary>
-        public SignalCommand SetCurrentPageInfoCommand { get; private set; }
+        public SignalCommand SetCurrentPageLinkCommand { get; private set; }
 
         /// <summary>
         /// Updates the CurrentExtension property.
@@ -50,12 +50,12 @@ namespace Perspective.ViewModel
                 {
                     CurrentExtension = e.Extension;
                 };
-            SetCurrentPageInfoCommand = new SignalCommand();
-            SetCurrentPageInfoCommand.Executed += (sender, e) =>
+            SetCurrentPageLinkCommand = new SignalCommand();
+            SetCurrentPageLinkCommand.Executed += (sender, e) =>
             {
-                if ((e.Parameter != null) && (e.Parameter is PageInfo))
+                if ((e.Parameter != null) && (e.Parameter is PageLink))
                 {
-                    CurrentPageInfo = e.Parameter as PageInfo;
+                    CurrentPageLink = e.Parameter as PageLink;
                 }
             };
 
@@ -110,26 +110,26 @@ namespace Perspective.ViewModel
             }
         }
 
-        private PageInfo _currentPageInfo;
+        private PageLink _currentPageLink;
 
         /// <summary>
-        /// Gets the name of the CurrentPageInfo property.
+        /// Gets the name of the CurrentPageLink property.
         /// </summary>
-        public const string CurrentPageInfoKey = "CurrentPageInfo";
+        public const string CurrentPageLinkKey = "CurrentPageLink";
 
         /// <summary>
-        /// Gets the current PageInfo object.
+        /// Gets the current PageLink object.
         /// </summary>
-        public PageInfo CurrentPageInfo
+        public PageLink CurrentPageLink
         {
             get
             {
-                return _currentPageInfo;
+                return _currentPageLink;
             }
             private set
             {
-                _currentPageInfo = value;
-                NotifyPropertyChanged(CurrentPageInfoKey);
+                _currentPageLink = value;
+                NotifyPropertyChanged(CurrentPageLinkKey);
             }
         }
 

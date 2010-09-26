@@ -46,15 +46,15 @@ namespace Perspective.View
             evm.PropertyChanged +=
                 (sender1, e1) =>
                 {
-                    if (e1.PropertyName == ExtensionViewModel.CurrentPageInfoKey)
+                    if (e1.PropertyName == ExtensionViewModel.CurrentPageLinkKey)
                     {
-                        if (frame.Source == evm.CurrentPageInfo.Uri)
+                        if (frame.Source == evm.CurrentPageLink.Uri)
                         {
                             frame.Refresh(); // To force the Navigated event
                         }
                         else
                         {
-                            frame.Source = evm.CurrentPageInfo.Uri;
+                            frame.Source = evm.CurrentPageLink.Uri;
                         }
                     }
                 };

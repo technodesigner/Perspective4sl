@@ -18,8 +18,8 @@
             x:Key="ExtensionsView"
             Source="{Binding Source={StaticResource ExtensionViewModel}, Path=ExtensionLinks}" />
         <CollectionViewSource 
-            x:Key="PageInfosView"
-            Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentExtension.PageInfos}" />
+            x:Key="PageLinksView"
+            Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentExtension.PageLinks}" />
 
         <ph:ExtensionContentLoader x:Key="ExtensionContentLoader" />
 
@@ -38,7 +38,7 @@
                 Orientation="Vertical"/>
         </ItemsPanelTemplate>
 
-        <ItemsPanelTemplate x:Key="PageInfosPanelTemplate">
+        <ItemsPanelTemplate x:Key="PageLinksPanelTemplate">
             <swct:WrapPanel />
         </ItemsPanelTemplate>
 
@@ -158,12 +158,12 @@
             </Button>
         </DataTemplate>
 
-        <DataTemplate x:Key="PageInfoTemplate">
+        <DataTemplate x:Key="PageLinkTemplate">
             <Button 
                 Style="{StaticResource DesktopButtonStyle}"
                 Command="{Binding 
                     Source={StaticResource ExtensionViewModel}, 
-                    Path=SetCurrentPageInfoCommand}"
+                    Path=SetCurrentPageLinkCommand}"
                 CommandParameter="{Binding}">
                 <Grid >
                     <Grid.RowDefinitions>
@@ -236,22 +236,22 @@
                 ItemTemplate="{StaticResource ExtensionTemplate}"
                 ItemContainerStyle="{StaticResource ItemContainerStyle}"
                 GotFocus="extensionListBox_GotFocus"/>
-            <TextBlock 
+            <!--<TextBlock 
                 swct:DockPanel.Dock="Bottom"
-                Text="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentExtension}"/>
+                Text="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentExtension}"/>-->
             <Grid 
                 Name="detailGrid">
                 <ListBox 
                     Name="detailListBox"
                     Margin="10"
                     swct:DockPanel.Dock="Left"          
-                    ItemsSource="{Binding Source={StaticResource PageInfosView}}"
+                    ItemsSource="{Binding Source={StaticResource PageLinksView}}"
                     Template="{StaticResource ListBoxTemplate}"
-                    ItemsPanel="{StaticResource PageInfosPanelTemplate}"
-                    ItemTemplate="{StaticResource PageInfoTemplate}"
+                    ItemsPanel="{StaticResource PageLinksPanelTemplate}"
+                    ItemTemplate="{StaticResource PageLinkTemplate}"
                     ItemContainerStyle="{StaticResource ItemContainerStyle}" />
                 <!--We could use binding here, but it would be broken by fragment navigation...-->
-                <!--Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentPageInfo.Uri}"-->
+                <!--Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentPageLink.Uri}"-->
                 <navigation:Frame 
                     Name="frame" 
                     ContentLoader="{StaticResource ExtensionContentLoader}"

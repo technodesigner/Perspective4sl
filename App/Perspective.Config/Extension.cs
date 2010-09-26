@@ -49,15 +49,15 @@ namespace Perspective.Config
         public Extension()
             : base()
         {
-            PageInfos = new List<PageInfo>
+            PageLinks = new List<PageLink>
             {
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "About",
                     IconFile = _iconFile,
                     PageName = "About"
                 },
-                new PageInfo(this)
+                new PageLink(this)
                 {
                     Title = "Localization",
                     IconFile = _iconFile,
