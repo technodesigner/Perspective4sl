@@ -93,6 +93,9 @@
     <Compile Include="View\Matrix3DDemo.xaml.cs">
       <DependentUpon>Matrix3DDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MatrixDemo.xaml.cs">
+      <DependentUpon>MatrixDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MayaEaseDemo.xaml.cs">
       <DependentUpon>MayaEaseDemo.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Matrix3DDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MatrixDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

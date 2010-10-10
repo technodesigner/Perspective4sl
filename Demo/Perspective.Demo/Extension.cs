@@ -83,13 +83,19 @@ namespace Perspective.Demo
                 },
                 new PageLink(this)
                 {
-                    Title = "MayaEaseDemo",
+                    Title = "MayaEase",
                     IconFile = _iconFile,
                     PageName = "MayaEaseDemo"
                 },
                 new PageLink(this)
                 {
-                    Title = "Matrix3DDemo",
+                    Title = "Matrix",
+                    IconFile = _iconFile,
+                    PageName = "MatrixDemo"
+                },
+                new PageLink(this)
+                {
+                    Title = "Matrix3D",
                     IconFile = _iconFile,
                     PageName = "Matrix3DDemo"
                 },

@@ -17,7 +17,7 @@ UriHelper : An helper class to manage URIs.
 
 Perspective.Core.Wpf
 --------------------
-GeometryHelper : new methods GetRotationMatrix, GetTranslationMatrix, GetScaleMatrix, GetSkewMatrix and RotatePoint
+GeometryHelper : new methods GetRotationMatrix, GetTranslationMatrix, GetScaleMatrix, GetSkewMatrix, RotatePoint and MultiplyMatrices
 New Helper3D class to handle 3D matrices
 
 Perspective.Wpf.Controls.Primitives

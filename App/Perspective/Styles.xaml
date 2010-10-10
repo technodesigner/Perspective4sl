@@ -26,6 +26,8 @@
         <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
     </Style>
 
+    <Style TargetType="Path" BasedOn="{StaticResource BasicShapeStyle}"/>
+
     <Style x:Key="PolygonElementStyle" TargetType="pc:PolygonElement">
         <Setter Property="Panel.HorizontalAlignment" Value="Center" />
         <Setter Property="Panel.VerticalAlignment" Value="Center" />
@@ -147,9 +149,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource GlassButtonStyle}">
+    <Style TargetType="Button" BasedOn="{StaticResource GlassButtonStyle}"/>
+    <!--<Style TargetType="Button" BasedOn="{StaticResource GlassButtonStyle}">
         <Setter Property="Width" Value="150" />
         <Setter Property="Content" Value="Bouton" />
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>

@@ -162,5 +162,22 @@ namespace Perspective.Core.Wpf
             Matrix m = GetRotationMatrix(angle);
             return m.Transform(source);
         }
+
+        /// <summary>
+        /// Multiply 2 matrices.
+        /// </summary>
+        /// <param name="m1">The first matrice.</param>
+        /// <param name="m2">The second matrice.</param>
+        /// <returns></returns>
+        public static Matrix MultiplyMatrices(Matrix m1, Matrix m2)
+        {
+            return new Matrix(
+                (m1.M11 * m2.M11) + (m1.M12 * m2.M21),
+                (m1.M11 * m2.M12) + (m1.M12 * m2.M22), 
+                (m1.M21 * m2.M11) + (m1.M22 * m2.M21),
+                (m1.M21 * m2.M12) + (m1.M22 * m2.M22), 
+                (m1.OffsetX * m2.M11) + (m1.OffsetY * m2.M21) + m2.OffsetX, 
+                (m1.OffsetX * m2.M12) + (m1.OffsetY * m2.M22) + m2.OffsetY);
+        }
     }
 }
