@@ -62,12 +62,21 @@
     <Compile Include="Controls\BeeGrid.cs" />
     <Compile Include="Controls\BeePanel.cs" />
     <Compile Include="Controls\Knob.cs" />
-    <Compile Include="Controls\PolygonElement.cs" />
+    <Compile Include="Drawers\ArrowDrawer.cs" />
+    <Compile Include="Drawers\CheckerboardDrawer.cs" />
+    <Compile Include="Drawers\StarDrawer.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Primitives\CustomPath.cs" />
+    <Compile Include="Primitives\Drawer.cs" />
+    <Compile Include="Drawers\RegularPolygonDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceStrings\ResourceStringGroup.cs" />
     <Compile Include="ResourceStrings\ResourceStringLink.cs" />
     <Compile Include="ResourceStrings\ResourceStringManager.cs" />
+    <Compile Include="Shapes\Arrow.cs" />
+    <Compile Include="Shapes\Checkerboard.cs" />
+    <Compile Include="Shapes\RegularPolygon.cs" />
+    <Compile Include="Shapes\Star.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

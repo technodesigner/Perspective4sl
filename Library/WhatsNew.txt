@@ -35,6 +35,14 @@ BREAKING CHANGE - Removed classes :
 - XListBox / XListBoxItem
 - ComboFrame
 - ListFrame
+- PolygonElement (replaced by RegularPolygon shape class)
+
+Perspective.Wpf.Shapes
+------------------------
+RegularPolygon : draws a regular polygon.
+Star : draws a n-branch star.
+Arrow : draws an arrow.
+Checkerboard : draws a checkerboard.
 
 Perspective.Wpf.themes
 ----------------------

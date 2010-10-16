@@ -99,8 +99,8 @@
     <Compile Include="View\MayaEaseDemo.xaml.cs">
       <DependentUpon>MayaEaseDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PolygonElementDemo.xaml.cs">
-      <DependentUpon>PolygonElementDemo.xaml</DependentUpon>
+    <Compile Include="View\ShapeDemo.xaml.cs">
+      <DependentUpon>ShapeDemo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +149,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PolygonElementDemo.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\ShapeDemo.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

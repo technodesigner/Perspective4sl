@@ -40,21 +40,21 @@ namespace Perspective.Hosting
             _uriMappings = new Collection<UriMapping>();
 
             // 1) Neutral mapping to preserve full base URI.
-            // i.e. /Perspective.Demo;component/View/PolygonElementDemo.xaml
+            // i.e. /Perspective.Demo;component/View/ShapeDemo.xaml
             UriMapping m1 = CreateMapping(
                 "/{assembly};component/View/{pageName}.xaml", 
                 "/{assembly};component/View/{pageName}.xaml");
             _uriMappings.Add(m1);
 
             // 2) Simple mapping mapping for arguments
-            // i.e. /Perspective.Demo/PolygonElementDemo/SideCount/8
+            // i.e. /Perspective.Demo/ShapeDemo/Polygon/8
             UriMapping m2 = CreateMapping(
                 "/{assembly}/{pageName}/{argKey}/{argValue}",
                 "/{assembly};component/View/{pageName}.xaml?{argKey}={argValue}");
             _uriMappings.Add(m2);
 
             // 3) Simple mapping to load a page
-            // i.e. /Perspective.Demo/PolygonElementDemo
+            // i.e. /Perspective.Demo/ShapeDemo
             UriMapping m3 = CreateMapping(
                 "/{assembly}/{pageName}",
                 "/{assembly};component/View/{pageName}.xaml");

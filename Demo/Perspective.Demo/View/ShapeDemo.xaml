@@ -1,0 +1,221 @@
+﻿<navigation:Page 
+    x:Class="Perspective.Demo.View.ShapeDemo" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:swc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    xmlns:ps="clr-namespace:Perspective.Wpf.Shapes;assembly=Perspective.Wpf"
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Title="ShapeDemo Page">
+    <swc:TabControl>
+        <swc:TabControl.Resources>
+            <Style x:Key="BaseShape" TargetType="Shape">
+                <Setter Property="Stroke" Value="{StaticResource BasicShapeStroke}" />
+                <Setter Property="StrokeThickness" Value="2.0" />
+                <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
+                <Setter Property="Margin" Value="20" />
+            </Style>
+            <Style TargetType="ps:Arrow" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="ps:Star" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="ps:RegularPolygon" BasedOn="{StaticResource BaseShape}"/>
+        </swc:TabControl.Resources>
+        <swc:TabItem 
+            Header="Deep linking"
+            Name="deepLinkingTabItem">
+            <Viewbox>
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <ps:RegularPolygon 
+                        Name="polygon"
+                        SideCount="16"/>
+                </Grid>
+            </Viewbox>
+        </swc:TabItem>        
+        <swc:TabItem 
+            Header="RegularPolygon"
+            IsSelected="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ps:RegularPolygon
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    SideCount="3"
+                    />
+                <ps:RegularPolygon
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    />
+                <ps:RegularPolygon
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    SideCount="12"
+                    />
+                <ps:RegularPolygon
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    SideCount="3"
+                    InitialAngle="30"
+                    />
+                <ps:RegularPolygon
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    SideCount="6"
+                    InitialAngle="30"
+                    />
+                <ps:RegularPolygon
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    SideCount="12"
+                    InitialAngle="30"
+                    />
+            </Grid>            
+        </swc:TabItem>
+        <swc:TabItem Header="Star">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ps:Star
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    />
+                <ps:Star
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    BranchCount="5"
+                    InitialAngle="18"
+                    />
+                <ps:Star
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    BranchCount="5"
+                    BranchWidth="0.4"
+                    InitialAngle="18"
+                    />
+                <ps:Star
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    BranchCount="4"
+                    InitialAngle="45"
+                    />
+                <ps:Star
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    BranchCount="8"
+                    BranchWidth="0.35"
+                    InitialAngle="22.5"
+                    />
+                <ps:Star
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    BranchCount="12"
+                    BranchWidth="0.4"
+                    InitialAngle="15"
+                    />
+            </Grid>
+        </swc:TabItem>
+        <swc:TabItem Header="Arrow">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ps:Arrow
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    />
+                <ps:Arrow
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    FormatRatio="10"
+                    />
+                <ps:Arrow
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    HeadLengthRatio="0.5"
+                    />
+                <ps:Arrow
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    HeadWidthRatio="4"
+                    />
+            </Grid>            
+        </swc:TabItem>
+        <swc:TabItem 
+            Header="Checkerboard 1">
+            <Viewbox>
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <ps:Checkerboard
+                        Fill="Black"/>
+                </Grid>
+            </Viewbox>
+        </swc:TabItem>
+        <swc:TabItem 
+            Header="Checkerboard 2">
+            <Viewbox>
+                <Grid Margin="20">
+                    <Grid.Resources>
+                        <Style TargetType="ps:Checkerboard">
+                            <Setter Property="Stroke" Value="{StaticResource BasicShapeStroke}" />
+                            <Setter Property="StrokeThickness" Value="1.0" />
+                            <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
+                            <Setter Property="ColumnCount" Value="9"/>
+                            <Setter Property="RowCount" Value="6"/>
+                            <Setter Property="CellLength" Value="50"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <ps:Checkerboard />
+                </Grid>
+            </Viewbox>
+        </swc:TabItem>
+        <swc:TabItem 
+            Header="Dynamic">
+            <StackPanel>
+                <Button 
+                    Name="bCreateShape"
+                    Width="80" Height="40"
+                    Click="bCreateShape_Click"
+                    Content="Create"/>
+                <StackPanel Name="shapeStackPanel" />
+            </StackPanel>
+        </swc:TabItem>
+    </swc:TabControl>
+</navigation:Page>

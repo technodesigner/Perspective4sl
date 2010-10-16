@@ -59,15 +59,15 @@ namespace Perspective.Demo
                 },
                 new PageLink(this)
                 {
-                    Title = "PolygonElement",
+                    Title = "Shapes",
                     IconFile = _iconFile,
-                    PageName = "PolygonElementDemo"
+                    PageName = "ShapeDemo"
                 },
                 new PageLink(this)
                 {
                     Title = "Deep Linking",
                     IconFile = _iconFile,
-                    PageName = "PolygonElementDemo/SideCount/4"
+                    PageName = "ShapeDemo/Polygon/4"
                 },
                 new PageLink(this)
                 {

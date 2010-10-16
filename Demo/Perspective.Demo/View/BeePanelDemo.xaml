@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:swc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
-    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"        
+    xmlns:ps="clr-namespace:Perspective.Wpf.Shapes;assembly=Perspective.Wpf"
+    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
@@ -21,7 +22,7 @@
             <Setter Property="Width" Value="80" />
             <Setter Property="Height" Value="40" />
         </Style>
-        <Style TargetType="pc:PolygonElement">
+        <Style TargetType="ps:RegularPolygon">
             <Setter Property="Fill" Value="{StaticResource RadialBrush}" />
             <Setter Property="Panel.Opacity" Value="0.8" />
             <Setter Property="Panel.Width" Value="116" />
@@ -40,39 +41,39 @@
                     Margin="10"
                     HorizontalAlignment="Left" VerticalAlignment="Center">
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="0"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="1"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="2"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="3"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="4"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="5"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="6"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="7"/>
                     </Grid>
                     <Grid>
-                        <pc:PolygonElement />
+                        <ps:RegularPolygon />
                         <Button Content="8"/>
                     </Grid>
                 </pc:BeePanel>
@@ -89,31 +90,31 @@
                     Margin="10"
                     SideLength="60"
                     HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="0"
                         pc:BeeGrid.Column="0"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="0"
                         pc:BeeGrid.Column="1"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="0"
                         pc:BeeGrid.Column="2"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="1"
                         pc:BeeGrid.Column="0"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="1"
                         pc:BeeGrid.Column="1"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="1"
                         pc:BeeGrid.Column="2"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="2"
                         pc:BeeGrid.Column="0"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="2"
                         pc:BeeGrid.Column="1"/>
-                    <pc:PolygonElement 
+                    <ps:RegularPolygon 
                         pc:BeeGrid.Row="2"
                         pc:BeeGrid.Column="2"/>
                     <Button 
