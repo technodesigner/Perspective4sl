@@ -20,9 +20,9 @@ using System;
 [assembly: AssemblyTitle("Perspective.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("odewit.net")]
+[assembly: AssemblyCompany(Perspective.Core.LibraryInfo.Company)]
 [assembly: AssemblyProduct("Perspective.Core")]
-[assembly: AssemblyCopyright("Copyright © odewit.net 2009")]
+[assembly: AssemblyCopyright(Perspective.Core.LibraryInfo.Copyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -59,9 +59,10 @@ namespace Perspective.Core
 
         /// <summary>
         /// Perspective global version number.
-        /// 2.0.0.0 : 2.0 beta
+        /// 2.0.0.1 : 2.0 alpha
+        /// 2.0.0.2 : 2.0 beta
         /// </summary>
-        public const string GlobalVersion = "2.0.0.0";
+        public const string GlobalVersion = "2.0.0.1";
 
         /// <summary>
         /// Global company name.

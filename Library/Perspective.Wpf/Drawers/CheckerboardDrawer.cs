@@ -89,6 +89,7 @@ namespace Perspective.Wpf.Drawers
         /// </summary>
         public override void BuildFigure()
         {
+            Figures.Clear();
             Points.Clear();
             for (int i = 0; i < _columnCount; i++)
             {
