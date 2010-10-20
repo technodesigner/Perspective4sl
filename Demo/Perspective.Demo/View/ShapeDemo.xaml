@@ -21,6 +21,10 @@
             <Style TargetType="ps:Arrow" BasedOn="{StaticResource BaseShape}"/>
             <Style TargetType="ps:Star" BasedOn="{StaticResource BaseShape}"/>
             <Style TargetType="ps:RegularPolygon" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="ps:PieSlice" BasedOn="{StaticResource BaseShape}">
+                <Setter Property="Width" Value="120" />
+                <Setter Property="Height" Value="120" />
+            </Style>
         </swc:TabControl.Resources>
         <swc:TabItem 
             Header="Deep linking"
@@ -167,6 +171,29 @@
                     />
             </Grid>            
         </swc:TabItem>
+        <swc:TabItem 
+            Header="PieSlice">
+            <Viewbox>
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ps:PieSlice />
+                    <ps:PieSlice 
+                        InitialAngle="0"
+                        Angle="80"/>
+                    <ps:PieSlice 
+                        InitialAngle="90"
+                        Angle="80"/>
+                    <ps:PieSlice 
+                        InitialAngle="180"
+                        Angle="80"/>
+                </Grid>
+            </Viewbox>
+        </swc:TabItem>        
         <swc:TabItem 
             Header="Checkerboard 1">
             <Viewbox>

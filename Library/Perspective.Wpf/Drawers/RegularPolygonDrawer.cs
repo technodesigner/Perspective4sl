@@ -31,6 +31,8 @@ namespace Perspective.Wpf.Drawers
     {
         private double _initialAngle;
         private int _sideCount;
+        private PointCollection _points = new PointCollection();
+        private PathFigure _figure = new PathFigure();
 
         /// <summary>
         /// Initializes a new instance of RegularPolygonDrawer.
@@ -38,6 +40,7 @@ namespace Perspective.Wpf.Drawers
         public RegularPolygonDrawer()
             : base()
         {
+            _figure.IsClosed = true;
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace Perspective.Wpf.Drawers
             int sideCount,
             double width,
             double height,
-            double strokeThickness) : base()
+            double strokeThickness) : this()
         {
             Initialize(initialAngle, sideCount, width, height, strokeThickness);
         }
@@ -85,9 +88,9 @@ namespace Perspective.Wpf.Drawers
         /// <summary>
         /// Generates the points and segments of the polygonal Figure object.
         /// </summary>
-        public override void BuildFigure()
+        protected override void BuildFiguresOverride()
         {
-            Points.Clear();
+            _points.Clear();
             double initialAngleRad = GeometryHelper.DegreeToRadian(_initialAngle);
             double angle1Rad = 2 * Math.PI / _sideCount;
             double angleRad = 0.0;
@@ -103,21 +106,20 @@ namespace Perspective.Wpf.Drawers
                 p.Y = areaHeight == 0.0 ?
                     Math.Sin(angleRad) :
                     areaHeight + Math.Sin(angleRad) * (areaHeight - StrokeThickness / 2);
-                Points.Add(p);
+                _points.Add(p);
             }
-            var figure = new PathFigure();
-            figure.IsClosed = true;
-            figure.StartPoint = Points[0];
-            for (int i = 0; i < Points.Count; i++)
+            _figure.Segments.Clear();
+            _figure.StartPoint = _points[0];
+            for (int i = 0; i < _points.Count; i++)
             {
-                if (i < Points.Count - 1)
+                if (i < _points.Count - 1)
                 {
                     LineSegment segment = new LineSegment();
-                    segment.Point = Points[i + 1];
-                    figure.Segments.Add(segment);
+                    segment.Point = _points[i + 1];
+                    _figure.Segments.Add(segment);
                 }
             }
-            Figures.Add(figure);
+            Figures.Add(_figure);
         }
     }
 }

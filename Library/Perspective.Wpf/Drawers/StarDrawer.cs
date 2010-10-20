@@ -32,6 +32,8 @@ namespace Perspective.Wpf.Drawers
         private int _branchCount;
         private double _branchWidth;
         private double _initialAngle;
+        private PointCollection _points = new PointCollection();
+        private PathFigure _figure = new PathFigure();
 
         /// <summary>
         /// Initializes a new instance of StarDrawer.
@@ -39,6 +41,7 @@ namespace Perspective.Wpf.Drawers
         public StarDrawer()
             : base()
         {
+            _figure.IsClosed = true;
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace Perspective.Wpf.Drawers
             double width,
             double height,
             double strokeThickness)
-            : base()
+            : this()
         {
             Initialize(branchCount, branchWidth, initialAngle, width, height, strokeThickness);
         }
@@ -92,16 +95,15 @@ namespace Perspective.Wpf.Drawers
         /// <summary>
         /// Generates the points and segments of the star Figure object.
         /// </summary>
-        public override void BuildFigure()
+        protected override void BuildFiguresOverride()
         {
-            Points.Clear();
             double initialAngleRad = GeometryHelper.DegreeToRadian(_initialAngle);
             double angle1Rad = 2 * Math.PI / _branchCount;
             double angleBranchHeadOffset = angle1Rad / 2;
             double angleRad = 0.0;
             double areaWidth = Double.IsNaN(Width) ? 0.0 : Width / 2;
             double areaHeight = Double.IsNaN(Height) ? 0.0 : Height / 2;
-
+            _points.Clear();
             for (int i = 0; i < _branchCount; i++)
             {
                 // base point
@@ -113,7 +115,7 @@ namespace Perspective.Wpf.Drawers
                 p.Y = areaHeight == 0.0 ?
                     Math.Sin(angleRad) * _branchWidth :
                     areaHeight + Math.Sin(angleRad) * _branchWidth * (areaHeight - StrokeThickness / 2);
-                Points.Add(p);
+                _points.Add(p);
 
                 // head point
                 double angleBranchHead = angleRad + angleBranchHeadOffset;
@@ -124,23 +126,22 @@ namespace Perspective.Wpf.Drawers
                 pBranch.Y = areaHeight == 0.0 ?
                     Math.Sin(angleBranchHead) :
                     areaHeight + Math.Sin(angleBranchHead) * (areaHeight - StrokeThickness / 2);
-                Points.Add(pBranch);
+                _points.Add(pBranch);
             }
 
-            var figure = new PathFigure();
-            figure.IsClosed = true;
-            figure.StartPoint = Points[0];
-            for (int i = 0; i < Points.Count; i++)
+            _figure.Segments.Clear();
+            _figure.StartPoint = _points[0];
+            for (int i = 0; i < _points.Count; i++)
             {
-                if (i < Points.Count - 1)
+                if (i < _points.Count - 1)
                 {
                     // LineSegment segment = new LineSegment(Points[i + 1], true);
                     LineSegment segment = new LineSegment();
-                    segment.Point = Points[i + 1];
-                    figure.Segments.Add(segment);
+                    segment.Point = _points[i + 1];
+                    _figure.Segments.Add(segment);
                 }
             }
-            Figures.Add(figure);
+            Figures.Add(_figure);
         }
     }
 }

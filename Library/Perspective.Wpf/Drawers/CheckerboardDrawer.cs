@@ -24,7 +24,7 @@ using Perspective.Wpf.Primitives;
 namespace Perspective.Wpf.Drawers
 {
     /// <summary>
-    /// A class to generate the points and segments of a checkerboard Pathfigure object.
+    /// A class to generate the segments of a checkerboard Pathfigure collection object.
     /// </summary>
     public class CheckerboardDrawer : Drawer
     {
@@ -56,7 +56,7 @@ namespace Perspective.Wpf.Drawers
             double width,
             double height,
             double strokeThickness)
-            : base()
+            : this()
         {
             Initialize(rowCount, columnCount, cellLength, width, height, strokeThickness);
         }
@@ -85,12 +85,10 @@ namespace Perspective.Wpf.Drawers
         }
 
         /// <summary>
-        /// Generates the points and segments of the checkerboard Figure object.
+        /// Generates the segments of the checkerboard Figure object.
         /// </summary>
-        public override void BuildFigure()
+        protected override void BuildFiguresOverride()
         {
-            Figures.Clear();
-            Points.Clear();
             for (int i = 0; i < _columnCount; i++)
             {
                 for (int j = 0; j < _rowCount; j++)
@@ -109,21 +107,17 @@ namespace Perspective.Wpf.Drawers
             var figure = new PathFigure();
             figure.IsClosed = true;
             figure.StartPoint = new Point(x, y);
-            Points.Add(figure.StartPoint);
 
             LineSegment segment1 = new LineSegment();
             segment1.Point = new Point(x + _cellLength, y);
-            Points.Add(segment1.Point);
             figure.Segments.Add(segment1);
 
             LineSegment segment2 = new LineSegment();
             segment2.Point = new Point(x + _cellLength, y + _cellLength);
-            Points.Add(segment2.Point);
             figure.Segments.Add(segment2);
 
             LineSegment segment3 = new LineSegment();
             segment3.Point = new Point(x, y + _cellLength);
-            Points.Add(segment3.Point);
             figure.Segments.Add(segment3);
 
             Figures.Add(figure);

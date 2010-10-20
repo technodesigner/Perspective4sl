@@ -31,6 +31,8 @@ namespace Perspective.Wpf.Drawers
         private double _formatRatio;
         private double _headLengthRatio;
         private double _headWidthRatio;
+        private PointCollection _points = new PointCollection();
+        private PathFigure _figure = new PathFigure();
 
         /// <summary>
         /// Initializes a new instance of ArrowDrawer.
@@ -38,6 +40,7 @@ namespace Perspective.Wpf.Drawers
         public ArrowDrawer()
             : base()
         {
+            _figure.IsClosed = true;
         }
 
         /// <summary>
@@ -56,7 +59,7 @@ namespace Perspective.Wpf.Drawers
             double width,
             double height,
             double strokeThickness)
-            : base()
+            : this()
         {
             Initialize(formatRatio, headLengthRatio, headWidthRatio, width, height, strokeThickness);
         }
@@ -99,22 +102,22 @@ namespace Perspective.Wpf.Drawers
         /// <summary>
         /// Generates the points and segments of the arrow Figure object.
         /// </summary>
-        public override void BuildFigure()
+        protected override void BuildFiguresOverride()
         {
-            Points.Clear();
             double headLength = _formatRatio * _headLengthRatio;
             double bodyLength = _formatRatio - headLength;
             double bodyHeight = _headWidthRatio != 0.0 ? 1.0 / _headWidthRatio : 1.0;
             double bodyTop = 0.5 - bodyHeight / 2;
             double bodyBottom = 0.5 + bodyHeight / 2;
 
-            Points.Add(new Point(0.0, bodyTop));
-            Points.Add(new Point(0.0, bodyBottom));
-            Points.Add(new Point(bodyLength, bodyBottom));
-            Points.Add(new Point(bodyLength, 1.0));
-            Points.Add(new Point(_formatRatio, 0.5));
-            Points.Add(new Point(bodyLength, 0.0));
-            Points.Add(new Point(bodyLength, bodyTop));
+            _points.Clear(); 
+            _points.Add(new Point(0.0, bodyTop));
+            _points.Add(new Point(0.0, bodyBottom));
+            _points.Add(new Point(bodyLength, bodyBottom));
+            _points.Add(new Point(bodyLength, 1.0));
+            _points.Add(new Point(_formatRatio, 0.5));
+            _points.Add(new Point(bodyLength, 0.0));
+            _points.Add(new Point(bodyLength, bodyTop));
 
             bool scaling = false;
             ScaleTransform transform = new ScaleTransform();
@@ -129,27 +132,26 @@ namespace Perspective.Wpf.Drawers
                 scaling = true;
             }
 
-            var figure = new PathFigure();
-            figure.IsClosed = true;
+            _figure.Segments.Clear();
             if (scaling)
             {
-                Points[0] = transform.Transform(Points[0]);
+                _points[0] = transform.Transform(_points[0]);
             }
-            figure.StartPoint = Points[0];
-            for (int i = 0; i < Points.Count; i++)
+            _figure.StartPoint = _points[0];
+            for (int i = 0; i < _points.Count; i++)
             {
-                if (i < Points.Count - 1)
+                if (i < _points.Count - 1)
                 {
                     if (scaling)
                     {
-                        Points[i + 1] = transform.Transform(Points[i + 1]);
+                        _points[i + 1] = transform.Transform(_points[i + 1]);
                     }
                     LineSegment segment = new LineSegment();
-                    segment.Point = Points[i + 1];
-                    figure.Segments.Add(segment);
+                    segment.Point = _points[i + 1];
+                    _figure.Segments.Add(segment);
                 }
             }
-            Figures.Add(figure);
+            Figures.Add(_figure);
         }
     }
 }

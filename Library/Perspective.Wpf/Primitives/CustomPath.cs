@@ -48,14 +48,6 @@ namespace Perspective.Wpf.Primitives
         }
 
         /// <summary>
-        /// Gets the shape's geometry object.
-        /// </summary>
-        protected PathGeometry Geometry
-        {
-            get { return _geometry; }
-        }
-
-        /// <summary>
         /// A method to override to create the Drawer object.
         /// </summary>
         /// <returns>A Drawer object.</returns>
@@ -75,8 +67,13 @@ namespace Perspective.Wpf.Primitives
         {
             if (_isInitialized)
             {
-                Data = DefiningGeometry;
+                BuildGeometry();
             }
+        }
+
+        private void BuildGeometry()
+        {
+            Data = DefiningGeometry;
         }
 
         /// <summary>
@@ -89,7 +86,7 @@ namespace Perspective.Wpf.Primitives
                 InitializeDrawer();
                 if (_drawer != null)
                 {
-                    _drawer.BuildFigure();
+                    _drawer.BuildFigures();
                     _geometry.Figures = _drawer.Figures;
                 }
                 return _geometry;
@@ -130,12 +127,13 @@ namespace Perspective.Wpf.Primitives
         /// <returns>The actual size that is used after the element is arranged in layout.</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
+            System.Diagnostics.Debug.WriteLine("State : {0}", this.ToString());
             // BuildContent call required to prevent disappearance of Fill brush i.e. in a TabItem.
-            // Size comparison required to prevent layout loop.
+            // Size comparison required to prevent LayoutCycleException.
             if ((finalSize.Width != this.ActualWidth)
                 && (finalSize.Height != this.ActualHeight))
             {
-                BuildContent();
+                BuildGeometry();
             }
             return finalSize;
         }

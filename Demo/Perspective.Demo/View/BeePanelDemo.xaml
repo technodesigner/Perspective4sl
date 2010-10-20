@@ -24,9 +24,9 @@
         </Style>
         <Style TargetType="ps:RegularPolygon">
             <Setter Property="Fill" Value="{StaticResource RadialBrush}" />
-            <Setter Property="Panel.Opacity" Value="0.8" />
-            <Setter Property="Panel.Width" Value="116" />
-            <Setter Property="Panel.Height" Value="116" />
+            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Width" Value="116" />
+            <Setter Property="Height" Value="116" />
         </Style>
     </navigation:Page.Resources>
     <swc:TabControl>

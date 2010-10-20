@@ -23,20 +23,10 @@ using System.Windows.Shapes;
 namespace Perspective.Wpf.Primitives
 {
     /// <summary>
-    /// An abstract class to generate the points and segments of a collection of Pathfigure objects.
+    /// An abstract class to generate the Pathfigure objects of a custom shape.
     /// </summary>
     public abstract class Drawer
     {
-        private PointCollection _points = new PointCollection();
-
-        /// <summary>
-        /// Gets the drawer's points collection.
-        /// </summary>
-        protected PointCollection Points
-        {
-            get { return _points; }
-        }
-
         private PathFigureCollection _figures = new PathFigureCollection();
 
         /// <summary>
@@ -46,16 +36,6 @@ namespace Perspective.Wpf.Primitives
         {
             get { return _figures; }
         }
-
-        //private PathFigure _figure = new PathFigure();
-
-        ///// <summary>
-        ///// Gets the drawer's PathFigure object.
-        ///// </summary>
-        //public PathFigure Figure
-        //{
-        //    get { return _figure; }
-        //}
 
         private double _width = double.NaN;
 
@@ -88,14 +68,6 @@ namespace Perspective.Wpf.Primitives
         }
 
         /// <summary>
-        /// Initializes a new instance of Drawer.
-        /// </summary>
-        protected Drawer()
-        {
-            // _figure.IsClosed = true;
-        }
-
-        /// <summary>
         /// Initializes a Drawer object.
         /// </summary>
         /// <param name="width">The width of the drawing area.</param>
@@ -112,8 +84,17 @@ namespace Perspective.Wpf.Primitives
         }
 
         /// <summary>
-        /// A method to override to generate the points and segments of the Figure object.
+        /// A method to call to generate the figure(s).
         /// </summary>
-        public abstract void BuildFigure();
+        public void BuildFigures()
+        {
+            Figures.Clear();
+            BuildFiguresOverride();
+        }
+
+        /// <summary>
+        /// A method to override to generate the figure(s).
+        /// </summary>
+        protected abstract void BuildFiguresOverride();
     }
 }

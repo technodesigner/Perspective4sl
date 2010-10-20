@@ -25,20 +25,30 @@ using Perspective.Wpf.Drawers;
 namespace Perspective.Wpf.Shapes
 {
     /// <summary>
-    /// Draws a regular polygon.
+    /// Draws a pie slice.
     /// </summary>
-    public class RegularPolygon : CustomPath
+    public class PieSlice : CustomPath
     {
         /// <summary>
+        /// Initializes a new instance of PieSlice.
+        /// </summary>
+        public PieSlice() : base()
+        {
+            Stretch = Stretch.None;
+            StrokeLineJoin = PenLineJoin.Round;
+        }
+
+        /// <summary>
         /// Identifies the InitialAngle dependency property.
+        /// Default value is -90.0 (90 degrees counterclockwise).
         /// </summary>
         private static readonly DependencyProperty InitialAngleProperty =
             DependencyProperty.Register(
                 "InitialAngle",
                 typeof(double),
-                typeof(RegularPolygon),
+                typeof(PieSlice),
                 new PropertyMetadata(
-                    0.0, PropertyChanged));
+                    -90.0, PropertyChanged));
 
         /// <summary>
         /// Gets or sets the initial angle (first point), in degrees.
@@ -56,59 +66,47 @@ namespace Perspective.Wpf.Shapes
         }
 
         /// <summary>
-        /// Identifies the SideCount dependency property.
+        /// Gets or sets the pie slice angle value (in degrees).
+        /// Default value is 60.0.
         /// </summary>
-        private static readonly DependencyProperty SideCountProperty =
-            DependencyProperty.Register(
-                "SideCount",
-                typeof(int),
-                typeof(RegularPolygon),
-                new PropertyMetadata(
-                    6, (d, e) =>
-                    {
-                        RegularPolygon shape = (d as RegularPolygon);
-                        if (shape.SideCount < 3)
-                        {
-                            throw new ArgumentException("SideCount < 3");
-                        }
-                        shape.BuildContent();
-                    }));
-
-        /// <summary>
-        /// Gets or sets the side count of the circumference.
-        /// </summary>
-        public int SideCount
+        public double Angle
         {
-            get
-            {
-                return (int)base.GetValue(SideCountProperty);
-            }
-            set
-            {
-                base.SetValue(SideCountProperty, value);
-            }
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
         }
 
-        private RegularPolygonDrawer _drawer;
+        /// <summary>
+        /// Identifies the Angle dependency property.
+        /// </summary>
+        public static readonly DependencyProperty AngleProperty =
+            DependencyProperty.Register(
+                "Angle",
+                typeof(double),
+                typeof(PieSlice),
+                new PropertyMetadata(
+                    60.0,
+                    PropertyChanged));
+
+        private PieSliceDrawer _drawer;
 
         /// <summary>
-        /// Creates a RegularPolygonDrawer object.
+        /// Creates a PieSliceDrawer object.
         /// </summary>
-        /// <returns>A RegularPolygonDrawer object.</returns>
+        /// <returns>A PieSliceDrawer object.</returns>
         protected override Drawer CreateDrawer()
         {
-            _drawer = new RegularPolygonDrawer();
+            _drawer = new PieSliceDrawer();
             return _drawer;
         }
 
         /// <summary>
-        /// Initializes the RegularPolygonDrawer object.
+        /// Initializes the PieSliceDrawer object.
         /// </summary>
         protected override void InitializeDrawer()
         {
             _drawer.Initialize(
+                Angle,
                 InitialAngle,
-                SideCount,
                 ActualWidth,
                 ActualHeight,
                 StrokeThickness);

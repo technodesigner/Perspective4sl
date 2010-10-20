@@ -98,13 +98,7 @@
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     LineHeight="30">
-                    Le nom de la police utilisée est défini
-                    par la propriété FontFamily, indépendamment 
-                    de son poids, de son style et de sa densité, 
-                    afin de pouvoir gérer un nombre élevé de 
-                    combinaisons. Des polices de substitution 
-                    peuvent être définies en constituant une 
-                    liste de noms séparés par une virgule.
+                    Les polices supportées par défaut par le runtime Silverlight sont Arial, Arial Black, Comic Sans MS, Courier New, Georgia, Lucida Grande/Lucida Sans Unicode, Times New Roman, Trebuchet MS et Verdana. D’autres polices spécifiques aux alphabets orientaux sont supportées.
                 </TextBlock>
             </Canvas>
         </swc:TabItem>

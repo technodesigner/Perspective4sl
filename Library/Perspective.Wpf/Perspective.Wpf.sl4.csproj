@@ -64,6 +64,7 @@
     <Compile Include="Controls\Knob.cs" />
     <Compile Include="Drawers\ArrowDrawer.cs" />
     <Compile Include="Drawers\CheckerboardDrawer.cs" />
+    <Compile Include="Drawers\PieSliceDrawer.cs" />
     <Compile Include="Drawers\StarDrawer.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Primitives\CustomPath.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="ResourceStrings\ResourceStringManager.cs" />
     <Compile Include="Shapes\Arrow.cs" />
     <Compile Include="Shapes\Checkerboard.cs" />
+    <Compile Include="Shapes\PieSlice.cs" />
     <Compile Include="Shapes\RegularPolygon.cs" />
     <Compile Include="Shapes\Star.cs" />
   </ItemGroup>
