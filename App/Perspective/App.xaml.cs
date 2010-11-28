@@ -21,6 +21,10 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Perspective.Model;
+using Perspective.Core;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Globalization;
 
 namespace Perspective
 {
@@ -41,6 +45,18 @@ namespace Perspective
             Host.Settings.EnableFrameRateCounter = true;
             // Host.Settings.EnableRedrawRegions = true;
             // Host.Settings.MaxFrameRate = 60;
+
+            // Host.Settings.EnableCacheVisualization = true;
+
+            //ParametersHelper.LoadInitParametersFrom(e.InitParams);
+            //string uiCulture = ParametersHelper.ReadParameterValue("uiculture");
+            //if (!String.IsNullOrEmpty(uiCulture)
+            //    && !uiCulture.Equals(Thread.CurrentThread.CurrentUICulture.Name))
+            //{
+            //    var cultureinfo = new CultureInfo(uiCulture);
+            //    Thread.CurrentThread.CurrentCulture = cultureinfo;
+            //    Thread.CurrentThread.CurrentUICulture = cultureinfo;
+            //}
 
             // if (!Application.Current.IsRunningOutOfBrowser)
             //{

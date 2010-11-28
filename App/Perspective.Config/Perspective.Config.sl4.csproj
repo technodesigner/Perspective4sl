@@ -35,6 +35,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <SupportedCultures>fr</SupportedCultures>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -78,11 +79,32 @@
   <ItemGroup>
     <Compile Include="Extension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\StringProvider.cs" />
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GraphicConfig.xaml.cs">
+      <DependentUpon>GraphicConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IsolatedStorageConfig.xaml.cs">
+      <DependentUpon>IsolatedStorageConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LocalizationConfig.xaml.cs">
       <DependentUpon>LocalizationConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NetworkConfig.xaml.cs">
+      <DependentUpon>NetworkConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NotificationControl.xaml.cs">
+      <DependentUpon>NotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OutOfBrowserConfig.xaml.cs">
+      <DependentUpon>OutOfBrowserConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\LocalizationConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizationConfig.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -100,13 +122,39 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Strings\LocalizationConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\LocalizationConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="View\About.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\GraphicConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IsolatedStorageConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LocalizationConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NetworkConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OutOfBrowserConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

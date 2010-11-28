@@ -34,7 +34,7 @@ namespace Perspective.Hosting
     public class XapHelper
     {
         /// <summary>
-        /// Load the assemblies of a package.
+        /// Loads the assemblies of a package.
         /// </summary>
         /// <param name="packageStream">The stream of the package file (stays open at the end of the call).</param>
         /// <returns>A list of the assemblies of the package.</returns>
@@ -64,7 +64,6 @@ namespace Perspective.Hosting
                 {
                     while (reader.Read())
                     {
-
                         if ((reader.NodeType == XmlNodeType.Element)
                             && (reader.Name.Equals("AssemblyPart")))
                         {

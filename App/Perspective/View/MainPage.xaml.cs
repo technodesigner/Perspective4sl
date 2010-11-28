@@ -54,6 +54,10 @@ namespace Perspective.View
                         }
                         else
                         {
+                            // Sans UriMapper
+                            // frame.Source = evm.CurrentPageLink.OriginalUri;
+
+                            // Avec UriMapper
                             frame.Source = evm.CurrentPageLink.Uri;
                         }
                     }

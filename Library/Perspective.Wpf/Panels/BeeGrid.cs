@@ -20,7 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace Perspective.Wpf.Controls
+namespace Perspective.Wpf.Panels
 {
     /// <summary>
     /// A honeycomb layout grid panel.

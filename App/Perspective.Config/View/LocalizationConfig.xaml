@@ -1,14 +1,51 @@
-﻿<navigation:Page x:Class="Perspective.Config.View.LocalizationConfig" 
-           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-           mc:Ignorable="d"
-           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           d:DesignWidth="640" d:DesignHeight="480"
-           Title="LocalizationConfig Page">
-    <Grid x:Name="LayoutRoot">
-        <TextBlock 
-            Text="Localization configuration." />
-    </Grid>
+﻿<navigation:Page 
+    x:Class="Perspective.Config.View.LocalizationConfig" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:s="clr-namespace:Perspective.Config.Strings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Loaded="Page_Loaded"
+    Title="LocalizationConfig Page">
+    
+    <navigation:Page.Resources>
+        <!--<s:StringProvider x:Key="StringProvider"/>-->
+    </navigation:Page.Resources>
+    <!--<Grid x:Name="LayoutRoot">-->
+    <Viewbox>
+        <Border 
+            Margin="10"
+            BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+            <StackPanel 
+                Margin="10">
+                <!--DataContext="{Binding Source={StaticResource StringProvider}}">-->
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    Text="{Binding Path=LocalizationConfig_ChooseLanguage}" />
+                <StackPanel 
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    Width="150">
+                    <RadioButton 
+                        Name="englishRadioButton" 
+                        GroupName="Language"
+                        Margin="5"
+                        Content="{Binding Path=LocalizationConfig_English}" 
+                        Checked="englishRadioButton_Checked"/>
+                    <RadioButton 
+                        Name="frenchRadioButton" 
+                        GroupName="Language"
+                        IsChecked="True"
+                        Margin="5"
+                        Content="{Binding Path=LocalizationConfig_French}"
+                        Checked="frenchRadioButton_Checked"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Viewbox>
+    <!--</Grid>-->
 </navigation:Page>

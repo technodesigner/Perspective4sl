@@ -43,8 +43,19 @@ namespace Perspective.Wpf.Primitives
             Loaded += (sender, e) =>
                 {
                     _isInitialized = true; // assigned here because Style application occurs after EndInit call.
-                    BuildContent();
+                    if (_isInitialized)
+                    {
+                        BuildGeometry();
+                    }
                 };
+        }
+
+        /// <summary>
+        /// Gets the initialization state.
+        /// </summary>
+        protected bool IsInitialized
+        {
+            get { return _isInitialized; }
         }
 
         /// <summary>
@@ -60,18 +71,23 @@ namespace Perspective.Wpf.Primitives
 
         protected static void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as CustomPath).BuildContent();
-        }
-
-        protected void BuildContent()
-        {
-            if (_isInitialized)
+            // (d as CustomPath).BuildGeometryIfInitialized();
+            var path = (d as CustomPath);
+            if (path._isInitialized)
             {
-                BuildGeometry();
+                path.BuildGeometry();
             }
         }
 
-        private void BuildGeometry()
+        //protected void BuildGeometryIfInitialized()
+        //{
+        //    if (_isInitialized)
+        //    {
+        //        BuildGeometry();
+        //    }
+        //}
+
+        protected void BuildGeometry()
         {
             Data = DefiningGeometry;
         }
@@ -106,9 +122,7 @@ namespace Perspective.Wpf.Primitives
         /// Resumes rendering the shape control after rendering is suspended by the BeginInit method.
         /// </summary>
         /// <remarks>This method is automatically called by the Silverlight 4 XAML processor after parsing the element, but before a style is applied... So it does nothing. From code, call EndInitAndBuildContent instead.</remarks>
-        public void EndInit()
-        {
-        }
+        public void EndInit() {}
 
         /// <summary>
         /// Resumes rendering the shape control after rendering is suspended by the BeginInit method.
@@ -117,7 +131,7 @@ namespace Perspective.Wpf.Primitives
         public void EndInitAndBuildContent()
         {
             _isInitialized = true;
-            BuildContent();
+            BuildGeometry();
         }
 
         /// <summary>
@@ -127,10 +141,14 @@ namespace Perspective.Wpf.Primitives
         /// <returns>The actual size that is used after the element is arranged in layout.</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
-            System.Diagnostics.Debug.WriteLine("State : {0}", this.ToString());
+            // System.Diagnostics.Debug.WriteLine("State : {0}", this.ToString());
             // BuildContent call required to prevent disappearance of Fill brush i.e. in a TabItem.
             // Size comparison required to prevent LayoutCycleException.
-            if ((finalSize.Width != this.ActualWidth)
+            //if ((finalSize.Width != this.ActualWidth)
+            //    && (finalSize.Height != this.ActualHeight))
+            if ((this.ActualWidth != 0.0)
+                && (this.ActualHeight != 0.0)
+                && (finalSize.Width != this.ActualWidth)
                 && (finalSize.Height != this.ActualHeight))
             {
                 BuildGeometry();

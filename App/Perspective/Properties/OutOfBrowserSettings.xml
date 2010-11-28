@@ -1,7 +1,10 @@
-<OutOfBrowserSettings ShortName="Application Perspective.sl4" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
-  <OutOfBrowserSettings.Blurb>Application Perspective.sl4 sur votre Bureau ; chez vous, au bureau ou en déplacement.</OutOfBrowserSettings.Blurb>
+<OutOfBrowserSettings ShortName="Présentation de Silverlight" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>Application Perspective : présentation de Silverlight</OutOfBrowserSettings.Blurb>
   <OutOfBrowserSettings.WindowSettings>
-    <WindowSettings Title="Application Perspective.sl4" />
+    <WindowSettings Title="Perspective" />
   </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="NotRequired" />
+  </OutOfBrowserSettings.SecuritySettings>
   <OutOfBrowserSettings.Icons />
 </OutOfBrowserSettings>

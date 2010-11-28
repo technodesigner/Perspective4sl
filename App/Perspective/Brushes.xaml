@@ -9,6 +9,10 @@
     <Color x:Key="BlueColor2">#1F80B7</Color>
     <Color x:Key="BlueColor3">#13577F</Color>
     <Color x:Key="BlueColor4">#063260</Color>
+
+    <Color x:Key="MouseOverColor">#DC5E07</Color>
+    <Color x:Key="PressedColor">#FF7D22</Color>
+
     <Color x:Key="GreenColor1">#65AF45</Color>
     <Color x:Key="GreenColor2">#767D30</Color>
     <Color x:Key="OrangeColor1">#E49020</Color>
@@ -18,6 +22,9 @@
     <SolidColorBrush x:Key="BlueBrush2" Color="{StaticResource BlueColor2}"/>
     <SolidColorBrush x:Key="BlueBrush4" Color="{StaticResource BlueColor4}"/>
     <SolidColorBrush x:Key="OrangeBrush1" Color="{StaticResource OrangeColor1}"/>
+    <SolidColorBrush x:Key="DefaultButtonBrush" Color="Black"/>
+    <SolidColorBrush x:Key="FocusedButtonBorderBrush" Color="{StaticResource PressedColor}"/>
+    
     <SolidColorBrush
             x:Key="BasicShapeStroke"
             Color="Black" />

@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:swc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
-    xmlns:ps="clr-namespace:Perspective.Wpf.Shapes;assembly=Perspective.Wpf"
+    xmlns:p="http://www.codeplex.com/perspective"
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
@@ -18,10 +18,10 @@
                 <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
                 <Setter Property="Margin" Value="20" />
             </Style>
-            <Style TargetType="ps:Arrow" BasedOn="{StaticResource BaseShape}"/>
-            <Style TargetType="ps:Star" BasedOn="{StaticResource BaseShape}"/>
-            <Style TargetType="ps:RegularPolygon" BasedOn="{StaticResource BaseShape}"/>
-            <Style TargetType="ps:PieSlice" BasedOn="{StaticResource BaseShape}">
+            <Style TargetType="p:Arrow" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="p:Star" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="p:RegularPolygon" BasedOn="{StaticResource BaseShape}"/>
+            <Style TargetType="p:PieSlice" BasedOn="{StaticResource BaseShape}">
                 <Setter Property="Width" Value="120" />
                 <Setter Property="Height" Value="120" />
             </Style>
@@ -37,7 +37,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
-                    <ps:RegularPolygon 
+                    <p:RegularPolygon 
                         Name="polygon"
                         SideCount="16"/>
                 </Grid>
@@ -56,33 +56,33 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="0"
                     Grid.Row="0"
                     SideCount="3"
                     />
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="1"
                     Grid.Row="0"
                     />
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="2"
                     Grid.Row="0"
                     SideCount="12"
                     />
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="0"
                     Grid.Row="1"
                     SideCount="3"
                     InitialAngle="30"
                     />
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="1"
                     Grid.Row="1"
                     SideCount="6"
                     InitialAngle="30"
                     />
-                <ps:RegularPolygon
+                <p:RegularPolygon
                     Grid.Column="2"
                     Grid.Row="1"
                     SideCount="12"
@@ -101,37 +101,37 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ps:Star
+                <p:Star
                     Grid.Column="0"
                     Grid.Row="0"
                     />
-                <ps:Star
+                <p:Star
                     Grid.Column="1"
                     Grid.Row="0"
                     BranchCount="5"
                     InitialAngle="18"
                     />
-                <ps:Star
+                <p:Star
                     Grid.Column="2"
                     Grid.Row="0"
                     BranchCount="5"
                     BranchWidth="0.4"
                     InitialAngle="18"
                     />
-                <ps:Star
+                <p:Star
                     Grid.Column="0"
                     Grid.Row="1"
                     BranchCount="4"
                     InitialAngle="45"
                     />
-                <ps:Star
+                <p:Star
                     Grid.Column="1"
                     Grid.Row="1"
                     BranchCount="8"
                     BranchWidth="0.35"
                     InitialAngle="22.5"
                     />
-                <ps:Star
+                <p:Star
                     Grid.Column="2"
                     Grid.Row="1"
                     BranchCount="12"
@@ -150,21 +150,21 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ps:Arrow
+                <p:Arrow
                     Grid.Column="0"
                     Grid.Row="0"
                     />
-                <ps:Arrow
+                <p:Arrow
                     Grid.Column="1"
                     Grid.Row="0"
                     FormatRatio="10"
                     />
-                <ps:Arrow
+                <p:Arrow
                     Grid.Column="0"
                     Grid.Row="1"
                     HeadLengthRatio="0.5"
                     />
-                <ps:Arrow
+                <p:Arrow
                     Grid.Column="1"
                     Grid.Row="1"
                     HeadWidthRatio="4"
@@ -181,14 +181,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <ps:PieSlice />
-                    <ps:PieSlice 
+                    <p:PieSlice />
+                    <p:PieSlice 
                         InitialAngle="0"
                         Angle="80"/>
-                    <ps:PieSlice 
+                    <p:PieSlice 
                         InitialAngle="90"
                         Angle="80"/>
-                    <ps:PieSlice 
+                    <p:PieSlice 
                         InitialAngle="180"
                         Angle="80"/>
                 </Grid>
@@ -204,7 +204,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
-                    <ps:Checkerboard
+                    <p:Checkerboard
                         Fill="Black"/>
                 </Grid>
             </Viewbox>
@@ -214,7 +214,7 @@
             <Viewbox>
                 <Grid Margin="20">
                     <Grid.Resources>
-                        <Style TargetType="ps:Checkerboard">
+                        <Style TargetType="p:Checkerboard">
                             <Setter Property="Stroke" Value="{StaticResource BasicShapeStroke}" />
                             <Setter Property="StrokeThickness" Value="1.0" />
                             <Setter Property="Fill" Value="{StaticResource BasicShapeFill}" />
@@ -229,7 +229,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
-                    <ps:Checkerboard />
+                    <p:Checkerboard />
                 </Grid>
             </Viewbox>
         </swc:TabItem>

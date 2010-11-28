@@ -64,6 +64,11 @@
     <Compile Include="EventArgs.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IsolatedStorageHelper.cs" />
+    <Compile Include="ParametersHelper.cs" />
+    <Compile Include="Wpf\ChronometerSource.cs" />
+    <Compile Include="Wpf\Data\TimeSpanConverter.cs" />
+    <Compile Include="Wpf\Media\StreamAudioSink.cs" />
+    <Compile Include="Media\WavAudioEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UriHelper.cs" />
     <Compile Include="Wpf\Animation\MayaEase.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Wpf\GeometryHelper.cs" />
     <Compile Include="Wpf\Handedness3D.cs" />
     <Compile Include="Wpf\Helper3D.cs" />
+    <Compile Include="Wpf\Media\WavMediaStreamSource.cs" />
     <Compile Include="Wpf\Primitives\IRangeElement.cs" />
     <Compile Include="Wpf\Primitives\RangeElementSelectionManager.cs" />
   </ItemGroup>

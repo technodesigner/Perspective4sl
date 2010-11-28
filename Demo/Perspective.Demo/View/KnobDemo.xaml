@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"
+    xmlns:p="http://www.codeplex.com/perspective"
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
@@ -22,7 +22,7 @@
         </Grid.RenderTransform>
         <StackPanel Orientation="Horizontal">
             <StackPanel>
-                <pc:Knob 
+                <p:Knob 
                     Name="knob" ValueChanged="Knob_ValueChanged"
                     Margin="10"
                     Minimum="-5" Maximum="5"/>
@@ -31,11 +31,11 @@
                     Name="tbKnob"
                     HorizontalAlignment="Center"/>
             </StackPanel>
-            <pc:Knob 
+            <p:Knob 
                 Margin="10"
                 Minimum="-5" Maximum="5"
                 VerticalAlignment="Top"/>
-            <pc:Knob 
+            <p:Knob 
                 Margin="10"
                 Minimum="-5" Maximum="5"
                 VerticalAlignment="Top"/>

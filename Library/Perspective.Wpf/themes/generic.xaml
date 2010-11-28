@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary  
     xmlns="http://schemas.microsoft.com/client/2007" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"
+    xmlns:p="http://www.codeplex.com/perspective"
     xmlns:sw="clr-namespace:System.Windows;assembly=System.Windows"
     xmlns:swct="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit">
 
@@ -18,10 +18,10 @@
         x:Key="KnobStrokeBrush" 
         Color="SteelBlue" />
 
-    <Style TargetType="pc:Knob">
+    <Style TargetType="p:Knob">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="pc:Knob">
+                <ControlTemplate TargetType="p:Knob">
                     <Border 
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"

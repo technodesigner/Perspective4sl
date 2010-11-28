@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System;
+using System.Windows.Markup;
 
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
@@ -48,6 +49,9 @@ using System;
 
 [assembly: CLSCompliant(true)]
 
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Core.Wpf")]
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Core.Wpf.Data")]
+
 namespace Perspective.Core
 {
     /// <summary>
@@ -58,11 +62,16 @@ namespace Perspective.Core
         private LibraryInfo() { }
 
         /// <summary>
+        /// The default XML namespace for Perspective.
+        /// </summary>
+        public const string XmlNamespace = "http://www.codeplex.com/perspective";
+
+        /// <summary>
         /// Perspective global version number.
         /// 2.0.0.1 : 2.0 alpha
         /// 2.0.0.2 : 2.0 beta
         /// </summary>
-        public const string GlobalVersion = "2.0.0.1";
+        public const string GlobalVersion = "2.0.0.2";
 
         /// <summary>
         /// Global company name.

@@ -254,8 +254,8 @@
                 <!--Source="{Binding Source={StaticResource ExtensionViewModel}, Path=CurrentPageLink.Uri}"-->
                 <navigation:Frame 
                     Name="frame" 
-                    ContentLoader="{StaticResource ExtensionContentLoader}"
                     UriMapper="{StaticResource UriMapper}"
+                    ContentLoader="{StaticResource ExtensionContentLoader}"
                     Background="White"
                     Navigated="frame_Navigated"
                     Visibility="Collapsed"/>

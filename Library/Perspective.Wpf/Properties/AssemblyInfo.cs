@@ -47,6 +47,8 @@ using System;
 [assembly: AssemblyVersion(Perspective.Core.LibraryInfo.GlobalVersion)]
 [assembly: AssemblyFileVersion(Perspective.Core.LibraryInfo.GlobalVersion)]
 
-// [assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Wpf.Controls")]
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Wpf.Panels")]
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Wpf.Controls")]
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Wpf.Shapes")]
 
 [assembly: CLSCompliant(true)]

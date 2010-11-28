@@ -21,7 +21,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Perspective.Core.Wpf;
 
-namespace Perspective.Wpf.Controls
+namespace Perspective.Wpf.Panels
 {
     /// <summary>
     /// A honeycomb layout wrap panel.

@@ -41,12 +41,15 @@ namespace Perspective.Wpf.Shapes
                 new PropertyMetadata(
                     6, (d, e) =>
                     {
-                        Star shape = (d as Star);
-                        if (shape.BranchCount < 2)
+                        Star path = (d as Star);
+                        if (path.BranchCount < 2)
                         {
                             throw new ArgumentException("BranchCount < 2");
                         }
-                        shape.BuildContent();
+                        if (path.IsInitialized)
+                        {
+                            path.BuildGeometry();
+                        }
                     }));
 
         /// <summary>

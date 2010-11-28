@@ -12,6 +12,8 @@
 using System;
 using System.Collections.Generic;
 using Perspective.Hosting;
+using System.Windows;
+using System.Net.NetworkInformation;
 
 namespace Perspective.Config
 {
@@ -59,12 +61,47 @@ namespace Perspective.Config
                 },
                 new PageLink(this)
                 {
+                    Title = "Out Of Browser",
+                    IconFile = _iconFile,
+                    PageName = "OutOfBrowserConfig"
+                },
+                new PageLink(this)
+                {
                     Title = "Localization",
                     IconFile = _iconFile,
                     PageName = "LocalizationConfig"
                 },
+                new PageLink(this)
+                {
+                    Title = "Isolated Storage",
+                    IconFile = _iconFile,
+                    PageName = "IsolatedStorageConfig"
+                },
+                new PageLink(this)
+                {
+                    Title = "Graphics",
+                    IconFile = _iconFile,
+                    PageName = "GraphicConfig"
+                },
             };
             ExtensionManager.Current.RegisterAssembly(_assemblyName);
+            NetworkChange.NetworkAddressChanged += (sender1, e1) =>
+            {
+                if (Application.Current.IsRunningOutOfBrowser)
+                {
+                    var toast = new NotificationWindow();
+                    var text = NetworkInterface.GetIsNetworkAvailable() ?
+                        "Online" : "Offline";
+                    var toastControl = new View.NotificationControl();
+                    toastControl.DataContext = text;
+                    toast.Content = toastControl;
+                    toast.Width = 200;
+                    toast.Height = 100;
+                    toast.Show(8000);
+                    Application.Current.MainWindow.Activate();
+                }
+            };
+
         }
     }
 }

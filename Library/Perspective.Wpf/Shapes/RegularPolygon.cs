@@ -66,12 +66,16 @@ namespace Perspective.Wpf.Shapes
                 new PropertyMetadata(
                     6, (d, e) =>
                     {
-                        RegularPolygon shape = (d as RegularPolygon);
-                        if (shape.SideCount < 3)
+                        RegularPolygon path = (d as RegularPolygon);
+                        if (path.SideCount < 3)
                         {
                             throw new ArgumentException("SideCount < 3");
                         }
-                        shape.BuildContent();
+                        // shape.BuildGeometryIfInitialized();
+                        if (path.IsInitialized)
+                        {
+                            path.BuildGeometry();
+                        }
                     }));
 
         /// <summary>

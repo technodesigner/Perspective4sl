@@ -60,7 +60,7 @@ namespace Perspective.Hosting
         private Uri _uri = null;
 
         /// <summary>
-        /// Gets the mapped relative URI of the page.
+        /// Gets the relative URI pattern of the page.
         /// </summary>
         public Uri Uri
         {
@@ -68,16 +68,31 @@ namespace Perspective.Hosting
             {
                 if (_uri == null)
                 {
-                    //_uri = new System.Uri(
-                    //    String.Format(@"/{0};component/{1}", _extension.AssemblyName, _partialUriString),
-                    //    System.UriKind.Relative);
-
-                    // Returns a mapped URI
+                    // Returns a pattern URI
                     _uri = new System.Uri(
                         String.Format(@"/{0}/{1}", _extension.AssemblyName, _pageName),
                         System.UriKind.Relative);
                 }
                 return _uri;
+            }
+        }
+
+        private Uri _originalUri = null;
+
+        /// <summary>
+        /// Gets the original relative URI of the page.
+        /// </summary>
+        public Uri OriginalUri
+        {
+            get
+            {
+                if (_originalUri == null)
+                {
+                    _originalUri = new System.Uri(
+                        String.Format(@"/{0};component/View/{1}.xaml", _extension.AssemblyName, _pageName),
+                        System.UriKind.Relative);
+                }
+                return _originalUri;
             }
         }
 

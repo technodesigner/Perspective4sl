@@ -56,7 +56,7 @@
         <Setter Property="Margin" Value="2" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="{StaticResource BlueBrush1}" />
+        <Setter Property="Background" Value="{StaticResource DefaultButtonBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -68,22 +68,31 @@
                                     <sw:VisualTransition GeneratedDuration="0:0:0.2" To="Pressed"/>
                                 </sw:VisualStateGroup.Transitions>
                                 <sw:VisualState Name="Normal"/>
+                                <sw:VisualState Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                            Storyboard.TargetName="backgroundRectangle" 
+                                            Storyboard.TargetProperty="Opacity" 
+                                            Duration="0"
+                                            To="0.5"/>
+                                    </Storyboard>
+                                </sw:VisualState>
                                 <sw:VisualState Name="MouseOver">
                                     <Storyboard>
                                         <ColorAnimation 
-                                                    Storyboard.TargetName="backgroundRectangle" 
-                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
-                                                    Duration="0"
-                                                    To="{StaticResource BlueColor2}"/>
+                                            Storyboard.TargetName="backgroundRectangle" 
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                            Duration="0"
+                                            To="{StaticResource MouseOverColor}"/>
                                     </Storyboard>
                                 </sw:VisualState>
                                 <sw:VisualState Name="Pressed">
                                     <Storyboard>
                                         <ColorAnimation 
-                                                    Storyboard.TargetName="backgroundRectangle" 
-                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
-                                                    Duration="0"
-                                                    To="{StaticResource BlueColor3}"/>
+                                            Storyboard.TargetName="backgroundRectangle" 
+                                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" 
+                                            Duration="0"
+                                            To="{StaticResource PressedColor}"/>
                                     </Storyboard>
                                 </sw:VisualState>
                             </sw:VisualStateGroup>
@@ -91,9 +100,9 @@
                                 <sw:VisualState Name="Focused">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames 
-                                                    Storyboard.TargetName="focusRectangle" 
-                                                    Storyboard.TargetProperty="Visibility" 
-                                                    Duration="0">
+                                            Storyboard.TargetName="focusRectangle" 
+                                            Storyboard.TargetProperty="Visibility" 
+                                            Duration="0">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
@@ -107,34 +116,35 @@
                         </sw:VisualStateManager.VisualStateGroups>
 
                         <Rectangle 
-                                    Name="backgroundRectangle"
-                                    Style="{StaticResource RectangleStyle}"
-                                    Fill="{TemplateBinding Background}"/>
+                            Name="backgroundRectangle"
+                            Style="{StaticResource RectangleStyle}"
+                            Fill="{TemplateBinding Background}"/>
                         <Rectangle 
-                                    Style="{StaticResource RectangleStyle}"
-                                    Stroke="{TemplateBinding BorderBrush}"
-                                    StrokeThickness="{TemplateBinding BorderThickness}"
-                                    Fill="White"
-                                    OpacityMask="{StaticResource RefractionBrush}"/>
+                            Style="{StaticResource RectangleStyle}"
+                            Stroke="{TemplateBinding BorderBrush}"
+                            StrokeThickness="{TemplateBinding BorderThickness}"
+                            Fill="White"
+                            OpacityMask="{StaticResource RefractionBrush}"/>
                         <Rectangle 
-                                    Fill="White"
-                                    OpacityMask="{StaticResource ReflectionBrush}"
-                                    Height="8"
-                                    RadiusX="5"
-                                    RadiusY="5"
-                                    Margin="2"
-                                    VerticalAlignment="Top"/>
+                            Fill="White"
+                            OpacityMask="{StaticResource ReflectionBrush}"
+                            Height="8"
+                            RadiusX="5"
+                            RadiusY="5"
+                            Margin="2"
+                            VerticalAlignment="Top"/>
                         <ContentPresenter
-                                    Content="{TemplateBinding Content}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    Margin="{TemplateBinding Padding}"/>
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"/>
                         <Rectangle 
-                                    Name="focusRectangle"
-                                    Style="{StaticResource RectangleStyle}"
-                                    Visibility="Collapsed"
-                                    Stroke="{StaticResource BlueBrush4}"/>
+                            Name="focusRectangle"
+                            Style="{StaticResource RectangleStyle}"
+                            Visibility="Collapsed"
+                            Stroke="{StaticResource FocusedButtonBorderBrush}"
+                            StrokeThickness="2.0"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

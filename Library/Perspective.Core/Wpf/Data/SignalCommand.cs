@@ -75,6 +75,17 @@ namespace Perspective.Core.Wpf.Data
         }
 
         /// <summary>
+        /// Raises a CanExecuteChanged event so that the UI may update his state.
+        /// </summary>
+        public void EnsureCanExecuteCheck()
+        {
+            if (CanExecuteChanged != null)
+            {
+                CanExecuteChanged(this, new EventArgs());
+            }
+        }
+        
+        /// <summary>
         /// Fires the CanExecuteChecking event. If not assigned, a value of true is returned.
         /// </summary>
         protected bool OnCanExecuteChecking(object parameter)
@@ -85,10 +96,6 @@ namespace Perspective.Core.Wpf.Data
                 CancelEventArgs<object> e = new CancelEventArgs<object>(parameter);
                 _canExecuteChecking(this, e);
                 canExecute = !e.Cancel;
-                if (CanExecuteChanged != null)
-                {
-                    CanExecuteChanged(this, new EventArgs());
-                }
             }
             return canExecute;
         }
@@ -107,7 +114,6 @@ namespace Perspective.Core.Wpf.Data
 
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
-        /// NEVER FIRED in this implmentation...
         /// </summary>
         public event EventHandler CanExecuteChanged;
 

@@ -59,8 +59,8 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BeeGrid.cs" />
-    <Compile Include="Controls\BeePanel.cs" />
+    <Compile Include="Panels\BeeGrid.cs" />
+    <Compile Include="Panels\BeePanel.cs" />
     <Compile Include="Controls\Knob.cs" />
     <Compile Include="Drawers\ArrowDrawer.cs" />
     <Compile Include="Drawers\CheckerboardDrawer.cs" />
