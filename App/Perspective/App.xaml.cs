@@ -42,7 +42,7 @@ namespace Perspective
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Host.Settings.EnableFrameRateCounter = true;
+            // Host.Settings.EnableFrameRateCounter = true;
             // Host.Settings.EnableRedrawRegions = true;
             // Host.Settings.MaxFrameRate = 60;
 

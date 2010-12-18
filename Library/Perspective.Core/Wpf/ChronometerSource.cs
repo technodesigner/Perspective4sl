@@ -14,12 +14,12 @@ using Perspective.Core.Wpf.Data;
 namespace Perspective.Core.Wpf
 {
     /// <summary>
-    /// A chronometer data source
+    /// A chronometer data source.
     /// </summary>
     public class ChronometerSource : DependencyObject
     {
         private DispatcherTimer _timer = new DispatcherTimer();
-        private double _ms;
+        private DateTime _dtStart;
         private bool _timerRunning = false;
 
         /// <summary>
@@ -27,27 +27,33 @@ namespace Perspective.Core.Wpf
         /// </summary>
         public SignalCommand StartCommand { get; private set; }
 
+        /// <summary>
+        /// A command to stop the chronometer.
+        /// </summary>
         public SignalCommand StopCommand { get; private set; }
 
+        /// <summary>
+        /// A command to resume the chronometer.
+        /// </summary>
         public SignalCommand ResumeCommand { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of ChronometerSource
+        /// </summary>
         public ChronometerSource()
         {
             Interval = 1000;
-
             _timer.Tick += new EventHandler(_timer_Tick);
             
             StartCommand = new SignalCommand();
             StartCommand.Executed += (sender, e) =>
             {
+                _startTimeMilliseconds = 0.0;
                 if (e.Parameter != null)
                 {
-                    Start(Convert.ToDouble(e.Parameter));
+                    _startTimeMilliseconds = Convert.ToDouble(e.Parameter);
                 }
-                else
-                {
-                    Start();
-                }
+                Start();
                 EnsureCommandsCanExecuteCheck();
                 
             };
@@ -88,11 +94,21 @@ namespace Perspective.Core.Wpf
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            _ms += _interval;
-            ElapsedTime = TimeSpan.FromMilliseconds(_ms);
+            if (_startTimeMilliseconds > 0.0)
+            {
+                ElapsedTime = (DateTime.Now.Subtract(_dtStart)).Add(TimeSpan.FromMilliseconds(_startTimeMilliseconds));
+            }
+            else
+            {
+                ElapsedTime = DateTime.Now.Subtract(_dtStart);
+            }
         }
 
         private double _interval;
+
+        /// <summary>
+        /// Gets or sets the interval of the timer.
+        /// </summary>
         public double Interval 
         { 
             get
@@ -106,12 +122,29 @@ namespace Perspective.Core.Wpf
             }
         }
 
+        private double _startTimeMilliseconds = 0.0;
+
+        /// <summary>
+        /// Gets or sets a start time (in milliseconds).
+        /// </summary>
+        public double StartTimeMilliseconds
+        {
+            get { return _startTimeMilliseconds; }
+            set { _startTimeMilliseconds = value; }
+        }
+
+        /// <summary>
+        /// Gets the elapsed time since the start.
+        /// </summary>
         public TimeSpan ElapsedTime
         {
             get { return (TimeSpan)GetValue(ElapsedTimeProperty); }
             private set { SetValue(ElapsedTimeProperty, value); }
         }
 
+        /// <summary>
+        /// Identifies the ElapsedTime dependency property.
+        /// </summary>
         public static readonly DependencyProperty ElapsedTimeProperty =
             DependencyProperty.Register(
                 "ElapsedTime",
@@ -119,26 +152,28 @@ namespace Perspective.Core.Wpf
                 typeof(ChronometerSource),
                 new PropertyMetadata(new TimeSpan(0)));
 
+        /// <summary>
+        /// Starts the chronometer.
+        /// </summary>
         public void Start()
         {
-            _ms = 0.0;
+            _dtStart = DateTime.Now;
             _timer.Start();
             _timerRunning = true;
         }
 
-        public void Start(double startMilliseconds)
-        {
-            _ms = startMilliseconds;
-            _timer.Start();
-            _timerRunning = true;
-        }
-
+        /// <summary>
+        /// Resumes the chronometer.
+        /// </summary>
         public void Resume()
         {
             _timer.Start();
             _timerRunning = true;
         }
 
+        /// <summary>
+        /// Stops the chronometer.
+        /// </summary>
         public void Stop()
         {
             _timer.Stop();

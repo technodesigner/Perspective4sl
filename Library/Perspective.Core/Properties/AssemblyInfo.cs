@@ -71,7 +71,7 @@ namespace Perspective.Core
         /// 2.0.0.1 : 2.0 alpha
         /// 2.0.0.2 : 2.0 beta
         /// </summary>
-        public const string GlobalVersion = "2.0.0.2";
+        public const string GlobalVersion = "2.0.0.3";
 
         /// <summary>
         /// Global company name.
