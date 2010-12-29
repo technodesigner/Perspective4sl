@@ -30,7 +30,7 @@ namespace Perspective.Core
         /// <summary>
         /// Gets the URI of a file on the server.
         /// </summary>
-        /// <param name="uriString">The the URI of the file relative to the ClientBin directory.</param>
+        /// <param name="uriString">The URI of the file relative to the ClientBin directory.</param>
         /// <returns></returns>
         public static Uri GetHostFileUri(string uriString)
         {

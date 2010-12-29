@@ -247,9 +247,12 @@ namespace Perspective.Hosting
                 var xapFileName = String.Format("{0}.xap", link.Package);
                 var xapUri = new Uri(xapFileName, UriKind.RelativeOrAbsolute);
                 IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(xapUri, xapFileName);
-                IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(
-                    UriHelper.GetHostFileUri(link.IconFile),
-                    link.IconFile);
+                if (link.IconFile != null)
+                {
+                    IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(
+                        UriHelper.GetHostFileUri(link.IconFile),
+                        link.IconFile);
+                }
             }
         }
 
@@ -271,7 +274,7 @@ namespace Perspective.Hosting
                     {
                         store.DeleteFile(xapFileName);
                     }
-                    if (store.FileExists(link.IconFile))
+                    if ((link.IconFile != null) && store.FileExists(link.IconFile))
                     {
                         store.DeleteFile(link.IconFile);
                     }
