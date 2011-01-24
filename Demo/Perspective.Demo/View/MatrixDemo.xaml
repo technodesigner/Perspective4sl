@@ -8,7 +8,7 @@
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     Loaded="Page_Loaded"
     d:DesignWidth="640" d:DesignHeight="480"
-    Title="MatrixDemo Page">
+    Title="Perspective : Matrix">
     <Grid>
         <Grid.Resources>
             <Style 
@@ -53,7 +53,6 @@
                         <TransformGroup>
                             <RotateTransform CenterX="1.5" CenterY="1.5" Angle="225" />
                             <TranslateTransform X="-1.5" Y="-1.5" />
-                            <!--<ScaleTransform ScaleX="2" ScaleY="2" />-->
                         </TransformGroup>
                     </Setter.Value>
                 </Setter>
@@ -137,7 +136,7 @@
                 Click="rotatePointByMatrixButton_Click"/>
             <Button 
                 Name="matrixOperationButton" 
-                Content="Matrix operations"
+                Content="{Binding Path=MatrixDemo_MatrixOperations}"
                 Click="matrixOperationButton_Click"/>
         </StackPanel>
     </Grid>

@@ -51,6 +51,7 @@ using System.Windows.Markup;
 
 [assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Core.Wpf")]
 [assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Core.Wpf.Data")]
+[assembly: XmlnsDefinition(Perspective.Core.LibraryInfo.XmlNamespace, "Perspective.Core.Wpf.Converters")]
 
 namespace Perspective.Core
 {
@@ -70,8 +71,9 @@ namespace Perspective.Core
         /// Perspective global version number.
         /// 2.0.0.1 : 2.0 alpha
         /// 2.0.0.2 : 2.0 beta
+        /// 2.0.0.5 : 2.0 final
         /// </summary>
-        public const string GlobalVersion = "2.0.0.3";
+        public const string GlobalVersion = "2.0.0.5";
 
         /// <summary>
         /// Global company name.
@@ -81,6 +83,6 @@ namespace Perspective.Core
         /// <summary>
         /// Global copyright information.
         /// </summary>
-        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2009-2010";
+        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2009-2011";
     }
 }

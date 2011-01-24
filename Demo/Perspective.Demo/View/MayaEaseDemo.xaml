@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
-    Title="MayaEaseDemo Page">
+    Title="Perspective : MayaEase">
     <navigation:Page.Resources>
         <Style 
             x:Key="LineStyle"
@@ -140,7 +140,7 @@
                         <TextBlock 
                                 Canvas.Top="102" Canvas.Left="75" 
                                 FontSize="6"
-                                Text="Time"/>
+                                Text="{Binding Path=MayaEaseDemo_Time}"/>
                         <Line 
                                 Style="{StaticResource LineStyle}"
                                 X1="0" Y1="100" X2="0" Y2="0" />
@@ -154,7 +154,7 @@
                         <TextBlock 
                                 Canvas.Top="5" Canvas.Left="-10" 
                                 FontSize="6"
-                                Text="Value">
+                                Text="{Binding Path=MayaEaseDemo_Value}">
                             <TextBlock.RenderTransform>
                                 <TransformGroup>
                                     <RotateTransform Angle="-90"/>
@@ -170,7 +170,7 @@
                     Name="image1"
                     Stretch="None" 
                     Margin="10"
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/DSC_0832.jpg">
+                    Source="http://www.odewit.net/Images/Demo/Sunset-s400.jpg">
                     <Image.Projection>
                         <PlaneProjection
                             CenterOfRotationZ="-200"/>
@@ -180,7 +180,7 @@
                     Name="image2"
                     Stretch="None" 
                     Margin="10"
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/DSC_0640.jpg">
+                    Source="http://www.odewit.net/Images/Demo/Loco01-s400.jpg">
                     <Image.Projection>
                         <PlaneProjection
                             CenterOfRotationZ="-200"/>
@@ -190,7 +190,7 @@
                     Name="image3"
                     Stretch="None" 
                     Margin="10"
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/DSC_0115.jpg">
+                    Source="http://www.odewit.net/Images/Demo/Guitars01-s400.jpg">
                     <Image.Projection>
                         <PlaneProjection
                             CenterOfRotationZ="-200"/>
@@ -200,7 +200,7 @@
                     Name="image4"
                     Stretch="None" 
                     Margin="10"
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/DSC_0605.jpg">
+                    Source="http://www.odewit.net/Images/Demo/Pumpkin01-s400.jpg">
                     <Image.Projection>
                         <PlaneProjection
                             CenterOfRotationZ="-200"/>
@@ -208,5 +208,5 @@
                 </Image>
             </Grid>
         </Grid>
-    </StackPanel>    
+    </StackPanel>
 </navigation:Page>

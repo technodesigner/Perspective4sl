@@ -30,7 +30,7 @@ namespace Perspective.Wpf.Primitives
     public abstract class CustomPath : Path, ISupportInitialize
     {
         private PathGeometry _geometry = new PathGeometry();
-        private Drawer _drawer;
+        private Drawer _drawer = null;
         private bool _isInitialized = true;
 
         /// <summary>
@@ -39,14 +39,10 @@ namespace Perspective.Wpf.Primitives
         public CustomPath()
         {
             Stretch = Stretch.Uniform;
-            _drawer = CreateDrawer();
             Loaded += (sender, e) =>
                 {
                     _isInitialized = true; // assigned here because Style application occurs after EndInit call.
-                    if (_isInitialized)
-                    {
-                        BuildGeometry();
-                    }
+                    BuildGeometry();
                 };
         }
 
@@ -66,26 +62,18 @@ namespace Perspective.Wpf.Primitives
 
         /// <summary>
         /// A method to override to initialize the existing Drawer object.
+        /// <remarks>Mathod called at each geometry redefinition.</remarks>
         /// </summary>
         protected abstract void InitializeDrawer();
 
         protected static void PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            // (d as CustomPath).BuildGeometryIfInitialized();
             var path = (d as CustomPath);
             if (path._isInitialized)
             {
                 path.BuildGeometry();
             }
         }
-
-        //protected void BuildGeometryIfInitialized()
-        //{
-        //    if (_isInitialized)
-        //    {
-        //        BuildGeometry();
-        //    }
-        //}
 
         protected void BuildGeometry()
         {
@@ -99,12 +87,13 @@ namespace Perspective.Wpf.Primitives
         {
             get
             {
-                InitializeDrawer();
-                if (_drawer != null)
+                if (_drawer == null)
                 {
-                    _drawer.BuildFigures();
-                    _geometry.Figures = _drawer.Figures;
+                    _drawer = CreateDrawer();
                 }
+                InitializeDrawer();
+                _drawer.BuildFigures();
+                _geometry.Figures = _drawer.Figures;
                 return _geometry;
             }
         }
@@ -141,11 +130,6 @@ namespace Perspective.Wpf.Primitives
         /// <returns>The actual size that is used after the element is arranged in layout.</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
-            // System.Diagnostics.Debug.WriteLine("State : {0}", this.ToString());
-            // BuildContent call required to prevent disappearance of Fill brush i.e. in a TabItem.
-            // Size comparison required to prevent LayoutCycleException.
-            //if ((finalSize.Width != this.ActualWidth)
-            //    && (finalSize.Height != this.ActualHeight))
             if ((this.ActualWidth != 0.0)
                 && (this.ActualHeight != 0.0)
                 && (finalSize.Width != this.ActualWidth)

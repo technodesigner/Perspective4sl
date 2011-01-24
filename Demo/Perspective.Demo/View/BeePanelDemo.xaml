@@ -9,11 +9,7 @@
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
-    Title="BeePanelDemo Page">
-
-    <!--xmlns:ps="clr-namespace:Perspective.Wpf.Shapes;assembly=Perspective.Wpf"
-    xmlns:pc="clr-namespace:Perspective.Wpf.Controls;assembly=Perspective.Wpf"-->
-
+    Title="Perspective : BeePanel">
     <navigation:Page.Resources>
         <Color x:Key="Color2">LightBlue</Color>
         <Color x:Key="Color1">White</Color>
@@ -36,7 +32,7 @@
         <swc:TabItem Header="BeePanel">
             <Grid>
                 <Image 
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/191.jpg" 
+                    Source="http://www.odewit.net/Images/Demo/Eoliennes01-s1200.jpg" 
                     Stretch="UniformToFill"/>
                 <p:BeePanel 
                     ColumnCount="3" RowCount="3" 
@@ -85,7 +81,7 @@
         <swc:TabItem Header="BeeGrid">
             <Grid>
                 <Image 
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/217.jpg" 
+                    Source="http://www.odewit.net/Images/Demo/FieldWinter01-s400.jpg" 
                     Stretch="UniformToFill"/>
                 <p:BeeGrid 
                     Name="beeGrid"

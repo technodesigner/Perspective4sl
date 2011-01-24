@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,19 +21,30 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using Perspective.Config.Strings;
 
 namespace Perspective.Config.View
 {
+    /// <summary>
+    /// A configuration page for OOB mode.
+    /// </summary>
     public partial class OutOfBrowserConfig : Page
     {
+        /// <summary>
+        /// Initializes a new instance of OutOfBrowserConfig.
+        /// </summary>
         public OutOfBrowserConfig()
         {
             InitializeComponent();
+            this.DataContext = new StringProvider();
+            this.Title = StringProvider.OutOfBrowserConfig_PageTitle;
             Application.Current.InstallStateChanged += (sender, e) =>
             {
                 CheckButtonState();
 
             };
+
+            // not yet compatible with the Perspective extension system
             //Application.Current.CheckAndDownloadUpdateCompleted += (sender, e) =>
             //{
             //    if (e.UpdateAvailable)
@@ -53,6 +75,7 @@ namespace Perspective.Config.View
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            // not yet compatible with the Perspective extension system
             // Application.Current.CheckAndDownloadUpdateAsync();
         }
     }

@@ -71,9 +71,6 @@
     <Compile Include="Primitives\Drawer.cs" />
     <Compile Include="Drawers\RegularPolygonDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceStrings\ResourceStringGroup.cs" />
-    <Compile Include="ResourceStrings\ResourceStringLink.cs" />
-    <Compile Include="ResourceStrings\ResourceStringManager.cs" />
     <Compile Include="Shapes\Arrow.cs" />
     <Compile Include="Shapes\Checkerboard.cs" />
     <Compile Include="Shapes\PieSlice.cs" />

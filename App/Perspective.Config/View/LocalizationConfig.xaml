@@ -8,8 +8,7 @@
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
-    Loaded="Page_Loaded"
-    Title="LocalizationConfig Page">
+    Loaded="Page_Loaded">
     
     <navigation:Page.Resources>
         <!--<s:StringProvider x:Key="StringProvider"/>-->

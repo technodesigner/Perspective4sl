@@ -126,4 +126,7 @@
   <data name="French" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Configuration de la langue</value>
+  </data>
 </root>

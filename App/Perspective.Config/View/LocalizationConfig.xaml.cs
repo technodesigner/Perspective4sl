@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,18 +24,27 @@ using System.Windows.Navigation;
 using System.Globalization;
 using System.Threading;
 using Perspective.Config.Strings;
+using System.IO.IsolatedStorage;
+using Perspective.Core;
 
 namespace Perspective.Config.View
 {
+    /// <summary>
+    /// A configuration page for localization.
+    /// </summary>
     public partial class LocalizationConfig : Page
     {
         private StringProvider _stringProvider = new StringProvider();
         private bool _loaded = false;
 
+        /// <summary>
+        /// Initializes a new instance of LocalizationConfig.
+        /// </summary>
         public LocalizationConfig()
         {
             InitializeComponent();
             this.DataContext = _stringProvider;
+            this.Title = StringProvider.LocalizationConfig_PageTitle;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +74,7 @@ namespace Perspective.Config.View
                 Thread.CurrentThread.CurrentCulture = cultureInfo;
                 Thread.CurrentThread.CurrentUICulture = cultureInfo;
                 _stringProvider.NotifyCultureChanged();
+                IsolatedStorageHelper.SaveCultureSetting(cultureString);
             }
         }
     }

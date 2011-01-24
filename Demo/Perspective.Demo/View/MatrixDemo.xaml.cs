@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,21 +22,24 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using Perspective.Core.Wpf;
+using Perspective.Demo.Strings;
 
 namespace Perspective.Demo.View
 {
+    /// <summary>
+    /// A demo page for Matrix.
+    /// </summary>
     public partial class MatrixDemo : Page
     {
+        /// <summary>
+        /// Initializes a new instance of MatrixDemo.
+        /// </summary>
         public MatrixDemo()
         {
             InitializeComponent();
+            this.DataContext = new StringProvider();
         }
-
-        // S'exécute lorsque l'utilisateur navigue vers cette page.
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
-
+        
         private double _radius = 50.0;
         private double _initialAngle = 30.0;
         private double _angle = 15.0;

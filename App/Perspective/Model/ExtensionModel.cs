@@ -74,9 +74,9 @@ namespace Perspective.Model
             //#endif
         }
 
-        public void LoadExtensionLinks()
+        public void LoadExtensionLinks(int timeout = 10)
         {
-            ExtensionManager.Current.LoadExtensionLinks();
+            ExtensionManager.Current.LoadExtensionLinks(timeout);
         }
 
         public void CheckExtension(ExtensionLink link)

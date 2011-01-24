@@ -44,7 +44,6 @@ namespace Perspective.Hosting
         public IAsyncResult BeginLoad(Uri targetUri, Uri currentUri, AsyncCallback userCallback, object asyncState)
         {
             _defaultLoaderMode = false;
-            // ExtensionAsyncResult ear;
             ExtensionAsyncResult ear = new ExtensionAsyncResult(asyncState);
 
             int indexOfComponent = targetUri.OriginalString.IndexOf(";component/");
@@ -57,7 +56,6 @@ namespace Perspective.Hosting
             var assemblyName = targetUri.OriginalString.Substring(1, indexOfComponent - 1);
             if (!ExtensionManager.Current.Assemblies.ContainsKey(assemblyName))
             {
-                // ear = new ExtensionAsyncResult(asyncState, false);
                 foreach (var link in ExtensionManager.Current.ExtensionLinks)
                 {
                     if (link.Package.Equals(assemblyName))
@@ -74,7 +72,6 @@ namespace Perspective.Hosting
             }
             else
             {
-                // ear = new ExtensionAsyncResult(asyncState, true);
                 CreatePageInstance(targetUri, indexOfComponent, assemblyName, userCallback, ear);
             }
             return ear;
@@ -123,11 +120,9 @@ namespace Perspective.Hosting
 
         private class ExtensionAsyncResult : IAsyncResult
         {
-            // public ExtensionAsyncResult(object asyncState, bool runSynchronously)
             public ExtensionAsyncResult(object asyncState)
             {
                 AsyncState = asyncState;
-                // CompletedSynchronously = runSynchronously;
             }
 
             public object Result { get; set; }
@@ -144,7 +139,6 @@ namespace Perspective.Hosting
                 }
             }
 
-            // public bool CompletedSynchronously { get; private set; }
             public bool CompletedSynchronously
             {
                 get
@@ -153,7 +147,6 @@ namespace Perspective.Hosting
                 }
             }
 
-            // public bool IsCompleted { get; internal set; }
             public bool IsCompleted
             {
                 get

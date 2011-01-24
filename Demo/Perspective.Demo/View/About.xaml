@@ -6,47 +6,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-    d:DesignWidth="640" d:DesignHeight="480"
-    Title="About Page">
-    <navigation:Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="HyperlinkButton">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="400"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="LinkTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>        
-    </navigation:Page.Resources>
-    <StackPanel
-        Margin="10"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
-        <TextBlock 
-            Text="This is a demo application of Perspective for Silverlight." />
-        <!--<HyperlinkButton 
-            NavigateUri="http://www.codeplex.com/perspective4sl">
-            <TextBlock 
-                Style="{StaticResource LinkTextBlockStyle}"
-                Text="www.codeplex.com/perspective4sl"/>
-        </HyperlinkButton>
-        <HyperlinkButton 
-            NavigateUri="http://www.odewit.net">
-            <TextBlock 
-                Style="{StaticResource LinkTextBlockStyle}"
-                Text="www.odewit.net"/>
-        </HyperlinkButton>-->
-        <TextBlock 
-            Style="{StaticResource LinkTextBlockStyle}"
-            Text="www.codeplex.com/perspective4sl"/>
-        <TextBlock 
-            Style="{StaticResource LinkTextBlockStyle}"
-            Text="www.odewit.net"/>
-    </StackPanel>
+    d:DesignWidth="640" d:DesignHeight="480">
+    <Viewbox>
+        <RichTextBox 
+            VerticalContentAlignment="Center"
+            FontFamily="Georgia"
+            FontSize="20"
+            IsReadOnly="True"
+            Margin="10">
+            <Paragraph TextAlignment="Center" FontWeight="Bold" FontSize="26">
+                <Run Text="{Binding Path=About_PageSubTitle}"/>
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <LineBreak />
+                <Run Text="{Binding Path=About_PageSubTitle2}"/>
+                <LineBreak />
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <Hyperlink 
+                    NavigateUri="http://perspective4sl.codeplex.com" 
+                    TargetName="_blank">
+                    <Run Text="{Binding Path=About_perspective4sl}"/>
+                </Hyperlink>
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <Hyperlink 
+                    NavigateUri="http://www.odewit.net" 
+                    TargetName="_blank">
+                    <Run>Olivier Dewit</Run>
+                </Hyperlink>
+            </Paragraph>
+        </RichTextBox>
+    </Viewbox>
 </navigation:Page>

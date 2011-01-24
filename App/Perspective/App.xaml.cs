@@ -25,6 +25,8 @@ using Perspective.Core;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Globalization;
+using System.IO.IsolatedStorage;
+using System.Text;
 
 namespace Perspective
 {
@@ -48,6 +50,13 @@ namespace Perspective
 
             // Host.Settings.EnableCacheVisualization = true;
 
+            var cultureinfo = IsolatedStorageHelper.LoadCultureSetting();
+            if (cultureinfo != Thread.CurrentThread.CurrentCulture)
+            {
+                Thread.CurrentThread.CurrentCulture = cultureinfo;
+                Thread.CurrentThread.CurrentUICulture = cultureinfo;
+            }
+
             //ParametersHelper.LoadInitParametersFrom(e.InitParams);
             //string uiCulture = ParametersHelper.ReadParameterValue("uiculture");
             //if (!String.IsNullOrEmpty(uiCulture)
@@ -58,18 +67,13 @@ namespace Perspective
             //    Thread.CurrentThread.CurrentUICulture = cultureinfo;
             //}
 
-            // if (!Application.Current.IsRunningOutOfBrowser)
-            //{
-            //    // The ExtensionModel is loaded before RootVisual assignation
-            //    // because otherwise fragment navigation from the browser address bar
-            //    // may occur before modules are loaded
             ExtensionModel = new ExtensionModel();
             ExtensionModel.ExtensionLinksLoaded +=
                 (sender1, e1) =>
                 {
                     this.RootVisual = new View.MainPage();
                 };
-            ExtensionModel.LoadExtensionLinks();
+            ExtensionModel.LoadExtensionLinks(15); // timeout 15 s
             this.InstallStateChanged +=
                 (sender1, e1) =>
                 {
@@ -84,16 +88,6 @@ namespace Perspective
                             break;
                     }
                 };
-
-
-            //}
-            //else
-            //{
-            //    // Out Of Browser mode needs more delay to load IsolatedStorageSettings.ApplicationSettings 
-            //    // used by ExtensionModel, and doesn't use fragment navigation from the browser address bar
-            //    this.RootVisual = new View.MainPage();
-            //}
-            // this.RootVisual = new View.MainPage();
         }
 
         public ExtensionModel ExtensionModel { get; private set; }
@@ -106,6 +100,22 @@ namespace Perspective
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            if (Application.Current.IsRunningOutOfBrowser)
+            {
+                var errorStringBuilder = new StringBuilder();
+                var exception = e.ExceptionObject;
+                errorStringBuilder.AppendLine(exception.ToString());
+                while (exception.InnerException != null)
+                {
+                    exception = exception.InnerException;
+                    errorStringBuilder.AppendLine("");
+                    errorStringBuilder.AppendLine("InnerException :");
+                    errorStringBuilder.AppendLine(exception.ToString());
+                }
+                var errortext = errorStringBuilder.ToString();
+                MessageBox.Show(errortext, "Exception", MessageBoxButton.OK);
+            }
+            else
             // If the app is running outside of the debugger then report the exception using
             // the browser's exception mechanism. On IE this will display it a yellow alert 
             // icon in the status bar and Firefox will display a script error.

@@ -79,12 +79,42 @@
   <ItemGroup>
     <Compile Include="Extension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\About.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>About.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\Extension.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Extension.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\GraphicsConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GraphicsConfig.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\IsolatedStorageConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IsolatedStorageConfig.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\NetworkConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetworkConfig.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\OutOfBrowserConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutOfBrowserConfig.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strings\StringProvider.cs" />
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GraphicConfig.xaml.cs">
-      <DependentUpon>GraphicConfig.xaml</DependentUpon>
+    <Compile Include="View\GraphicsConfig.xaml.cs">
+      <DependentUpon>GraphicsConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IsolatedStorageConfig.xaml.cs">
       <DependentUpon>IsolatedStorageConfig.xaml</DependentUpon>
@@ -123,10 +153,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Strings\About.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>About.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\About.fr.resx" />
+    <EmbeddedResource Include="Strings\OutOfBrowserConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\NetworkConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\IsolatedStorageConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\GraphicsConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\Extension.fr.resx" />
+    <EmbeddedResource Include="Strings\Extension.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Extension.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\GraphicsConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GraphicsConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\IsolatedStorageConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IsolatedStorageConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\LocalizationConfig.fr.resx" />
     <EmbeddedResource Include="Strings\LocalizationConfig.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizationConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\NetworkConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NetworkConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\OutOfBrowserConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OutOfBrowserConfig.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +194,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\GraphicConfig.xaml">
+    <Page Include="View\GraphicsConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

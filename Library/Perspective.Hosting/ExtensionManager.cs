@@ -57,19 +57,6 @@ namespace Perspective.Hosting
             }
         }
 
-        //private ExtensionUriMapper _uriMapper = new ExtensionUriMapper();
-
-        ///// <summary>
-        ///// Gets an URI mapper for extension's page loading.
-        ///// </summary>
-        //public ExtensionUriMapper UriMapper
-        //{
-        //    get
-        //    {
-        //        return _uriMapper;
-        //    }
-        //}
-
         private Dictionary<string, Assembly> _assemblies = new Dictionary<string, Assembly>();
 
         /// <summary>
@@ -106,20 +93,51 @@ namespace Perspective.Hosting
         /// <summary>
         /// Loads the extension links from the Perspective.Hosting.xaml file.
         /// </summary>
-        public void LoadExtensionLinks()
+        /// <param name="timeout">sets the timeout value (in seconds)</param>
+        public void LoadExtensionLinks(int timeout = 10)
         {
             if (Application.Current.IsRunningOutOfBrowser)
             {
                 // loads file from the isolated storage
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    using (IsolatedStorageFileStream stream =
-                        new IsolatedStorageFileStream(
-                            _hostingConfigFileName, FileMode.Open, store))
+                    // Wait until the _hostingConfigFileName exists
+                    bool hostingConfigFileNameFound = false;
+                    for (int check = 0; check < timeout; check++)
                     {
+                        if (store.FileExists(_hostingConfigFileName))
+                        {
+                            hostingConfigFileNameFound = true;
+                            break;
+                        }
+                        else
+                        {
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                    }
+                    if (!hostingConfigFileNameFound)
+                    {
+                        throw new Exception(
+                            String.Format("File {0} not found in isolated storage", 
+                            _hostingConfigFileName));
+                    }
+
+                    IsolatedStorageFileStream stream = null;
+                    try
+                    {
+                        stream = new IsolatedStorageFileStream(
+                            _hostingConfigFileName, FileMode.Open, store);
                         using (StreamReader reader = new StreamReader(stream))
                         {
+                            stream = null;      // prevents CA2202
                             LoadXaml(reader.ReadToEnd());
+                        }
+                    }
+                    finally
+                    {
+                        if (stream != null)
+                        {
+                            stream.Dispose();
                         }
                     }
                 }
@@ -127,7 +145,6 @@ namespace Perspective.Hosting
             else
             {
                 // loads file from the server
-                // Uri hostingConfigUri = new Uri("Perspective.Hosting.xaml", UriKind.Relative);
                 WebClient hostingConfigWebClient = new WebClient();
                 hostingConfigWebClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(hostingConfigWebClient_DownloadStringCompleted);
                 hostingConfigWebClient.DownloadStringAsync(_hostingConfigUri);
@@ -152,7 +169,6 @@ namespace Perspective.Hosting
         /// Loads an extension if not already loaded.
         /// </summary>
         /// <param name="link">The ExtensionLink object.</param>
-        // public void CheckExtension(ExtensionLink link)
         public void CheckExtension(ExtensionLink link, Action actionWhenExtensionLoaded = null)
         {
             if (link.Extension == null)
@@ -177,11 +193,9 @@ namespace Perspective.Hosting
                     // loads package from the server
                     Uri xapUri = new Uri(xapFileName, UriKind.RelativeOrAbsolute);
                     WebClient webClient = new WebClient();
-                    // webClient.OpenReadCompleted += new OpenReadCompletedEventHandler(webClient_OpenReadCompleted);
                     webClient.OpenReadCompleted +=
                         (sender, e) =>
                         {
-                            // ExtensionLink link = e.UserState as ExtensionLink;
                             Stream xapStream = e.Result;
                             try
                             {
@@ -192,7 +206,6 @@ namespace Perspective.Hosting
                                 xapStream.Close();
                             }
                         };
-                    // webClient.OpenReadAsync(xapUri, link);
                     webClient.OpenReadAsync(xapUri);
                 }
             }
@@ -236,12 +249,13 @@ namespace Perspective.Hosting
                 new BitmapImage(UriHelper.GetHostFileUri(fileName));
         }
 
+        private const string _flagFileName = "ExtensionInstalled";
+
         /// <summary>
         /// Deploys all the extension files in the isolated storage.
         /// </summary>
         public void Install()
         {
-            IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(_hostingConfigUri, _hostingConfigFileName);
             foreach (var link in ExtensionLinks)
             {
                 var xapFileName = String.Format("{0}.xap", link.Package);
@@ -254,6 +268,8 @@ namespace Perspective.Hosting
                         link.IconFile);
                 }
             }
+            // Must be copied in last position (cf. LoadExtensionLinks)
+            IsolatedStorageHelper.CopyFileToUserStoreForApplicationAsync(_hostingConfigUri, _hostingConfigFileName);
         }
 
         /// <summary>
@@ -263,6 +279,7 @@ namespace Perspective.Hosting
         {
             using (var store = IsolatedStorageFile.GetUserStoreForApplication())
             {
+                // Must be deleted in first position
                 if (store.FileExists(_hostingConfigFileName))
                 {
                     store.DeleteFile(_hostingConfigFileName);
@@ -281,7 +298,6 @@ namespace Perspective.Hosting
                 }
             }
         }
-
 
         private event EventHandler _extensionLinksLoaded;
 
@@ -316,6 +332,5 @@ namespace Perspective.Hosting
                 _extensionLoaded -= value;
             }
         }
-
     }
 }

@@ -32,13 +32,13 @@ namespace Perspective.Core.Wpf.Converters
         #region IValueConverter Membres
 
         /// <summary>
-        /// Converts a value. 
+        /// Modifies the source data before passing it to the target for display in the UI. 
         /// </summary>
-        /// <param name="value">The value produced by the binding source.</param>
-        /// <param name="targetType">The type of the binding target property.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>A converted value.</returns>
+        /// <param name="value">The source data being passed to the target.</param>
+        /// <param name="targetType">The Type of data expected by the target dependency property.</param>
+        /// <param name="parameter">An optional parameter to be used in the converter logic.</param>
+        /// <param name="culture">The culture of the conversion.</param>
+        /// <returns>The value to be passed to the target dependency property.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "System.String.Format(System.String,System.Object)")]
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -52,13 +52,13 @@ namespace Perspective.Core.Wpf.Converters
         }
 
         /// <summary>
-        /// Converts a value. 
+        /// Modifies the target data before passing it to the source object. 
         /// </summary>
-        /// <param name="value">The value produced by the binding source.</param>
-        /// <param name="targetType">The type of the binding target property.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>A converted value. </returns>
+        /// <param name="value">The target data being passed to the source.</param>
+        /// <param name="targetType">The Type of data expected by the source object.</param>
+        /// <param name="parameter">An optional parameter to be used in the converter logic.</param>
+        /// <param name="culture">The culture of the conversion.</param>
+        /// <returns>The value to be passed to the source object.</returns>
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();

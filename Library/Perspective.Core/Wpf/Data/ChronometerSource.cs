@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,7 +22,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Perspective.Core.Wpf.Data;
 
-namespace Perspective.Core.Wpf
+namespace Perspective.Core.Wpf.Data
 {
     /// <summary>
     /// A chronometer data source.
@@ -38,7 +49,7 @@ namespace Perspective.Core.Wpf
         public SignalCommand ResumeCommand { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of ChronometerSource
+        /// Initializes a new instance of ChronometerSource.
         /// </summary>
         public ChronometerSource()
         {

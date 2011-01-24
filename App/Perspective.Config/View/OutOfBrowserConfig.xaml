@@ -17,8 +17,15 @@
                     <Setter Property="Margin" Value="10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Name="installButton" Content="Install" Click="installButton_Click"/>
-            <Button Name="updateButton" Content="Update" Click="updateButton_Click"/>
+            <Button 
+                Name="installButton" 
+                Content="{Binding Path=OutOfBrowserConfig_Install}" 
+                Click="installButton_Click"/>
+            <Button 
+                Name="updateButton" 
+                Visibility="Collapsed"
+                Content="{Binding Path=OutOfBrowserConfig_Update}" 
+                Click="updateButton_Click"/>
         </StackPanel>
     </Grid>
 </navigation:Page>

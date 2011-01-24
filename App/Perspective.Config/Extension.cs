@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Perspective.Hosting;
 using System.Windows;
 using System.Net.NetworkInformation;
+using Perspective.Config.Strings;
 
 namespace Perspective.Config
 {
@@ -47,6 +48,7 @@ namespace Perspective.Config
 
         /// <summary>
         /// Initializes a new instance of Extension.
+        /// Localization of PageLinks occurs only at startup.
         /// </summary>
         public Extension()
             : base()
@@ -55,33 +57,34 @@ namespace Perspective.Config
             {
                 new PageLink(this)
                 {
-                    Title = "About",
+                    // Title = "About",
+                    Title = StringProvider.Extension_About,
                     IconFile = _iconFile,
                     PageName = "About"
                 },
                 new PageLink(this)
                 {
-                    Title = "Out Of Browser",
+                    Title = StringProvider.Extension_OutOfBrowser,
                     IconFile = _iconFile,
                     PageName = "OutOfBrowserConfig"
                 },
                 new PageLink(this)
                 {
-                    Title = "Localization",
+                    Title = StringProvider.Extension_Localization,
                     IconFile = _iconFile,
                     PageName = "LocalizationConfig"
                 },
                 new PageLink(this)
                 {
-                    Title = "Isolated Storage",
+                    Title = StringProvider.Extension_IsolatedStorage,
                     IconFile = _iconFile,
                     PageName = "IsolatedStorageConfig"
                 },
                 new PageLink(this)
                 {
-                    Title = "Graphics",
+                    Title = StringProvider.Extension_Graphics,
                     IconFile = _iconFile,
-                    PageName = "GraphicConfig"
+                    PageName = "GraphicsConfig"
                 },
             };
             ExtensionManager.Current.RegisterAssembly(_assemblyName);

@@ -24,15 +24,16 @@ using Perspective.ViewModel;
 
 namespace Perspective.View
 {
+    /// <summary>
+    /// The main UI.
+    /// </summary>
     public partial class MainPage : UserControl
     {
         private bool _frameVisible = false;
-        //private Storyboard _frameShowStoryboard = new Storyboard();
-        //private Storyboard _frameHideStoryboard = new Storyboard();
-        //private Duration _duration = new Duration(TimeSpan.FromMilliseconds(600));
-        //private IEasingFunction _easeIn = new ExponentialEase();
-        //private IEasingFunction _easeOut = new ExponentialEase();
 
+        /// <summary>
+        /// Initializes a new instance of MainPage.
+        /// </summary>
         public MainPage()
         {
             InitializeComponent();
@@ -40,8 +41,6 @@ namespace Perspective.View
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            // (_easeOut as ExponentialEase).EasingMode = EasingMode.EaseOut;
-
             ExtensionViewModel evm = this.Resources["ExtensionViewModel"] as ExtensionViewModel;
             evm.PropertyChanged +=
                 (sender1, e1) =>
@@ -54,10 +53,10 @@ namespace Perspective.View
                         }
                         else
                         {
-                            // Sans UriMapper
+                            // Without UriMapper
                             // frame.Source = evm.CurrentPageLink.OriginalUri;
 
-                            // Avec UriMapper
+                            // With UriMapper
                             frame.Source = evm.CurrentPageLink.Uri;
                         }
                     }
@@ -80,7 +79,6 @@ namespace Perspective.View
             {
                 _frameVisible = true;
                 frame.Visibility = System.Windows.Visibility.Visible;
-                // _frameShowStoryboard.Begin();
             }
         }
 
@@ -88,7 +86,6 @@ namespace Perspective.View
         {
             if (_frameVisible)
             {
-                // _frameHideStoryboard.Begin();
                 // frame is collapsed so the current page can't get the focus
                 frame.Visibility = System.Windows.Visibility.Collapsed;
                 _frameVisible = false;

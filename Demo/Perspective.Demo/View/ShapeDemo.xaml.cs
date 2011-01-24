@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,14 +22,22 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using Perspective.Wpf.Shapes;
+using Perspective.Demo.Strings;
 
 namespace Perspective.Demo.View
 {
+    /// <summary>
+    /// A demo page for shapes.
+    /// </summary>
     public partial class ShapeDemo : Page
     {
+        /// <summary>
+        /// Initializes a new instance of ShapeDemo.
+        /// </summary>
         public ShapeDemo()
         {
             InitializeComponent();
+            this.DataContext = new StringProvider();
         }
 
         // S'exécute lorsque l'utilisateur navigue vers cette page.
@@ -38,7 +57,8 @@ namespace Perspective.Demo.View
             shapeStackPanel.Children.Clear();
 
             TextBlock text1 = new TextBlock();
-            text1.Text = "The bad way :";
+            // text1.Text = "The bad way :";
+            text1.Text = StringProvider.ShapeDemo_TheBadWay;
             text1.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             shapeStackPanel.Children.Add(text1);
 
@@ -56,7 +76,8 @@ namespace Perspective.Demo.View
             shapeStackPanel.Children.Add(checkerboard1);
 
             TextBlock text2 = new TextBlock();
-            text2.Text = "The good way :";
+            // text2.Text = "The good way :";
+            text2.Text = StringProvider.ShapeDemo_TheGoodWay;
             text2.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             shapeStackPanel.Children.Add(text2);
 

@@ -65,14 +65,6 @@ namespace Perspective.Wpf.Controls
 
         private RotateTransform _rotateTransform;
 
-        //private RotateTransform RotateTransform
-        //{
-        //    get
-        //    {
-        //        return _rotateTransform;
-        //    }
-        //}
-
         /// <summary>
         /// Invoked when ApplyTemplate() is called.
         /// </summary>
@@ -89,7 +81,6 @@ namespace Perspective.Wpf.Controls
             ChangeVisualState(false);
         }
 
-        // private bool _isMouseOver = false;
         private bool _isMouseOver;
 
         private void ChangeVisualState(bool useTransitions)

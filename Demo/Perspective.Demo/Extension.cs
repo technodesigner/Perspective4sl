@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using Perspective.Hosting;
+using Perspective.Demo.Strings;
 
 namespace Perspective.Demo
 {
@@ -45,6 +46,7 @@ namespace Perspective.Demo
 
         /// <summary>
         /// Initializes a new instance of Extension.
+        /// Not localized.
         /// </summary>
         public Extension()
             : base()
@@ -53,7 +55,7 @@ namespace Perspective.Demo
             {
                 new PageLink(this)
                 {
-                    Title = "About",
+                    Title = StringProvider.Extension_About,
                     IconFile = _iconFile,
                     PageName = "About"
                 },

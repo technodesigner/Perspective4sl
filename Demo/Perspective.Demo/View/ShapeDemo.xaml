@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
-    Title="ShapeDemo Page">
+    Title="Perspective : shapes">
     <swc:TabControl>
         <swc:TabControl.Resources>
             <Style x:Key="BaseShape" TargetType="Shape">
@@ -234,13 +234,13 @@
             </Viewbox>
         </swc:TabItem>
         <swc:TabItem 
-            Header="Dynamic">
+            Header="{Binding Path=ShapeDemo_Dynamic}">
             <StackPanel>
                 <Button 
                     Name="bCreateShape"
                     Width="80" Height="40"
                     Click="bCreateShape_Click"
-                    Content="Create"/>
+                    Content="{Binding Path=ShapeDemo_Create}"/>
                 <StackPanel Name="shapeStackPanel" />
             </StackPanel>
         </swc:TabItem>

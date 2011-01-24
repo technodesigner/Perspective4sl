@@ -1,4 +1,15 @@
-﻿using System;
+﻿//------------------------------------------------------------------
+//
+//  For licensing information and to get the latest version go to:
+//  http://www.codeplex.com/perspective4sl
+//
+//  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+//  LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR
+//  FITNESS FOR A PARTICULAR PURPOSE.
+//
+//------------------------------------------------------------------
+using System;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,23 +19,36 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Reflection;
-using System.Globalization;
 
 namespace Perspective.Config.Strings
 {
-    public class StringProvider : INotifyPropertyChanged
+    /// <summary>
+    /// A class to bind strings from resx files and propagate a culture change through binding.
+    /// </summary>
+    public class StringProvider : Perspective.Core.Wpf.Data.StringProviderBase
     {
-        private static LocalizationConfig _localizationConfig;
-
-        static StringProvider()
+        /// <summary>
+        /// Gets the concrete class type.
+        /// </summary>
+        /// <returns>A Type object.</returns>
+        protected override Type GetConcreteType()
         {
-            _localizationConfig = new LocalizationConfig();
+            return typeof(StringProvider);
         }
 
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please choose the current language.
+        /// Gets a localized string.
+        /// </summary>
+        public static string LocalizationConfig_PageTitle
+        {
+            get
+            {
+                return LocalizationConfig.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
         /// </summary>
         public static string LocalizationConfig_ChooseLanguage
         {
@@ -35,7 +59,7 @@ namespace Perspective.Config.Strings
         }
 
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à English.
+        /// Gets a localized string.
         /// </summary>
         public static string LocalizationConfig_English
         {
@@ -46,7 +70,7 @@ namespace Perspective.Config.Strings
         }
 
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à French.
+        /// Gets a localized string.
         /// </summary>
         public static string LocalizationConfig_French
         {
@@ -56,25 +80,179 @@ namespace Perspective.Config.Strings
             }
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string Extension_About
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                return Extension.About;
             }
         }
 
-        // Thanks to xiaoyumu
-        // http://forums.silverlight.net/forums/p/160527/360282.aspx
-        public void NotifyCultureChanged()
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string Extension_OutOfBrowser
         {
-            foreach (var property in (typeof(StringProvider)).GetProperties(
-                BindingFlags.Static | BindingFlags.Public))
+            get
             {
-                OnPropertyChanged(property.Name);
+                return Extension.OutOfBrowser;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string Extension_Localization
+        {
+            get
+            {
+                return Extension.Localization;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string Extension_IsolatedStorage
+        {
+            get
+            {
+                return Extension.IsolatedStorage;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string Extension_Graphics
+        {
+            get
+            {
+                return Extension.Graphics;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string GraphicsConfig_PageTitle
+        {
+            get
+            {
+                return GraphicsConfig.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string GraphicsConfig_FullScreen
+        {
+            get
+            {
+                return GraphicsConfig.FullScreen;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string GraphicsConfig_Windowed
+        {
+            get
+            {
+                return GraphicsConfig.Windowed;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string About_PageTitle
+        {
+            get
+            {
+                return About.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string About_PageSubTitle2
+        {
+            get
+            {
+                return About.PageSubTitle2;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string About_perspective4sl
+        {
+            get
+            {
+                return About.perspective4sl;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string IsolatedStorageConfig_PageTitle
+        {
+            get
+            {
+                return IsolatedStorageConfig.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string NetworkConfig_PageTitle
+        {
+            get
+            {
+                return NetworkConfig.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string OutOfBrowserConfig_PageTitle
+        {
+            get
+            {
+                return OutOfBrowserConfig.PageTitle;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string OutOfBrowserConfig_Install
+        {
+            get
+            {
+                return OutOfBrowserConfig.Install;
+            }
+        }
+
+        /// <summary>
+        /// Gets a localized string.
+        /// </summary>
+        public static string OutOfBrowserConfig_Update
+        {
+            get
+            {
+                return OutOfBrowserConfig.Update;
             }
         }
     }

@@ -60,7 +60,6 @@
     <CodeAnalysisDictionary Include="ClientBin\Perspective.Demo.Icon.png" />
     <Content Include="ClientBin\Perspective.Demo.xap" />
     <Content Include="ClientBin\Perspective.xap" />
-    <Content Include="Copy of PerspectiveTestPage.html" />
     <Content Include="PerspectiveTestPage.aspx" />
     <Content Include="PerspectiveDemoApp.html" />
     <Content Include="Silverlight.js" />

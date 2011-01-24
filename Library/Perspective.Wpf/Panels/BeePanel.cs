@@ -110,7 +110,6 @@ namespace Perspective.Wpf.Panels
             {
                 throw new ArgumentException("SideLength < 0.0");
             }            
-            // panel.Initialize();
             panel._isInitialized = false;
             panel.InvalidateArrange();
         }

@@ -5,8 +5,7 @@
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            mc:Ignorable="d"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           d:DesignWidth="640" d:DesignHeight="480"
-           Title="NetworkConfig Page">
+           d:DesignWidth="640" d:DesignHeight="480">
     <Viewbox>
         <TextBlock Name="networkInfoTextBlock"/>
     </Viewbox>

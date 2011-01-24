@@ -105,6 +105,7 @@ namespace Perspective.Wpf.Shapes
 
         /// <summary>
         /// Initializes the ArrowDrawer object.
+        /// <remarks>Mathod called at each geometry redefinition.</remarks>
         /// </summary>
         protected override void InitializeDrawer()
         {

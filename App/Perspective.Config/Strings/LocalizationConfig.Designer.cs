@@ -86,5 +86,14 @@ namespace Perspective.Config.Strings {
                 return ResourceManager.GetString("French", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Localization configuration.
+        /// </summary>
+        internal static string PageTitle {
+            get {
+                return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
     }
 }

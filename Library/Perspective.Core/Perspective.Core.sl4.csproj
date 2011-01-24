@@ -65,8 +65,9 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IsolatedStorageHelper.cs" />
     <Compile Include="ParametersHelper.cs" />
-    <Compile Include="Wpf\ChronometerSource.cs" />
-    <Compile Include="Wpf\Data\TimeSpanConverter.cs" />
+    <Compile Include="Wpf\Data\ChronometerSource.cs" />
+    <Compile Include="Wpf\Data\StringProviderBase.cs" />
+    <Compile Include="Wpf\Converters\TimeSpanConverter.cs" />
     <Compile Include="Wpf\Media\StreamAudioSink.cs" />
     <Compile Include="Media\WavAudioEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,9 +82,9 @@
     <Compile Include="Wpf\GeometryHelper.cs" />
     <Compile Include="Wpf\Handedness3D.cs" />
     <Compile Include="Wpf\Helper3D.cs" />
-    <Compile Include="Wpf\Media\WavMediaStreamSource.cs" />
     <Compile Include="Wpf\Primitives\IRangeElement.cs" />
     <Compile Include="Wpf\Primitives\RangeElementSelectionManager.cs" />
+    <Compile Include="Wpf\Data\TimeSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

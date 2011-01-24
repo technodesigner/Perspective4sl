@@ -9,12 +9,10 @@
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
     Loaded="Page_Loaded"
-    Title="Matrix3DDemo Page">
+    Title="Perspective : Matrix3D">
     <navigation:Page.Resources>
         <Style TargetType="Image">
             <Setter Property="Stretch" Value="None" />
-            <!--<Setter Property="Opacity" Value="0.8" />-->
-            <!--<Setter Property="Source" Value="http://www.odewit.net/Images/Livres/Silverlight/s400/191.jpg" />-->
         </Style>
         <Style TargetType="Grid" >
             <Setter Property="Width" Value="800" />
@@ -46,7 +44,7 @@
         <swc:TabItem Header="PlaneProjection RY30">
             <Grid>
                 <Image
-                    Source="http://www.odewit.net/Images/Livres/Silverlight/s400/191.jpg">
+                    Source="http://www.odewit.net/Images/Demo/Eoliennes01-s400.jpg">
                     <Image.Projection>
                         <PlaneProjection
                             CenterOfRotationX="1"
@@ -106,6 +104,6 @@
             <Grid LayoutUpdated="Grid_LayoutUpdated">
                 <Rectangle Name="r10"/>
             </Grid>
-        </swc:TabItem>        
+        </swc:TabItem>
     </swc:TabControl>
 </navigation:Page>

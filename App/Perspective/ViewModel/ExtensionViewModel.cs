@@ -28,6 +28,9 @@ using Perspective.Core.Wpf.Data;
 
 namespace Perspective.ViewModel
 {
+    /// <summary>
+    /// Manages at the View level the data that represent the extensions.
+    /// </summary>
     public class ExtensionViewModel : INotifyPropertyChanged
     {
         private ExtensionModel _extensionModel;
@@ -42,6 +45,9 @@ namespace Perspective.ViewModel
         /// </summary>
         public SignalCommand SetCurrentExtensionCommand { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of ExtensionViewModel.
+        /// </summary>
         public ExtensionViewModel()
         {
             _extensionModel = (App.Current as App).ExtensionModel;
@@ -74,6 +80,9 @@ namespace Perspective.ViewModel
             };
         }
 
+        /// <summary>
+        /// Gets a collection of ExtensionLink objects.
+        /// </summary>
         public ExtensionLinkCollection ExtensionLinks
         {
             get
