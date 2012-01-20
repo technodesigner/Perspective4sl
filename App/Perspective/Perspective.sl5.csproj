@@ -12,7 +12,7 @@
     <RootNamespace>Perspective</RootNamespace>
     <AssemblyName>Perspective</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>
@@ -35,6 +35,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -69,9 +70,15 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Controls.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
@@ -113,17 +120,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Library\Perspective.Core\Perspective.Core.sl4.csproj">
+    <ProjectReference Include="..\..\Library\Perspective.Core\Perspective.Core.sl5.csproj">
       <Project>{99C406DF-BA11-40C2-B721-187934237072}</Project>
-      <Name>Perspective.Core.sl4</Name>
+      <Name>Perspective.Core.sl5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Library\Perspective.Hosting\Perspective.Hosting.sl4.csproj">
+    <ProjectReference Include="..\..\Library\Perspective.Hosting\Perspective.Hosting.sl5.csproj">
       <Project>{7152775A-86A0-4235-B38E-30D135E0EE50}</Project>
-      <Name>Perspective.Hosting.sl4</Name>
+      <Name>Perspective.Hosting.sl5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Library\Perspective.Wpf\Perspective.Wpf.sl4.csproj">
+    <ProjectReference Include="..\..\Library\Perspective.Wpf\Perspective.Wpf.sl5.csproj">
       <Project>{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}</Project>
-      <Name>Perspective.Wpf.sl4</Name>
+      <Name>Perspective.Wpf.sl5</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

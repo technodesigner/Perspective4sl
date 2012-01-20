@@ -5,24 +5,23 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{41897D9E-C2AC-4FD7-95A6-090971ED0742}</ProjectGuid>
+    <ProjectGuid>{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Perspective.Config</RootNamespace>
-    <AssemblyName>Perspective.Config</AssemblyName>
+    <RootNamespace>Perspective.Demo</RootNamespace>
+    <AssemblyName>Perspective.Demo</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>fr</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>Perspective.Config.xap</XapFilename>
+    <XapFilename>Perspective.Demo.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>Perspective.Config.App</SilverlightAppEntry>
-    <TestPageFileName>Perspective.ConfigTestPage.html</TestPageFileName>
+    <SilverlightAppEntry>Perspective.Demo.App</SilverlightAppEntry>
+    <TestPageFileName>Perspective.DemoTestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
     <EnableOutOfBrowser>false</EnableOutOfBrowser>
@@ -35,7 +34,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <SupportedCultures>fr</SupportedCultures>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -53,6 +52,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,8 +70,13 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
@@ -89,68 +94,46 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Extension.resx</DependentUpon>
     </Compile>
-    <Compile Include="Strings\GraphicsConfig.Designer.cs">
+    <Compile Include="Strings\MatrixDemo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GraphicsConfig.resx</DependentUpon>
+      <DependentUpon>MatrixDemo.resx</DependentUpon>
     </Compile>
-    <Compile Include="Strings\IsolatedStorageConfig.Designer.cs">
+    <Compile Include="Strings\MayaEaseDemo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IsolatedStorageConfig.resx</DependentUpon>
+      <DependentUpon>MayaEaseDemo.resx</DependentUpon>
     </Compile>
-    <Compile Include="Strings\NetworkConfig.Designer.cs">
+    <Compile Include="Strings\ShapeDemo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NetworkConfig.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strings\OutOfBrowserConfig.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OutOfBrowserConfig.resx</DependentUpon>
+      <DependentUpon>ShapeDemo.resx</DependentUpon>
     </Compile>
     <Compile Include="Strings\StringProvider.cs" />
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GraphicsConfig.xaml.cs">
-      <DependentUpon>GraphicsConfig.xaml</DependentUpon>
+    <Compile Include="View\BeePanelDemo.xaml.cs">
+      <DependentUpon>BeePanelDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\IsolatedStorageConfig.xaml.cs">
-      <DependentUpon>IsolatedStorageConfig.xaml</DependentUpon>
+    <Compile Include="View\KnobDemo.xaml.cs">
+      <DependentUpon>KnobDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LocalizationConfig.xaml.cs">
-      <DependentUpon>LocalizationConfig.xaml</DependentUpon>
+    <Compile Include="View\Matrix3DDemo.xaml.cs">
+      <DependentUpon>Matrix3DDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NetworkConfig.xaml.cs">
-      <DependentUpon>NetworkConfig.xaml</DependentUpon>
+    <Compile Include="View\MatrixDemo.xaml.cs">
+      <DependentUpon>MatrixDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NotificationControl.xaml.cs">
-      <DependentUpon>NotificationControl.xaml</DependentUpon>
+    <Compile Include="View\MayaEaseDemo.xaml.cs">
+      <DependentUpon>MayaEaseDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\OutOfBrowserConfig.xaml.cs">
-      <DependentUpon>OutOfBrowserConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Strings\LocalizationConfig.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalizationConfig.resx</DependentUpon>
+    <Compile Include="View\ShapeDemo.xaml.cs">
+      <DependentUpon>ShapeDemo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Library\Perspective.Core\Perspective.Core.sl4.csproj">
-      <Project>{99C406DF-BA11-40C2-B721-187934237072}</Project>
-      <Name>Perspective.Core.sl4</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\Perspective.Hosting\Perspective.Hosting.sl4.csproj">
-      <Project>{7152775A-86A0-4235-B38E-30D135E0EE50}</Project>
-      <Name>Perspective.Hosting.sl4</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings\About.resx">
@@ -158,35 +141,25 @@
       <LastGenOutput>About.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\About.fr.resx" />
-    <EmbeddedResource Include="Strings\OutOfBrowserConfig.fr.resx" />
-    <EmbeddedResource Include="Strings\NetworkConfig.fr.resx" />
-    <EmbeddedResource Include="Strings\IsolatedStorageConfig.fr.resx" />
-    <EmbeddedResource Include="Strings\GraphicsConfig.fr.resx" />
+    <EmbeddedResource Include="Strings\MatrixDemo.fr.resx" />
+    <EmbeddedResource Include="Strings\MatrixDemo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MatrixDemo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\MayaEaseDemo.fr.resx" />
+    <EmbeddedResource Include="Strings\MayaEaseDemo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MayaEaseDemo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\ShapeDemo.fr.resx" />
     <EmbeddedResource Include="Strings\Extension.fr.resx" />
     <EmbeddedResource Include="Strings\Extension.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Extension.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\GraphicsConfig.resx">
+    <EmbeddedResource Include="Strings\ShapeDemo.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GraphicsConfig.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings\IsolatedStorageConfig.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>IsolatedStorageConfig.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings\LocalizationConfig.fr.resx" />
-    <EmbeddedResource Include="Strings\LocalizationConfig.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LocalizationConfig.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings\NetworkConfig.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>NetworkConfig.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings\OutOfBrowserConfig.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>OutOfBrowserConfig.Designer.cs</LastGenOutput>
+      <LastGenOutput>ShapeDemo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -194,30 +167,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\GraphicsConfig.xaml">
+    <Page Include="View\BeePanelDemo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\KnobDemo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Matrix3DDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\IsolatedStorageConfig.xaml">
+    <Page Include="View\MatrixDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LocalizationConfig.xaml">
+    <Page Include="View\MayaEaseDemo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ShapeDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NetworkConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NotificationControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\OutOfBrowserConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Perspective.Core\Perspective.Core.sl5.csproj">
+      <Project>{99C406DF-BA11-40C2-B721-187934237072}</Project>
+      <Name>Perspective.Core.sl5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Perspective.Hosting\Perspective.Hosting.sl5.csproj">
+      <Project>{7152775A-86A0-4235-B38E-30D135E0EE50}</Project>
+      <Name>Perspective.Hosting.sl5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\Perspective.Wpf\Perspective.Wpf.sl5.csproj">
+      <Project>{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}</Project>
+      <Name>Perspective.Wpf.sl5</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
