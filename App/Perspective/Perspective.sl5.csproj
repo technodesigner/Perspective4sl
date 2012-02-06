@@ -36,6 +36,8 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
+    <RequireInBrowserElevation>true</RequireInBrowserElevation>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -132,6 +134,9 @@
       <Project>{B9CEF453-5D08-4961-90F7-B7C9D5D97A1E}</Project>
       <Name>Perspective.Wpf.sl5</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\InBrowserSettings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

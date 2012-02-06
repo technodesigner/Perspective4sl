@@ -28,9 +28,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Demo.sl5", "Dem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Wpf3DX.sl5", "Library\Perspective.Wpf3DX\Perspective.Wpf3DX.sl5.csproj", "{CDB2CF05-330C-4198-A633-0195D537ABDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Demo3D.sl5", "Demo\Perspective.Demo3D\Perspective.Demo3D.sl5.csproj", "{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs09
 		SccLocalPath0 = .
@@ -66,6 +68,10 @@ Global
 		SccProjectTopLevelParentUniqueName8 = perspective4sl.sl5.sln
 		SccProjectName8 = Library/Perspective.Wpf3DX
 		SccLocalPath8 = Library\\Perspective.Wpf3DX
+		SccProjectUniqueName9 = Demo\\Perspective.Demo3D\\Perspective.Demo3D.sl5.csproj
+		SccProjectTopLevelParentUniqueName9 = perspective4sl.sl5.sln
+		SccProjectName9 = Demo/Perspective.Demo3D
+		SccLocalPath9 = Demo\\Perspective.Demo3D
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +110,10 @@ Global
 		{CDB2CF05-330C-4198-A633-0195D537ABDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDB2CF05-330C-4198-A633-0195D537ABDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDB2CF05-330C-4198-A633-0195D537ABDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +127,6 @@ Global
 		{AA12826A-6E6D-4373-9EF2-52E538B3D95F} = {B244575F-AFFE-412D-9663-A87E7BD61B1C}
 		{41897D9E-C2AC-4FD7-95A6-090971ED0742} = {B244575F-AFFE-412D-9663-A87E7BD61B1C}
 		{50FB98E4-99E7-4452-8ED3-5EA67A7AD990} = {32393295-EB87-4BE9-9975-DB5ED6EBB115}
+		{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0} = {32393295-EB87-4BE9-9975-DB5ED6EBB115}
 	EndGlobalSection
 EndGlobal

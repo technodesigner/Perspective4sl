@@ -127,6 +127,17 @@ namespace Perspective.Wpf3DX
         }
 
         /// <summary>
+        /// Checks the 3D availability.
+        /// </summary>
+        public static void Check3DAvailability()
+        {
+            if (GraphicsDeviceManager.Current.RenderMode == RenderMode.Unavailable)
+            {
+                throw new RenderModeException(GraphicsDeviceManager.Current.RenderModeReason);
+            }
+        }
+
+        /// <summary>
         /// Gets the default Perspective's RasterizerState object.
         /// </summary>
         public static RasterizerState DefaultRasterizerState
@@ -163,7 +174,7 @@ namespace Perspective.Wpf3DX
         }
 
         /// <summary>
-        /// Duplicate two collections of Vector3.
+        /// Duplicates two collections of Vector3.
         /// </summary>
         /// <param name="from">Original collection.</param>
         /// <param name="to">Recipient collection.</param>

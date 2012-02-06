@@ -1,0 +1,41 @@
+﻿<navigation:Page 
+    x:Class="Perspective.Demo3D.View.About" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480">
+    <Viewbox>
+        <RichTextBox 
+            VerticalContentAlignment="Center"
+            FontFamily="Georgia"
+            FontSize="20"
+            IsReadOnly="True"
+            Margin="10">
+            <Paragraph TextAlignment="Center" FontWeight="Bold" FontSize="26">
+                <Run Text="{Binding Path=About_PageSubTitle}"/>
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <LineBreak />
+                <Run Text="{Binding Path=About_PageSubTitle2}"/>
+                <LineBreak />
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <Hyperlink 
+                    NavigateUri="http://perspective4sl.codeplex.com" 
+                    TargetName="_blank">
+                    <Run Text="{Binding Path=About_perspective4sl}"/>
+                </Hyperlink>
+            </Paragraph>
+            <Paragraph TextAlignment="Center" >
+                <Hyperlink 
+                    NavigateUri="http://www.odewit.net" 
+                    TargetName="_blank">
+                    <Run>Olivier Dewit</Run>
+                </Hyperlink>
+            </Paragraph>
+        </RichTextBox>
+    </Viewbox>
+</navigation:Page>

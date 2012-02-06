@@ -86,6 +86,6 @@ namespace Perspective.Core
         /// <summary>
         /// Global copyright information.
         /// </summary>
-        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2009-2011";
+        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2009-2012";
     }
 }

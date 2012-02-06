@@ -24,6 +24,7 @@
     <SolidColorBrush x:Key="OrangeBrush1" Color="{StaticResource OrangeColor1}"/>
     <SolidColorBrush x:Key="DefaultButtonBrush" Color="Black"/>
     <SolidColorBrush x:Key="FocusedButtonBorderBrush" Color="{StaticResource PressedColor}"/>
+    <SolidColorBrush x:Key="SceneBackgroundBrush" Color="#333333"/>
     
     <SolidColorBrush
             x:Key="BasicShapeStroke"

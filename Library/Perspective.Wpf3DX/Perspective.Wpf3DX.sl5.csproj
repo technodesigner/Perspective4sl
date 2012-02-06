@@ -76,9 +76,10 @@
     <Compile Include="Wpf3DX\ModelMaterial.cs" />
     <Compile Include="Wpf3DX\PerspectiveCamera.cs" />
     <Compile Include="Wpf3DX\RenderEventArgs.cs" />
+    <Compile Include="Wpf3DX\RenderModeException.cs" />
     <Compile Include="Wpf3DX\RotationDirection.cs" />
     <Compile Include="Wpf3DX\Scene.cs" />
-    <Compile Include="Wpf3DX\Sculptors\ArrowSculptor.cs" />
+    <Compile Include="Wpf3DX\Sculptors\DartSculptor.cs" />
     <Compile Include="Wpf3DX\Sculptors\BarSculptor.cs" />
     <Compile Include="Wpf3DX\Sculptors\BoxSculptor.cs" />
     <Compile Include="Wpf3DX\Sculptors\ConicalSculptor.cs" />
@@ -102,7 +103,7 @@
     <Compile Include="Wpf3DX\Vector3Converter.cs" />
     <Compile Include="Wpf3DX\Vector3Triplet.cs" />
     <Compile Include="Wpf3DX\VertexPositionTextureNormal.cs" />
-    <Compile Include="Wpf3DX\Models\Arrow.cs" />
+    <Compile Include="Wpf3DX\Models\Dart.cs" />
     <Compile Include="Wpf3DX\Models\Bar.cs" />
     <Compile Include="Wpf3DX\Models\Box.cs" />
     <Compile Include="Wpf3DX\Models\Conical.cs" />

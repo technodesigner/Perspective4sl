@@ -1,0 +1,38 @@
+﻿<navigation:Page 
+    x:Class="Perspective.Demo3D.View.MaterialDemo" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:p="http://www.codeplex.com/perspective"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Title="MaterialDemo Page">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource SceneBackgroundBrush}">
+        <p:Workshop3DX 
+            Name="workshop3DX">
+            <p:Scene>
+                <p:Scene.Camera>
+                    <p:PerspectiveCamera 
+                        Position="10 2 10"
+                        LookTarget="0 1 0"
+                        FieldOfView="25"/>
+                </p:Scene.Camera>
+                <p:XyzAxis Length="3"/>
+                <p:Spherical
+                    ParallelCount="80">
+                    <p:Spherical.Texture>
+                        <p:ColorTexture R="0.55" G="0.15" B="0.87" A="1"/>
+                    </p:Spherical.Texture>
+                    <p:Spherical.Material>
+                        <p:ModelMaterial 
+                            Diffuseness="1.0"
+                            Specularness="1" 
+                            Shininess="0.8" />
+                    </p:Spherical.Material>
+                </p:Spherical>
+            </p:Scene>
+        </p:Workshop3DX>
+    </Grid>
+</navigation:Page>

@@ -87,18 +87,25 @@ namespace Perspective.Wpf3DX
         /// </summary>
         public void Initialize()
         {
-            GraphicsDevice graphicsDevice = Helper3D.GraphicsDevice;
-            Stream shaderStream = Application.GetResourceStream(new Uri(@"Perspective.Wpf3DX;component/Wpf3DX/Shaders/Perspective.VertexShader", UriKind.Relative)).Stream;
-            _vertexShader = VertexShader.FromStream(graphicsDevice, shaderStream);
-            shaderStream = Application.GetResourceStream(new Uri(@"Perspective.Wpf3DX;component/Wpf3DX/Shaders/Perspective.PixelShader", UriKind.Relative)).Stream;
-            _pixelShader = PixelShader.FromStream(graphicsDevice, shaderStream);
-            InvalidateLights();
-            _camera.InvalidateView();
-            foreach (var visual in _models)
-            {
-                // visual.Scene = this;
-                visual.Initialize(this, Matrix.Identity);
-            }
+            //try
+            //{
+                Helper3D.Check3DAvailability();
+                GraphicsDevice graphicsDevice = Helper3D.GraphicsDevice;
+                Stream shaderStream = Application.GetResourceStream(new Uri(@"Perspective.Wpf3DX;component/Wpf3DX/Shaders/Perspective.VertexShader", UriKind.Relative)).Stream;
+                _vertexShader = VertexShader.FromStream(graphicsDevice, shaderStream);
+                shaderStream = Application.GetResourceStream(new Uri(@"Perspective.Wpf3DX;component/Wpf3DX/Shaders/Perspective.PixelShader", UriKind.Relative)).Stream;
+                _pixelShader = PixelShader.FromStream(graphicsDevice, shaderStream);
+                InvalidateLights();
+                _camera.InvalidateView();
+                foreach (var visual in _models)
+                {
+                    visual.Initialize(this, Matrix.Identity);
+                }
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.Message, e.GetType().ToString(), MessageBoxButton.OK);
+            //}
         }
 
         /// <summary>

@@ -13,11 +13,12 @@
     <RootNamespace>Perspective.Web</RootNamespace>
     <AssemblyName>Perspective.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <SilverlightApplicationList>{AA12826A-6E6D-4373-9EF2-52E538B3D95F}|..\Perspective\Perspective.csproj|ClientBin|False,{41897D9E-C2AC-4FD7-95A6-090971ED0742}|..\Perspective.Config\Perspective.Config.sl4.csproj|ClientBin|False,{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}|..\..\Demo\Perspective.Demo\Perspective.Demo.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{AA12826A-6E6D-4373-9EF2-52E538B3D95F}|..\Perspective\Perspective.csproj|ClientBin|False,{41897D9E-C2AC-4FD7-95A6-090971ED0742}|..\Perspective.Config\Perspective.Config.sl4.csproj|ClientBin|False,{50FB98E4-99E7-4452-8ED3-5EA67A7AD990}|..\..\Demo\Perspective.Demo\Perspective.Demo.csproj|ClientBin|False,{F156AB4F-D8F9-4B4D-B46B-5FC0ADC5E9E0}|..\..\Demo\Perspective.Demo3D\Perspective.Demo3D.sl5.csproj|ClientBin|False</SilverlightApplicationList>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,11 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="ClientBin\Perspective.Config.Icon.png" />
+    <CodeAnalysisDictionary Include="ClientBin\Perspective.Demo3D.Icon.png" />
     <Content Include="ClientBin\Perspective.Config.xap" />
     <CodeAnalysisDictionary Include="ClientBin\Perspective.Demo.Icon.png" />
     <Content Include="ClientBin\Perspective.Demo.xap" />
+    <Content Include="ClientBin\Perspective.Demo3D.xap" />
     <Content Include="ClientBin\Perspective.xap" />
-    <Content Include="PerspectiveTestPage.aspx" />
     <Content Include="PerspectiveDemoApp.html" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />

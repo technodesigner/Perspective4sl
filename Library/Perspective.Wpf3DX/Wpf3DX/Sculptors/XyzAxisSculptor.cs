@@ -87,12 +87,13 @@ namespace Perspective.Wpf3DX.Sculptors
         /// <param name="s">Sign enum value.</param>
         private void CreateArrows(Sign s)
         {
+            float headUnitRatio = 0.2f;
             // float arrowScaleFactor = _radius * 10.0 / 2.0;
             float arrowScaleFactor = _radius * 10.0f;
             Scaling arrowScaling = new Scaling(arrowScaleFactor, arrowScaleFactor, 1.0f);
 
-            ArrowSculptor asZ = new ArrowSculptor();
-            asZ.Initialize(_length);
+            DartSculptor asZ = new DartSculptor();
+            asZ.Initialize(_length, headUnitRatio);
             asZ.BuildMesh();
             ModelTransformGroup tgZ = new ModelTransformGroup();
             tgZ.Children.Add(arrowScaling);
@@ -104,8 +105,8 @@ namespace Perspective.Wpf3DX.Sculptors
             asZ.Transform(tgZ);
             CopyFrom(asZ);
 
-            ArrowSculptor asX = new ArrowSculptor();
-            asX.Initialize(_length);
+            DartSculptor asX = new DartSculptor();
+            asX.Initialize(_length, headUnitRatio);
             asX.BuildMesh();
             ModelTransformGroup tgX = new ModelTransformGroup();
             tgX.Children.Add(arrowScaling);
@@ -113,8 +114,8 @@ namespace Perspective.Wpf3DX.Sculptors
             asX.Transform(tgX);
             CopyFrom(asX);
 
-            ArrowSculptor asY = new ArrowSculptor();
-            asY.Initialize(_length);
+            DartSculptor asY = new DartSculptor();
+            asY.Initialize(_length, headUnitRatio);
             asY.BuildMesh();
             ModelTransformGroup tgY = new ModelTransformGroup();
             tgY.Children.Add(arrowScaling);

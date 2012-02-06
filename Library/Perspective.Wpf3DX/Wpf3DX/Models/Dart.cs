@@ -19,12 +19,14 @@ namespace Perspective.Wpf3DX.Models
     /// By default, the direction of the arrow is the Z axis, and the length is 1.0.
     /// Default radius of the body is 0.1.
     /// Default radius of the head is 0.2.
+    /// Default ratio of the head to the first unit is 0.8 (instead of 0.2 for the WPF equivalent Arrow model).
     /// </summary>
-    public class Arrow : Sculpture
+    /// <remarks>The Arrow model has been renamed as Dart (because there is already a 2D Arrow class in Perspective).</remarks>
+    public class Dart : Sculpture
     {
-        public Arrow()
+        public Dart()
         {
-            Length = ArrowSculptor.DefaultLength;
+            Length = DartSculptor.DefaultLength;
         }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace Perspective.Wpf3DX.Models
         /// <returns>An ArrowSculptor object.</returns>
         protected override Sculptor CreateSculptor()
         {
-            return new ArrowSculptor(Length);
+            return new DartSculptor(Length, 0.8f);
         }
     }
 }
