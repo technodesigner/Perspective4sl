@@ -19,7 +19,9 @@ Perspective application project
 A Silverlight application which can dynamically load pages from extension XAP, 
 using an extension system described here : http://www.odewit.net/ArticleContent.aspx?id=SlExtensions&format=html. 
 This application is used here as demo of Perspective library. It is localized (english / french).
+It uses Silverlight Toolkit (http://silverlight.codeplex.com).
 It requires elevated trust when running in browser, because of new 3D security model (for PerspectiveDemo3D assembly).
+To display 3D models in OOB mode, you must first allow this permission in Silverlight configuration in browser : "3D graphics: use blocked display drivers".
 
 Perspective.Web
 ---------------
