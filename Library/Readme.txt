@@ -1,7 +1,7 @@
 Perspective 3.0 library for Silverlight
 ---------------------------------------
 
-This file describes the solution and its new functionalities since the last offical release (2.0).
+This file describes the solution and its new functionalities since the last official release (2.0).
 
 General
 -------
@@ -12,7 +12,7 @@ General
 perspective4sl.sl5.sln
 ----------------------
 - Because of the Perspective extension system, it is required to generate Perspective.Core.sl5, Perspective.Hosting.sl5, Perspective.Wpf.sl5 and Perspective.Wpf3DX.sl5 before generating the first time the solution.
-- If you use Visual Web Developer 2010 Express, you can ignore the warnings at the first solution loading.
+- If you use Visual Web Developer Express, you can ignore the warnings at the first solution loading.
 
 Perspective application project
 -------------------------------

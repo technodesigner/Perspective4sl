@@ -149,6 +149,12 @@ namespace Perspective.Demo3D
                     IconFile = _iconFile,
                     PageName = "CompositeDemo"
                 },
+                new PageLink(this)
+                {
+                    Title = "Dynamic scene",
+                    IconFile = _iconFile,
+                    PageName = "DynamicDemo"
+                },
             };
             ExtensionManager.Current.RegisterAssembly(_assemblyName);
         }

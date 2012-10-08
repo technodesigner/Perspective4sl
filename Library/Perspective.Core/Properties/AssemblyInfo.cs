@@ -75,8 +75,9 @@ namespace Perspective.Core
         /// 3.0.0.0 : 3.0 beta (3D only, Silverlight 5 beta)
         /// 3.0.0.1 : 3.0 final (3D only, Silverlight 5 RTM)
         /// 3.0.0.2 : 3.0 final (Silverlight 5 RTM)
+        /// 3.0.0.3
         /// </summary>
-        public const string GlobalVersion = "3.0.0.2";
+        public const string GlobalVersion = "3.0.0.3";
 
         /// <summary>
         /// Global company name.

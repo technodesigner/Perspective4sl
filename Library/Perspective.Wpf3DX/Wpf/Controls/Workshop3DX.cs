@@ -66,15 +66,25 @@ namespace Perspective.Wpf.Controls
         {
             _scene.Draw(Helper3D.GraphicsDevice);
 
-            // invalidate to get a callback next frame
+            // invalidates to get a callback next frame
             e.InvalidateSurface();
         }
 
         private void _drawingSurface_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DrawingSurface surface = sender as DrawingSurface;
-            _scene.InvalidateProjection((float)surface.ActualWidth / (float)surface.ActualHeight);
+            //DrawingSurface surface = sender as DrawingSurface;
+            //_scene.InvalidateProjection((float)surface.ActualWidth / (float)surface.ActualHeight);
+            InvalidateProjection();
         }
+
+        /// <summary>
+        /// Refreshes the perspective projection.
+        /// </summary>
+        public void InvalidateProjection()
+        {
+            _scene.InvalidateProjection((float)_drawingSurface.ActualWidth / (float)_drawingSurface.ActualHeight);
+        }
+
 
         protected override Size ArrangeOverride(Size finalSize)
         {

@@ -68,8 +68,10 @@ namespace Perspective.Wpf3DX
         /// 2.0.0.5 : 2.0 final
         /// 3.0.0.0 : 3.0 beta (3D only, Silverlight 5 beta)
         /// 3.0.0.1 : 3.0 final (3D only, Silverlight 5 RTM)
+        /// 3.0.0.2 : 3.0 final (Silverlight 5 RTM)
+        /// 3.0.0.3
         /// </summary>
-        public const string GlobalVersion = "3.0.0.1";
+        public const string GlobalVersion = "3.0.0.3";
 
         /// <summary>
         /// Global company name.
@@ -79,6 +81,6 @@ namespace Perspective.Wpf3DX
         /// <summary>
         /// Global copyright information.
         /// </summary>
-        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2011";
+        public const string Copyright = "Copyright © http://perspective4sl.codeplex.com 2011-2012";
     }
 }
