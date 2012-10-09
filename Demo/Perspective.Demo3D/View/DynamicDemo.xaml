@@ -20,10 +20,31 @@
             <RowDefinition Height="50"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Button Content="Scene" Click="Button_Click"/>
+        <StackPanel Orientation="Horizontal">
+            <Button 
+                Name="fullSceneButton"
+                Content="Full scene" 
+                Click="fullSceneButton_Click"/>
+            <Button
+                Name="axisButton"
+                Content="XyzAxis"
+                Click="axisButton_Click"/>
+            <Button
+                Name="boxButton"
+                Content="Box"
+                Click="boxButton_Click"/>
+        </StackPanel>
         <p:Workshop3DX 
             Name="workshop3DX"
             Grid.Row="1">
+            <p:Scene>
+                <p:Scene.Camera>
+                    <p:PerspectiveCamera 
+                        Position="10 2 10"
+                        LookTarget="0 1 0"
+                        FieldOfView="25"/>
+                </p:Scene.Camera>
+            </p:Scene>
         </p:Workshop3DX>
     </Grid>
 </navigation:Page>

@@ -28,7 +28,7 @@ namespace Perspective.Demo3D.View
         {
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void fullSceneButton_Click(object sender, RoutedEventArgs e)
         {
             var camera = new PerspectiveCamera();
             camera.Position = new Vector3(10.0f, 2.0f, 10.0f);
@@ -49,6 +49,21 @@ namespace Perspective.Demo3D.View
             
             workshop3DX.Scene = scene;
             workshop3DX.InvalidateProjection();
+        }
+
+        private void axisButton_Click(object sender, RoutedEventArgs e)
+        {
+            var axis = new XyzAxis();
+            axis.Length = 3.0f;
+            workshop3DX.Scene.Models.Add(axis);
+            workshop3DX.Scene.Initialize();
+        }
+
+        private void boxButton_Click(object sender, RoutedEventArgs e)
+        {
+            var box = new Box();
+            workshop3DX.Scene.Models.Add(box);
+            workshop3DX.Scene.Initialize();
         }
 
     }
