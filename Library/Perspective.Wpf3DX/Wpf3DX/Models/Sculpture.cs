@@ -108,13 +108,16 @@ namespace Perspective.Wpf3DX.Models
             GraphicsDevice graphicsDevice = Helper3D.GraphicsDevice;
             _sculptor = CreateSculptor();
             _sculptor.BuildMesh();
-            _vertexBuffer = new VertexBuffer(
+            _vertexBuffer = new DynamicVertexBuffer(    // DynamicVertexBuffer enables dynamic scene modification
                 graphicsDevice,
                 VertexPositionTextureNormal.VertexDeclaration,
                 _sculptor.VertexPositionTextureNormals.Length,
                 BufferUsage.WriteOnly);
-            _vertexBuffer.SetData(0, _sculptor.VertexPositionTextureNormals, 0, _sculptor.VertexPositionTextureNormals.Length, 0);
-            // graphicsDevice.SetVertexBuffer(_vertexBuffer);
+
+            // code block moved to OnRender to enable GraphicsDevice.SetVertexBuffer(null)
+            //graphicsDevice.SetVertexBuffer(null);   // to prevent InvalidOperationException during _vertexBuffer.SetData()
+            //_vertexBuffer.SetData(0, _sculptor.VertexPositionTextureNormals, 0, _sculptor.VertexPositionTextureNormals.Length, 0);
+            //graphicsDevice.SetVertexBuffer(_vertexBuffer);
         }
 
         /// <summary>
@@ -166,10 +169,15 @@ namespace Perspective.Wpf3DX.Models
         {
             base.OnRender(e);
 
-            if (_vertexBuffer != null)
+            // if (_vertexBuffer != null)
+            if ((_vertexBuffer != null) && (_sculptor.VertexPositionTextureNormals != null))
             {
                 // For texture rendering
-                e.GraphicsDevice.SamplerStates[0] = _samplerState; 
+                e.GraphicsDevice.SamplerStates[0] = _samplerState;
+
+                e.GraphicsDevice.SetVertexBuffer(null);   // to prevent InvalidOperationException during _vertexBuffer.SetData()
+                _vertexBuffer.SetData(0, _sculptor.VertexPositionTextureNormals, 0, _sculptor.VertexPositionTextureNormals.Length, 0);
+                e.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
 
                 // Vertex pipeline
                 e.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
@@ -193,15 +201,18 @@ namespace Perspective.Wpf3DX.Models
                     e.GraphicsDevice.Textures[0] = _texture;
                 }
 
-                e.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, _sculptor.Triangles.Count);
-
-                if (_backTexture != null)
+                if (_sculptor.Triangles.Count > 0) // to prevent ArgumentOutOfRangeException on GraphicsDevice.DrawPrimitives()
                 {
-                    e.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-                    e.GraphicsDevice.Textures[0] = _backTexture;
-                    ShaderHelper.SetPixelShaderConstantMaterial(e.GraphicsDevice, ref _backMaterial);
                     e.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, _sculptor.Triangles.Count);
-                    e.GraphicsDevice.RasterizerState = Helper3D.DefaultRasterizerState;
+
+                    if (_backTexture != null)
+                    {
+                        e.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+                        e.GraphicsDevice.Textures[0] = _backTexture;
+                        ShaderHelper.SetPixelShaderConstantMaterial(e.GraphicsDevice, ref _backMaterial);
+                        e.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, _sculptor.Triangles.Count);
+                        e.GraphicsDevice.RasterizerState = Helper3D.DefaultRasterizerState;
+                    }
                 }
             }
         }

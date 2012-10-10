@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using Perspective.Wpf3DX;
 using Perspective.Wpf3DX.Models;
 using Microsoft.Xna.Framework;
+using Perspective.Wpf3DX.Transforms;
 
 namespace Perspective.Demo3D.View
 {
@@ -42,8 +43,8 @@ namespace Perspective.Demo3D.View
 
             var scene = new Scene();
             scene.Camera = camera;
-            scene.Models.Add(axis);
-            scene.Models.Add(box);
+            scene.AddModel(axis);
+            scene.AddModel(box);
             scene.Initialize();
             // scene.InvalidateProjection((float)workshop3DX.ActualWidth / (float)workshop3DX.ActualHeight);
             
@@ -55,14 +56,17 @@ namespace Perspective.Demo3D.View
         {
             var axis = new XyzAxis();
             axis.Length = 3.0f;
-            workshop3DX.Scene.Models.Add(axis);
+            workshop3DX.Scene.AddModel(axis);
             workshop3DX.Scene.Initialize();
         }
 
         private void boxButton_Click(object sender, RoutedEventArgs e)
         {
             var box = new Box();
-            workshop3DX.Scene.Models.Add(box);
+            var translation = new Translation();
+            translation.OffsetX = 3.0f;
+            box.Transform = translation;
+            workshop3DX.Scene.AddModel(box);
             workshop3DX.Scene.Initialize();
         }
 

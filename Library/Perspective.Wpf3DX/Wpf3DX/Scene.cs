@@ -196,6 +196,18 @@ namespace Perspective.Wpf3DX
         }
 
         /// <summary>
+        /// Adds dynamically a model to the scene, using a thread-safe way
+        /// </summary>
+        /// <param name="model"></param>
+        public void AddModel(Model model)
+        {
+            lock (this)
+            {
+                Models.Add(model);
+            }
+        }
+
+        /// <summary>
         /// Draws the scene.
         /// </summary>
         /// <param name="graphicsDevice">The graphic device.</param>
@@ -203,10 +215,17 @@ namespace Perspective.Wpf3DX
         {
             graphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Transparent, 1.0f, 0);
             graphicsDevice.RasterizerState = Helper3D.DefaultRasterizerState;
-            foreach (var shape in _models)
+            lock (this) // to prevent InvalidOperationException during a collection modification
             {
-                shape.OnRender(new RenderEventArgs(graphicsDevice, _camera.ViewProjection));
+                foreach (var shape in _models)
+                {
+                    shape.OnRender(new RenderEventArgs(graphicsDevice, _camera.ViewProjection));
+                }
             }
+            //foreach (var shape in _models)
+            //{
+            //    shape.OnRender(new RenderEventArgs(graphicsDevice, _camera.ViewProjection));
+            //}
         }
     }
 }
