@@ -22,9 +22,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Button 
-                Name="fullSceneButton"
+                Name="resetSceneButton"
                 Content="Full scene" 
-                Click="fullSceneButton_Click"/>
+                Click="resetSceneButton_Click"/>
             <Button
                 Name="axisButton"
                 Content="XyzAxis"
@@ -33,6 +33,13 @@
                 Name="boxButton"
                 Content="Box"
                 Click="boxButton_Click"/>
+            <Slider
+                Name="scaleSlider"
+                Orientation="Horizontal"
+                Width="100"
+                Minimum="0.1"
+                Maximum="1.0"
+                Value="0.5"/>
         </StackPanel>
         <p:Workshop3DX 
             Name="workshop3DX"

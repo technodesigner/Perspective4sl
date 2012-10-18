@@ -177,7 +177,7 @@ namespace Perspective.Wpf3DX.Models
 
                 e.GraphicsDevice.SetVertexBuffer(null);   // to prevent InvalidOperationException during _vertexBuffer.SetData()
                 _vertexBuffer.SetData(0, _sculptor.VertexPositionTextureNormals, 0, _sculptor.VertexPositionTextureNormals.Length, 0);
-                e.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
+                // e.GraphicsDevice.SetVertexBuffer(_vertexBuffer);
 
                 // Vertex pipeline
                 e.GraphicsDevice.SetVertexBuffer(_vertexBuffer);

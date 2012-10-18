@@ -32,6 +32,7 @@ VertexShaderOutput main(VertexData vertex)
 	float4 newPos = mul(float4(vertex.Position, 1), ModelTransform);
 	output.Position = mul(newPos, WorldViewProj);
 	output.Normal.xyz = mul(float4(vertex.Normal.xyz, 0), ModelTransform).xyz;
+	// output.Normal.xyz = vertex.Normal.xyz;
 	output.TextureCoordinates = vertex.TextureCoordinates;
 	return output;
 }
