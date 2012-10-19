@@ -31,8 +31,9 @@ VertexShaderOutput main(VertexData vertex)
 	VertexShaderOutput output;
 	float4 newPos = mul(float4(vertex.Position, 1), ModelTransform);
 	output.Position = mul(newPos, WorldViewProj);
-	output.Normal.xyz = mul(float4(vertex.Normal.xyz, 0), ModelTransform).xyz;
-	// output.Normal.xyz = vertex.Normal.xyz;
+	// Transforms are not applied to normals, because it would result in lightening modification (i.e. when scaling down)
+	// output.Normal.xyz = mul(float4(vertex.Normal.xyz, 0), ModelTransform).xyz;
+	output.Normal.xyz = vertex.Normal.xyz;
 	output.TextureCoordinates = vertex.TextureCoordinates;
 	return output;
 }

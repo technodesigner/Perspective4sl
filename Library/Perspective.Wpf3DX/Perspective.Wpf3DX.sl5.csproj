@@ -121,6 +121,7 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Wpf3DX\Shaders\Perspective.PixelShader" />
+    <None Include="Wpf3DX\Shaders\CompileShaders.cmd" />
     <None Include="Wpf3DX\Shaders\Perspective.PixelShader.hlsl" />
     <Resource Include="Wpf3DX\Shaders\Perspective.VertexShader" />
     <None Include="Wpf3DX\Shaders\Perspective.VertexShader.hlsl" />
