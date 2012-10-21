@@ -130,8 +130,8 @@
     <Compile Include="View\CylinderDemo.xaml.cs">
       <DependentUpon>CylinderDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DynamicDemo.xaml.cs">
-      <DependentUpon>DynamicDemo.xaml</DependentUpon>
+    <Compile Include="View\DynamicSceneDemo.xaml.cs">
+      <DependentUpon>DynamicSceneDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MaterialDemo.xaml.cs">
       <DependentUpon>MaterialDemo.xaml</DependentUpon>
@@ -229,7 +229,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DynamicDemo.xaml">
+    <Page Include="View\DynamicSceneDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

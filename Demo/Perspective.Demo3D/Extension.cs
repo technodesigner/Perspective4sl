@@ -153,7 +153,7 @@ namespace Perspective.Demo3D
                 {
                     Title = "Dynamic scene",
                     IconFile = _iconFile,
-                    PageName = "DynamicDemo"
+                    PageName = "DynamicSceneDemo"
                 },
             };
             ExtensionManager.Current.RegisterAssembly(_assemblyName);

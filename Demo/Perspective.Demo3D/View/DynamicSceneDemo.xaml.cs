@@ -17,9 +17,9 @@ using Perspective.Wpf3DX.Transforms;
 
 namespace Perspective.Demo3D.View
 {
-    public partial class DynamicDemo : Page
+    public partial class DynamicSceneDemo : Page
     {
-        public DynamicDemo()
+        public DynamicSceneDemo()
         {
             InitializeComponent();
         }
