@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     d:DesignWidth="640" d:DesignHeight="480"
+    Loaded="Page_Loaded"
     Title="DynamicDemo Page">
     <Grid x:Name="LayoutRoot" Background="{StaticResource SceneBackgroundBrush}">
         <Grid.Resources>
@@ -15,15 +16,25 @@
                 <Setter Property="Width" Value="80" />
                 <Setter Property="Height" Value="40" />
             </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="40" />
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
         </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
             <Button 
                 Name="resetSceneButton"
-                Content="Full scene" 
+                Content="Scene" 
                 Click="resetSceneButton_Click"/>
             <Button
                 Name="axisButton"
@@ -33,17 +44,58 @@
                 Name="boxButton"
                 Content="Box"
                 Click="boxButton_Click"/>
+            <Button
+                Name="sphericalButton"
+                Content="Spherical"
+                Click="sphericalButton_Click"/>
+            <Button
+                Name="conicalButton"
+                Content="Conical"
+                Click="conicalButton_Click"/>
+            <TextBlock Text="Scale"/>
             <Slider
                 Name="scaleSlider"
-                Orientation="Horizontal"
-                Width="100"
                 Minimum="0.1"
                 Maximum="1.0"
                 Value="0.5"/>
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <TextBlock Text="Red"/>
+                <TextBlock Text="{Binding ElementName=redSlider, Path=Value, StringFormat=0}"/>
+            </StackPanel>
+            <Slider
+                Name="redSlider"
+                Minimum="0"
+                Maximum="255"
+                />
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <TextBlock Text="Green"/>
+                <TextBlock Text="{Binding ElementName=greenSlider, Path=Value, StringFormat=0}"/>
+            </StackPanel>
+            <Slider
+                Name="greenSlider"
+                Minimum="0"
+                Maximum="255"
+                />
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <TextBlock Text="Blue"/>
+                <TextBlock Text="{Binding ElementName=blueSlider, Path=Value, StringFormat=0}"/>
+            </StackPanel>
+            <Slider
+                Name="blueSlider"
+                Minimum="0"
+                Maximum="255"
+                />
+
         </StackPanel>
         <p:Workshop3DX 
             Name="workshop3DX"
-            Grid.Row="1">
+            Grid.Column="1">
             <p:Scene>
                 <p:Scene.Camera>
                     <p:PerspectiveCamera 

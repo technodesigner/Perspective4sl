@@ -19,6 +19,18 @@ namespace Perspective.Wpf3DX.Textures
         /// <summary>
         /// Initializes a new instance of the ColorTexture class.
         /// </summary>
+        /// <param name="color">A color structure.</param>
+        public ColorTexture(Color color)
+        {
+            R = color.R;
+            G = color.G;
+            B = color.B;
+            A = color.A;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the ColorTexture class.
+        /// </summary>
         /// <param name="r">The red component of the color, between 0 and 1.0.</param>
         /// <param name="g">The green component of the color, between 0 and 1.0.</param>
         /// <param name="b">The blue component of the color, between 0 and 1.0.</param>

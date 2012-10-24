@@ -145,6 +145,23 @@ namespace Perspective.Wpf3DX
             get { return RasterizerState.CullClockwise; }
         }
 
+        private static Color _defaultColor; 
+
+        /// <summary>
+        /// Gets the default Perspective's color.
+        /// </summary>
+        public static Color DefaultColor 
+        {
+            get
+            {
+                if (_defaultColor.R == 0)
+                {
+                    _defaultColor = new Color(1.0f, 0.87f, 0.18f, 1.0f);
+                }
+                return _defaultColor;
+            }
+        }
+
         private static ModelTexture _defaultTexture;
 
         /// <summary>
@@ -156,7 +173,7 @@ namespace Perspective.Wpf3DX
             {
                 if (_defaultTexture == null)
                 {
-                    _defaultTexture = new ColorTexture(1.0f, 0.87f, 0.18f, 1.0f);
+                    _defaultTexture = new ColorTexture(DefaultColor);
                 }
                 return _defaultTexture; 
             }

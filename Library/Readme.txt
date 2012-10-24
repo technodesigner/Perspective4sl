@@ -1,7 +1,7 @@
 Perspective 3.0 library for Silverlight
 ---------------------------------------
 
-This file describes the solution and its new functionalities since the last official release (2.0).
+This file describes the solution and its new functionalities since the last main official release (2.0).
 
 General
 -------
