@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework;
 using Perspective.Wpf3DX;
 using System.Windows.Markup;
 using System.Windows.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Perspective.Wpf.Controls
 {
@@ -59,6 +60,13 @@ namespace Perspective.Wpf.Controls
 
         private void Workshop3DX_Loaded(object sender, RoutedEventArgs e)
         {
+            // Antialiasing ?
+            _drawingSurface.CompositionMode = new OffscreenCompositionMode()
+            {
+                PreferredMultiSampleCount = 2,
+                // RenderTargetUsage = RenderTargetUsage.DiscardContents,
+                // PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8,
+            };
             _scene.Initialize();
         }
 
