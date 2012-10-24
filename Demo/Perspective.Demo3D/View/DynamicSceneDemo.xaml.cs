@@ -167,5 +167,35 @@ namespace Perspective.Demo3D.View
             transformGroup.Children.Add(translation);
             return transformGroup;
         }
+
+        private Random _randomScale = new Random();
+        private Random _randomColor = new Random();
+        //private Random _randomG = new Random();
+        //private Random _randomB = new Random();
+
+        private void randomSceneButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                AddBoxToScene(
+                    workshop3DX,
+                    (float)_randomScale.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble());
+                AddConicalToScene(
+                    workshop3DX,
+                    (float)_randomScale.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble());
+                AddSphericalToScene(
+                    workshop3DX,
+                    (float)_randomScale.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble(),
+                    (float)_randomColor.NextDouble());
+            }
+        }
     }
 }

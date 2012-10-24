@@ -34,7 +34,7 @@
         <StackPanel>
             <Button 
                 Name="resetSceneButton"
-                Content="Scene" 
+                Content="Reset" 
                 Click="resetSceneButton_Click"/>
             <Button
                 Name="axisButton"
@@ -52,6 +52,10 @@
                 Name="conicalButton"
                 Content="Conical"
                 Click="conicalButton_Click"/>
+            <Button
+                Name="randomSceneButton"
+                Content="Random"
+                Click="randomSceneButton_Click"/>
             <TextBlock Text="Scale"/>
             <Slider
                 Name="scaleSlider"
