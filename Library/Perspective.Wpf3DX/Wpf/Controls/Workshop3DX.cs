@@ -60,12 +60,12 @@ namespace Perspective.Wpf.Controls
 
         private void Workshop3DX_Loaded(object sender, RoutedEventArgs e)
         {
-            // Antialiasing ?
+            // Antialiasing
             _drawingSurface.CompositionMode = new OffscreenCompositionMode()
             {
-                PreferredMultiSampleCount = 2,
-                // RenderTargetUsage = RenderTargetUsage.DiscardContents,
-                // PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8,
+                PreferredMultiSampleCount = 4,
+                //RenderTargetUsage = RenderTargetUsage.DiscardContents,
+                //PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8,
             };
             _scene.Initialize();
         }
