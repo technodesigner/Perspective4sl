@@ -18,6 +18,10 @@ namespace Perspective.Demo3D.View
         public ConicalDemo()
         {
             InitializeComponent();
+            Loaded += (sender, e) =>
+            {
+                workshop3DX.Focus();
+            };
         }
 
         // Executes when the user navigates to this page.

@@ -173,7 +173,11 @@ namespace Perspective.Wpf3DX
             {
                 if (_defaultTexture == null)
                 {
-                    _defaultTexture = new ColorTexture(DefaultColor);
+                    _defaultTexture = new ColorTexture(
+                        (float)DefaultColor.R / 255,
+                        (float)DefaultColor.G / 255,
+                        (float)DefaultColor.B / 255,
+                        1.0f);
                 }
                 return _defaultTexture; 
             }

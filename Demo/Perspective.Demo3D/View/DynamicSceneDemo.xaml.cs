@@ -23,6 +23,10 @@ namespace Perspective.Demo3D.View
         public DynamicSceneDemo()
         {
             InitializeComponent();
+            Loaded += (sender, e) =>
+            {
+                workshop3DX.Focus();
+            };
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

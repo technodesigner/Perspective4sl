@@ -19,7 +19,7 @@
                         LookTarget="3 1 0"
                         FieldOfView="25"/>
                 </p:Scene.Camera>
-                <p:XyzAxis Length="3"/>
+                <!--<p:XyzAxis Length="3"/>-->
                 <p:CompositeModel >
                     <p:CompositeModel.Transform>
                         <p:ModelTransformGroup>

@@ -22,6 +22,8 @@
                 <p:XyzAxis Length="3"/>
                 <p:Box>
                     <p:Box.Transform>
+                        <!--<p:Translation OffsetZ="-5"/>-->
+                        <!--<p:Scaling ScaleX="2" ScaleZ="0.5" />-->
                         <p:ModelTransformGroup>
                             <p:Translation OffsetX="-1" OffsetY="0.5" />
                             <p:Scaling ScaleZ="2" />
@@ -30,6 +32,16 @@
                         </p:ModelTransformGroup>
                     </p:Box.Transform>
                 </p:Box>
+                <!--<p:Box>
+                    <p:Box.Transform>
+                        <p:Translation OffsetZ="-1"/>
+                    </p:Box.Transform>
+                </p:Box>
+                <p:Box>
+                    <p:Box.Transform>
+                        <p:Translation OffsetZ="3"/>
+                    </p:Box.Transform>
+                </p:Box>-->
             </p:Scene>
         </p:Workshop3DX>
     </Grid>

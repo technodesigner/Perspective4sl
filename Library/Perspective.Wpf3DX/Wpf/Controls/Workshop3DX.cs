@@ -63,7 +63,7 @@ namespace Perspective.Wpf.Controls
             // Antialiasing
             _drawingSurface.CompositionMode = new OffscreenCompositionMode()
             {
-                PreferredMultiSampleCount = 4,
+                PreferredMultiSampleCount = 4 ,
                 //RenderTargetUsage = RenderTargetUsage.DiscardContents,
                 //PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8,
             };
